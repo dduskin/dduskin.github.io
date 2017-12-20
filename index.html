@@ -71,7 +71,7 @@
         "google": L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}', {
             attribution: 'google'
         })
-    }, { 'drawlayer': drawnItems }, { position: 'topleft', collapsed: false }).addTo(map);
+    }, { 'drawlayer': drawnItems, 'Harris County Streams': nhdLayer, }, { position: 'topleft', collapsed: false }).addTo(map);
     map.addControl(new L.Control.Draw({
         edit: {
             featureGroup: drawnItems,
@@ -93,20 +93,20 @@
         drawnItems.addLayer(layer);
     });
 
-var customLayer = L.geoJson(null, {
+var nhdStyle = L.geoJson(null, {
     // http://leafletjs.com/reference.html#geojson-style
     style: function(feature) {
-        return { color: 'red' };
+        return { color: 'lightblue' };
     }
 });
 
-var runLayer = omnivore.topojson('nhd.json', null, customLayer)
+var nhdLayer = omnivore.topojson('nhd.json', null, nhdStyle)
     .on('ready', function() {
-        map.fitBounds(runLayer.getBounds());
+        map.fitBounds(nhdLayer.getBounds());
 
         // After the 'ready' event fires, the GeoJSON contents are accessible
         // and you can iterate through layers to bind custom popups.
-        runLayer.eachLayer(function(layer) {
+        nhdLayer.eachLayer(function(layer) {
           var nhdlyr = layer;
             // See the `.bindPopup` documentation for full details. This
             // dataset has a property called `name`: your dataset might not,
