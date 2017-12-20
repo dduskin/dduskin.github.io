@@ -81,6 +81,28 @@
         drawnItems.addLayer(layer);
     });
 
+var customLayer = L.geoJson(null, {
+    // http://leafletjs.com/reference.html#geojson-style
+    style: function(feature) {
+        return { color: 'red' };
+    }
+});
+    
+var runLayer = omnivore.topojson('nhd.json', null, customLayer)
+    .on('ready', function() {
+        map.fitBounds(runLayer.getBounds());
+
+        // After the 'ready' event fires, the GeoJSON contents are accessible
+        // and you can iterate through layers to bind custom popups.
+        runLayer.eachLayer(function(layer) {
+          var nhdlyr = layer;
+            // See the `.bindPopup` documentation for full details. This
+            // dataset has a property called `name`: your dataset might not,
+            // so inspect it and customize to taste.
+            nhdlyr.bindTooltip(layer.feature.properties.GNIS_Name, {permanent: false});
+        });
+    })
+    .addTo(map);
 </script>
 </body>
 </html>
