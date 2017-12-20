@@ -63,10 +63,14 @@ var nhdLayer = omnivore.topojson('nhd.json', null, nhdStyle)
 			"Google": googleHybrid,
 		};
 		var overlayMaps = {
-			//"Harris County Texas Streams": nhdLayer,
+	        "Harris County Texas Streams": nhdLayer,
 
 		};
-
+var map = L.map('map',{
+	center: [30.059038, -96.24875],
+	zoom: [7],
+    attributionControl: false,
+});
     L.control.layers(baseLayers, overlayMaps, { collasped: false, position: 'topleft'}).addTo(map);
 
 
