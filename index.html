@@ -71,7 +71,7 @@ var nhdLayer = omnivore.topojson('nhd.json', null, nhdStyle)
 	        "Harris County Texas Streams": nhdLayer,
 
 		};
-    L.control.layers(baseLayers, overlayMaps, { collasped: false, position: 'topleft'}).addTo(map);
+    L.control.layers(baseLayers, overlayMaps, { collasped: true, position: 'topleft'}).addTo(map);
 
 
 </script>
