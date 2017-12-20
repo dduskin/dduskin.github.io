@@ -71,7 +71,8 @@ var CartoDB_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{
 	subdomains: 'abcd',
 	maxZoom: 19
 });
-    drawnItems = L.featureGroup().addTo(map);
+
+    
 		var baseLayers = {
 			"Carto DB": CartoDB_Positron,
 			"Google": googleHybrid,
@@ -80,9 +81,10 @@ var CartoDB_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{
 			"Harris County Texas Streams": nhdLayer,
 			"Draw Layer": drawnItems ,
 		};
+
     L.control.layers(baseLayers, overlayMaps, { collasped: false, position: 'topleft'}).addTo(map);
 
-
+    drawnItems = L.featureGroup().addTo(map);
 
     map.addControl(new L.Control.Draw({
         edit: {
