@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Leaflet.draw vector editing handlers</title>
+    <title>Example</title>
 
     <script src="libs/leaflet-src.js"></script>
     <link rel="stylesheet" href="libs/leaflet.css"/>
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="src/leaflet.draw.css"/>
     :browse confirm saveas
     <link rel="stylesheet" href="../src/L.Icon.Pulse.css" />
-
+    <script src="src/mapbox.omnivore.js"></script>
     <script src="src/Toolbar.js"></script>
     <script src="src/Tooltip.js"></script>
 
@@ -87,7 +87,7 @@ var customLayer = L.geoJson(null, {
         return { color: 'red' };
     }
 });
-    
+
 var runLayer = omnivore.topojson('nhd.json', null, customLayer)
     .on('ready', function() {
         map.fitBounds(runLayer.getBounds());
