@@ -61,17 +61,20 @@
 <div id="map"></div>
 
 <script>
-    var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            osm = L.tileLayer(osmUrl, { maxZoom: 18, attribution: osmAttrib }),
-            map = new L.Map('map', { center: new L.LatLng(34.505, -95.04), zoom: 6 }),
-    var google = L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}', {
-            attribution: 'google'
-        });
+var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+	maxZoom: 20,
+	attribution: '&copy; <a href="http://www.google.com">Google</a>',
+	subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+});
+var CartoDB_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	subdomains: 'abcd',
+	maxZoom: 19
+});
     drawnItems = L.featureGroup().addTo(map);
 		var baseLayers = {
-			"Open Street Map": osmUrl,
-			"Google": google,
+			"Carto DB": CartoDB_Positron,
+			"Google": googleHybrid,
 		};
 		var overlayMaps = {
 			"Harris County Texas Streams": nhdLayer,
