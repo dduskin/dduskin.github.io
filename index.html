@@ -35,18 +35,6 @@ var CartoDB_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{
 	subdomains: 'abcd',
 	maxZoom: 19
 });
-
-		var baseLayers = {
-			"Carto DB": CartoDB_Positron,
-			"Google": googleHybrid,
-		};
-		var overlayMaps = {
-			"Harris County Texas Streams": nhdLayer,
-
-		};
-
-    L.control.layers(baseLayers, overlayMaps, { collasped: false, position: 'topleft'}).addTo(map);
-
 var nhdStyle = L.geoJson(null, {
     // http://leafletjs.com/reference.html#geojson-style
     style: function(feature) {
@@ -69,6 +57,18 @@ var nhdLayer = omnivore.topojson('nhd.json', null, nhdStyle)
         });
     })
     .addTo(map);
+		var baseLayers = {
+			"Carto DB": CartoDB_Positron,
+			"Google": googleHybrid,
+		};
+		var overlayMaps = {
+			"Harris County Texas Streams": nhdLayer,
+
+		};
+
+    L.control.layers(baseLayers, overlayMaps, { collasped: false, position: 'topleft'}).addTo(map);
+
+
 </script>
 </body>
 </html>
