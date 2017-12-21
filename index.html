@@ -53,7 +53,7 @@ var huc12Style = L.geoJson(null, {
         return { fillColor: 'steelblue' };
     }
 });
-var huc12Layer = omnivore.topojson('nhd.json', null, huc12Style)
+var huc12Layer = omnivore.topojson('hu12_harrison_cnty.json', null, huc12Style)
     .on('ready', function() {
         map.fitBounds(nhdLayer.getBounds());
 
