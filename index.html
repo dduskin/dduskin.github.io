@@ -68,14 +68,6 @@ var huc12Layer = omnivore.topojson('hu12_harrison_cnty.json', null, huc12Style)
         });
     }).addTo(map);
 
-		var baseLayers = {
-			"Carto DB": CartoDB_Positron,
-			"Google": googleHybrid,
-		};
-		var overlayMaps = {
-	        "Harris County Texas Streams": nhdLayer,
-
-		};
 var nhdLayer = omnivore.topojson('nhd.json', null, nhdStyle)
     .on('ready', function() {
         map.fitBounds(nhdLayer.getBounds());
