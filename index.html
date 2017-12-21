@@ -19,6 +19,10 @@
       bottom: 0;
       width: 100%;
     }
+    .hucLabel	{
+    	background: transparent;
+    	color: black;
+    }
 </style>
 </head>
 <body>
@@ -64,7 +68,7 @@ var huc12Layer = omnivore.topojson('hu12_harrison_cnty.json', null, huc12Style)
             // See the `.bindPopup` documentation for full details. This
             // dataset has a property called `name`: your dataset might not,
             // so inspect it and customize to taste.
-            huc12lyr.bindTooltip(layer.feature.properties.Name, {permanent: false});
+            huc12lyr.bindTooltip(layer.feature.properties.Name, {permanent: true, offset:(0,0), className:"hucLabel"});
         });
     }).addTo(map);
 
