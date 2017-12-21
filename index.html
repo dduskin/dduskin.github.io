@@ -50,7 +50,7 @@ var nhdStyle = L.geoJson(null, {
 var huc12Style = L.geoJson(null, {
     // http://leafletjs.com/reference.html#geojson-style
     style: function(feature) {
-        return { fillColor: 'steelblue' };
+        return { color: 'steelblue' };
     }
 });
 var huc12Layer = omnivore.topojson('hu12_harrison_cnty.json', null, huc12Style)
