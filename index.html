@@ -55,7 +55,7 @@ var huc12Style = L.geoJson(null, {
 });
 var huc12Layer = omnivore.topojson('hu12_harrison_cnty.json', null, huc12Style)
     .on('ready', function() {
-        map.fitBounds(huc12Layer.getBounds());
+       // map.fitBounds(huc12Layer.getBounds());
 
         // After the 'ready' event fires, the GeoJSON contents are accessible
         // and you can iterate through layers to bind custom popups.
