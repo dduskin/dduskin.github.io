@@ -47,7 +47,35 @@ var nhdStyle = L.geoJson(null, {
         return { color: 'steelblue' };
     }
 });
+var huc12Style = L.geoJson(null, {
+    // http://leafletjs.com/reference.html#geojson-style
+    style: function(feature) {
+        return { fillColor: 'steelblue' };
+    }
+});
+var huc12Layer = omnivore.topojson('nhd.json', null, huc12Style)
+    .on('ready', function() {
+        map.fitBounds(nhdLayer.getBounds());
 
+        // After the 'ready' event fires, the GeoJSON contents are accessible
+        // and you can iterate through layers to bind custom popups.
+        huc12Layer.eachLayer(function(layer) {
+          var huc12lyr = layer;
+            // See the `.bindPopup` documentation for full details. This
+            // dataset has a property called `name`: your dataset might not,
+            // so inspect it and customize to taste.
+            huc12lyr.bindTooltip(layer.feature.properties.GNIS_Name, {permanent: false});
+        });
+    }).addTo(map);
+
+		var baseLayers = {
+			"Carto DB": CartoDB_Positron,
+			"Google": googleHybrid,
+		};
+		var overlayMaps = {
+	        "Harris County Texas Streams": nhdLayer,
+
+		};
 var nhdLayer = omnivore.topojson('nhd.json', null, nhdStyle)
     .on('ready', function() {
         map.fitBounds(nhdLayer.getBounds());
@@ -69,6 +97,7 @@ var nhdLayer = omnivore.topojson('nhd.json', null, nhdStyle)
 		};
 		var overlayMaps = {
 	        "Harris County Texas Streams": nhdLayer,
+	        "HUC 12":huc12Layer,
 
 		};
     L.control.layers(baseLayers, overlayMaps, { collasped: true, position: 'topleft'}).addTo(map);
