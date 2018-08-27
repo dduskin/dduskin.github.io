@@ -226,29 +226,12 @@
               var hucQueryUrl = 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/CNMS_Totals_Subbasins_HUC_8/FeatureServer/0';
               var hucQuery = L.esri.query({url: hucQueryUrl});
               hucQuery.where("HUC_NM = '"+"'hucQuery.features[0].properties.HUC_NM'"+"'").run(function(error, hucQuery, response){
-                function getColor(BLE_PLAN){
-                    if(BLE_PLAN == 'Yes'){
-                      return 'green';
-                    }else if (BLE_PLAN == 'No'){
-                      return 'red';
-                    }
-                    else{
-                      return 'blue';
-                    }
-                  }
-                  function style(feature) {
-                      return {
-                          weight: 2,
-                          opacity: 1,
-                          color: getColor(feature.properties.BLE_PLAN),
-                      };
-                  }
                 let hucQueried = L.geoJSON(huc8).setStyle({color:'red',fillOpacity:0.0}).addTo(results);
                 m.fitBounds(hucQueried.getBounds().pad(0.05));
                 L.esri.query({
                   url: streamsUrl
                 }).within(hucQueried).run(function(error, streams, response){
-                  let streamQueried = L.geoJSON(streams,{style:style}).addTo(results);
+                  let streamQueried = L.geoJSON(streams).addTo(results).setStyle({color:'gray'});
                 });
               });
           }
