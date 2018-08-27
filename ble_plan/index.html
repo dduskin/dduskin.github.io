@@ -227,7 +227,7 @@
               var hucQuery = L.esri.query({url: hucQueryUrl});
               hucQuery.where("HUC_NM = '"+"'hucQuery.features[0].properties.HUC_NM'"+"'").run(function(error, hucQuery, response){
               	function getColor(BLE_PLAN){if(BLE_PLAN == 'Yes'){return 'green'}else if(BLE_PLAN == 'No'){return 'red'} else{ return 'gray'}};
-              	function style(feature){{return color:getColor(feature.properties.BLE_PLAN)};}
+              	function style(feature){return {color:getColor(feature.properties.BLE_PLAN)};}
                 let hucQueried = L.geoJSON(huc8,{style:style}).addTo(results);
                 m.fitBounds(hucQueried.getBounds().pad(0.05));
                 L.esri.query({
