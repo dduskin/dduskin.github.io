@@ -243,12 +243,12 @@
                           color: getColor(feature.properties.BLE_PLAN),
                       };
                   }
-                let hucQueried = L.geoJSON(huc8,{style:style}).addTo(results);
+                let hucQueried = L.geoJSON(huc8).setStyle({color:'red',fillOpacity:0.0}).addTo(results);
                 m.fitBounds(hucQueried.getBounds().pad(0.05));
                 L.esri.query({
                   url: streamsUrl
                 }).within(hucQueried).run(function(error, streams, response){
-                  let streamQueried = L.geoJSON(streams).addTo(results).bindTooltip("hello");
+                  let streamQueried = L.geoJSON(streams,{style:style}}).addTo(results).bindTooltip("hello");
                 });
               });
           }
