@@ -1,705 +1,289 @@
 <!DOCTYPE html>
-
 <html moznomarginboxes mozdisallowselectionprin>
-
- 
-
   <head>
-
     <meta charset="utf-8" />
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
     <title>Future Planning</title>
-
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-
     <!-- Load Leaflet from CDN -->
-
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
-
     <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
-
     <!-- Load Esri Leaflet from CDN -->
-
     <script src="https://unpkg.com/esri-leaflet@2.2.1/dist/esri-leaflet.js" integrity="sha512-6BBVttv13OVrrUSoGmy9/aIVHateyIEGFaQxqnzCgXT9LNCAQ1Cxxj43R6Eq0ynydS7a7bLLfmEWwXFiO6lW2g==" crossorigin=""></script>
-
-      <link rel="stylesheet"
-
-  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-
- 
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-
     <link rel="stylesheet" href="./css/bootstrap.css" />
-
- 
-
     <link rel="stylesheet" href="./css/Control.MiniMap.min.css"/>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
     <script src='./js/Control.MiniMap.min.js'></script>
-
     <!-- Load Esri Leaflet Geocoder from CDN -->
-
-    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css"
-
-      integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ=="
-
-      crossorigin="">
-
-    <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js"
-
-      integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A=="
-
-      crossorigin=""></script>
-
+    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css" integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ==" crossorigin="">
+    <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js" integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A==" crossorigin=""></script>
     <style>
-
-    /* html{font-family: "Franklin Gothic Medium Cond", sans-serif;height: 100%;!important} */
-
-    body {
-
-      margin: 0;
-
-      padding: 0;
-
-      background-color:#2c5283;
-
-      /* font-family: "Franklin Gothic Medium Cond", sans-serif;height: 100%;!important; */
-
- 
-
-    }
-
-    #m {
-
-    height:90vh;border-radius:15px;margin-top:0%;box-shadow: 0 0 25px rgba(0,0,0,1);  -webkit-animation: bounceInLeft 2s;background-color:#2c5283;
-
-    /* height:85vh;border-radius:15px;margin-top:0%;margin-left:2.5%;box-shadow: 0 0 25px rgba(0,0,0,1); */
-
-   }
-
+    body {margin: 0;padding: 0;background-color:#2c5283;}
+    #m {height:90vh;border-radius:15px;margin-top:0%;box-shadow: 0 0 25px rgba(0,0,0,1);  -webkit-animation: bounceInLeft 2s;background-color:#2c5283;}
     .title{display:inline;color:white;font-size:3em;padding:0.5%;margin-left:2.5%;font-family:impact;letter-spacing:0.15em;}
-
     .basemap1,.basemap2,.basemap3{box-shadow: 0 10px 10px rgba(0,0,0,0.2);}
-
     .basemap1      {border-style:none;position: absolute;top: 1%;left: 41%;z-index:3000;height:42px;width:45px;border-radius:50px;background-color:#30343E;color:white;}
-
     .basemap2      {border-style:none;position: absolute;top: 1%;left: 45%;z-index:3000;height:42px;width:45px;border-radius:50px;background-color:#30343E;color:white;}
-
     .basemap3      {border-style:none;position: absolute;top: 1%;left: 49%;z-index:3000;height:42px;width:45px;border-radius:50px;background-color:#30343E;color:white;}
-
     .btn-default{background-color:#30343E;color:white;border-style:none;border-radius:1px;}
-
     .btn-default:hover{background-color:#3f4451;color:white;}
-
     .selected{background:#5ed4ff;transform:scale(1.25);}
-
     .leaflet-control-minimap{border-radius:50%;opacity:0.75;box-shadow: 0 0 15px rgba(0,0,0,1);}
-
     #river_nums{}
-
     .river_nums_open{  -webkit-animation: bounceInRight 2s;position:absolute;top:0.5%;right:1%;z-index:3000;background-color:lightgray;opacity:0.85;color:white;font-size:1.25em;padding:0.75em;border-radius:5px;box-shadow: 0 0 25px rgba(0,0,0,1);border-style:solid;border-color:white;border-width:thin;}
-
     .river_num_closed{  -webkit-animation: bounceOutLeft 2s;display:none;}
-
     .river_nums,text{}
-
     .print_button{position:relative;float:right;border-radius:25%;background:transparent;font-size:0.5em;margin-top:0.65%;}
-
     #home_button{position:relative;float:right;border-radius:25%;background:transparent;font-size:0.5em;margin-top:0.65%;}
-
     #analyses{}
-
     .analyses_closed{ -webkit-animation: bounceOutRight 2s;display:none;}
-
     .analyses_open{position:absolute;z-index:750;width:auto;bottom:5%;right:10%;padding:0.5%;border-radius:5px;opacity:.85;background-color:lightgray;box-shadow: 0 0 15px rgba(0,0,0,1);display:inline;  -webkit-animation: bounceInRight 2s;}
-
     #name{font-size:0.75em;display:inline;font-weight:50;margin-bottom:1.75%;}
-
     .analysesTitle{font-size:1.2em;}
-
     #home{}
-
     #popPressure{height:42px;width:45px;border-radius:50px;background-color:#30343E;color:white;}
-
     .layers_btns{border-style:none;position: absolute;top: 1%;left: 55%;z-index:3000;background-color:#2c5283;padding:5px;border-radius:10%;}
-
     .leaflet-control-layers-expanded{background-color:lightgray;opacity:0.85;box-shadow: 0 0 25px rgba(0,0,0,1);}
-
- 
-
- 
-
   </style>
-
   </head>
+<body>
+<script src="https://unpkg.com/esri-leaflet-renderers@2.0.6"></script>
 
- 
+ <div class="title col-sm-11 col-md-11 col-lg-11" align="left">FEMA Region 6 | Future Planning <p id="name"></p>
 
-  <body>
+ <button class='print_button' onclick="window.print();"><i class="fa fa-print fa-2x" aria-hidden="true"></i></button>
 
-    <!-- Load Esri Leaflet Renderers -->
+ <button id='home_button'><i class="fa fa-home fa-2x" aria-hidden="true"></i></button>
 
-  <script src="https://unpkg.com/esri-leaflet-renderers@2.0.6"></script>
+</div>
+  <div class="container-fluid">
 
-                <div class="title col-sm-11 col-md-11 col-lg-11" align="left">FEMA Region 6 | Future Planning <p id="name"></p>
-
-      <button class='print_button' onclick="window.print();"><i class="fa fa-print fa-2x" aria-hidden="true"></i></button>
-
-      <button id='home_button'><i class="fa fa-home fa-2x" aria-hidden="true"></i></button>
-
-    </div>
-
-                <div class="container-fluid">
-
-                                <div class="row">
-
-        <div class="col-sm-12 col-md-12 col-lg-12">
-
-                                    <div id="m">
-
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <div id="m">
           <button class='basemap1' data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom"><i class="fa fa-area-chart fa-2x" aria-hidden="true"></i></button>
-
           <button class='basemap2'><i class="fa fa-road fa-2x" aria-hidden="true"></i></button>
-
           <button class='basemap3'><i class="fa fa-globe fa-2x" aria-hidden="true"></i></button>
-
- 
-
- 
-
-          <!-- <div class="layers_btns">
-
-          <button id='popPressure'><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></button>
-
-          <img height='50' width='150' src="./img/pop_press_legend.png">
-
-          </div> -->
-
           <div id="river_nums" class="river_num_closed" align="center">
-
             <p id="total_cnms" style="color:black;font-size:1.5em;">0</p>
-
             <p style="color:black;font-size:1.25em;margin-bottom:-2%;"><b>Total CNMS</b></p>
-
             <p style="color:darkgray;">_________________</p>
-
             <p id="total_valid" style="color:darkgreen;">0</p>
-
             <p style="color:darkgreen;">Valid</p>
-
             <p id="total_being" style="color:darkblue;">0</p>
-
             <p style="color:darkblue;"><b>Being Studied</b></p>
-
             <span id="total_unknwn" style="color:darkred;">0</span>
-
             <p style="color:darkred;">Unknown/Unverified<p>
-
             <p style="color:darkgray;">_________________</p>
-
             <span id="total_unstudied" style="color:black;">0</span>
-
             <p style="color:black;">Unstudied</p>
-
             <p style="color:darkgray;">_________________</p>
-
             <span id="total_watershed" style="color:black;">0</span>
-
             <p style="color:black;">Total Watershed</p>
-
             <p style="color:darkgray;">_________________</p>
-
             <span id="nvue_gain" style="color:black;font-size:1.5em;">0</span>
-
             <p style="color:black;font-size:1.5em;"><b>NVUE Gain<b></p>
-
           </div>
-
- 
-
           <div id="analyses" class="analyses_closed" align="center">
-
             <div style="display:inline-block;">
-
             <p style="display:inline-block;" class="analysesTitle"><b>Population</b></p>
-
             <p id="pop">0</p>
-
             </div>
-
             <div style="display:inline-block;">
-
             <p style="display:inline-block; border-left: 1px solid darkgray;height: 5em;padding-left:3%;padding-right:3%;"></p>
-
             </div>
-
             <div style="display:inline-block;">
-
             <p class="analysesTitle"><b>Area (Sq. Miles)</b></p>
-
             <p style="display:inline-block;"  id="areasqmi">0</p>
-
             </div>
-
             <div style="display:inline-block;">
-
             <p style="display:inline-block; border-left: 1px solid darkgray;height: 5em;padding-left:3%;padding-right:3%;"></p>
-
             </div>
-
             <div style="display:inline-block;">
-
             <p class="analysesTitle"><b>Lead Region</b></p>
-
             <p  id="lead_region">0</p>
-
             </div>
-
         </div>
-
- 
-
- 
-
                                 </div>
 
- 
-
- 
-
- 
-
                 </div>
-
- 
-
- 
-
- 
-
     <script>
 
     const m = L.map("m",{zoom:6,center:[31.5,-98.0],zoomControl:false,addAttribution:"FEMA Region 6 | Mitigation - Riskanalysis"});
-
     const CartoDB_Voyager = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-
     });
-
     const google_terrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
-
     maxZoom: 21,
-
     attribution: '&copy; <a href="http://www.google.com">Google</a>',
-
     subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-
     });
-
     const google_hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {maxZoom: 21,attribution: '&copy; <a href="http://www.google.com">Google</a>',subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-
     });
-
     m.addLayer(CartoDB_Voyager); // add main basemap to window load
-
- 
-
     const popPressure = L.esri.dynamicMapLayer({
-
       // url: 'https://atlasmaps.esri.com/arcgis/rest/services/Esri/USA_Population_Pressure_Map/MapServer',
-
       url:'https://atlasmaps.esri.com/arcgis/rest/services/UrbanObservatory/USA_Population_Pressure_Map_Revised/MapServer/',
-
       opacity: 1
-
     });
-
- 
-
     function updateAttribution(e) {
-
                 $.each(m._layers, function (index, layer) {
-
                                 if (layer.getAttribution) {
-
                                                 $("#attribution").html((layer.getAttribution()));
-
                                 }
-
                 });
-
     }
-
     m.on("layeradd", updateAttribution);
-
     m.on("layerremove", updateAttribution);
-
       var attributionControl = L.control({
-
                 position: "bottomleft"
-
       });
-
       attributionControl.onAdd = function (map) {
-
                 var div = L.DomUtil.create("div", "leaflet-control-attribution");
-
                 div.innerHTML = "<span class='hidden-xs'>Source: <a target='_blank' href='https://www.fema.gov/risk-map-region-vi/'>FEMA Region 6 | Mitigation - Riskanalysis</a>";
-
                 return div;
-
       };
-
       m.addControl(attributionControl);
-
- 
-
   $(".basemap1").click(function() {
-
           $(".basemap1").addClass('selected');
-
           $(".basemap2").removeClass('selected');
-
           $(".basemap3").removeClass('selected');
-
           m.removeLayer(CartoDB_Voyager);
-
           m.removeLayer(google_hybrid);
-
           m.addLayer(google_terrain);
-
      });
-
     $(".basemap2").addClass('selected');
-
-     $(".basemap2").click(function() {
-
-             $(".basemap2").addClass('selected');
-
-             $(".basemap1").removeClass('selected');
-
-             $(".basemap3").removeClass('selected');
-
+    $(".basemap2").click(function() {
+    $(".basemap2").addClass('selected');
+    $(".basemap1").removeClass('selected');
+    $(".basemap3").removeClass('selected');
              m.addLayer(CartoDB_Voyager);
-
              m.removeLayer(google_hybrid);
-
              m.removeLayer(google_terrain);
-
         });
-
-        $(".basemap3").click(function() {
-
-            $(".basemap3").addClass('selected');
-
-            $(".basemap1").removeClass('selected');
-
-            $(".basemap2").removeClass('selected');
+    $(".basemap3").click(function() {
+    $(".basemap3").addClass('selected');
+    $(".basemap1").removeClass('selected');
+    $(".basemap2").removeClass('selected');
 
             m.removeLayer(CartoDB_Voyager);
-
             m.addLayer(google_hybrid);
-
             m.removeLayer(google_terrain);
-
-           });
-
- 
-
-          // document.getElementById("popPressure").addEventListener("click", togglePoppressure);
-
-          // function togglePoppressure() {
-
-          //                 if(m.hasLayer(popPressure)){
-
-          //                     m.removeLayer(popPressure);
-
-          //                 }
-
-          //                 else{
-
-          //                     m.addLayer(popPressure);
-
-          //                 }
-
-          // };
-
+        });
       const mini_Url='https://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png';
-
-                                //Plugin magic goes here! Note that you cannot use the same layer object again, as that will confuse the two map controls
-
-                                const mini_2 = new L.TileLayer(mini_Url, {minZoom: 0, maxZoom: 13 });
-
-                                const miniMap = new L.Control.MiniMap(mini_2, { toggleDisplay: true }).addTo(m);
-
- 
-
- 
+      const mini_2 = new L.TileLayer(mini_Url, {minZoom: 0, maxZoom: 13 });
+      const miniMap = new L.Control.MiniMap(mini_2, { toggleDisplay: true }).addTo(m);
 
       const arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
-
- 
-
       const cnmsSearch = L.esri.Geocoding.featureLayerProvider({
-
         url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/CNMS_Totals_Subbasins_HUC_8/FeatureServer/0',
-
         searchFields: ['HUC_NM','HUC8'], // Search these fields for text matches
-
         label: 'Search Subbasin CNMS', // Group suggestions under this header
-
         formatSuggestion: function(feature){
-
           return feature.properties.HUC_NM + ' '+feature.properties.HUC8;
-
         }
-
       });
-
- 
-
       const cnmsSearchCtrl = L.esri.Geocoding.geosearch({
-
         providers: [cnmsSearch],
-
         placeholder:"Search Subbasin CNMS"
-
       }).addTo(m);
 
       const results = L.layerGroup().addTo(m);
-
-      cnmsSearchCtrl.on('results', function(data){
-
+        cnmsSearchCtrl.on('results', function(data){
         results.clearLayers();
-
         openAnalysis();
-
- 
-
- 
-
         for (var i = data.results.length - 1; i >= 0; i--) {
-
           var iconM = L.icon({iconUrl:'myicon.png'})
-
           results.addLayer(L.marker(data.results[i].latlng,{icon:iconM}));
-
           console.log(data.results[i].latlng);
-
           var latlng = data.results[i].latlng;
-
           L.esri.query({
-
-            // url: "https://hazards.fema.gov/gis/nfhl/rest/services/public/NFHL/MapServer/28"
-
             url: "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/CNMS_Totals_Subbasins_HUC_8/FeatureServer/0"
-
           }).intersects(data.latlng).run(function(error, huc8) {
-
             if (huc8.features.length > 0) {
-
               document.getElementById('total_cnms').innerHTML =
-
               huc8.features[0].properties.CNMS_TOTAL;
-
               document.getElementById('total_valid').innerHTML =
-
               huc8.features[0].properties.VALID;
-
               document.getElementById('total_being').innerHTML =
-
               huc8.features[0].properties.BE_STUDY;
-
               document.getElementById('total_unknwn').innerHTML =
-
               huc8.features[0].properties.UNK_UNV;
-
               document.getElementById('total_watershed').innerHTML =
-
               huc8.features[0].properties.WS_MILES;
-
               document.getElementById('nvue_gain').innerHTML =
-
               huc8.features[0].properties.WS_MILES;
-
               document.getElementById('pop').innerHTML =
-
               huc8.features[0].properties.RM_POP;
-
               document.getElementById('areasqmi').innerHTML =
-
               huc8.features[0].properties.AR_SQMI;
-
               document.getElementById('lead_region').innerHTML =
-
               huc8.features[0].properties.REG_LEAD;
-
               document.getElementById('name').innerHTML =
-
               " ("+huc8.features[0].properties.HUC_NM+" "+huc8.features[0].properties.HUC8+")";
-
               var streamsUrl ="https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/r6_ble_plan/FeatureServer/0"
-
               var hucQueryUrl = 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/CNMS_Totals_Subbasins_HUC_8/FeatureServer/0';
-
- 
-
               var hucQuery = L.esri.query({url: hucQueryUrl});
-
-              // cnmsSearchCtrl.on('results', function(data){});
-
- 
-
- 
-
               hucQuery.where("HUC_NM = '"+"'hucQuery.features[0].properties.HUC_NM'"+"'").run(function(error, hucQuery, response){
-
                 let hucQueried = L.geoJSON(huc8).setStyle({color:'red',fillOpacity:0.0}).addTo(results);
-
                 m.fitBounds(hucQueried.getBounds().pad(0.05));
-
- 
-
-        // hucQueried.clearLayers();
-
- 
-
- 
-
                 L.esri.query({
-
                   url: streamsUrl
-
                 }).within(hucQueried).run(function(error, streams, response){
-
- 
-
                   let streamQueried = L.geoJSON(streams).addTo(results).bindTooltip("hello");
-
                 });
-
               });
-
           }
-
-            //otherwise, fail gracefully
-
             else {
-
               document.getElementById('total_valid').innerHTML =
-
                 '<b>No Value<b>';
-
               document.getElementById('total_cnms').innerHTML =
-
                 '<b>No Value<b>';
-
               document.getElementById('total_being').innerHTML =
-
                 '<b>No Value<b>';
-
               document.getElementById('total_unknwn').innerHTML =
-
                 '<b>No Value<b>';
-
               document.getElementById('total_watershed').innerHTML =
-
                 '<b>No Value<b>';
-
               document.getElementById('nvue_gain').innerHTML =
-
                   '<b>No Value<b>';
-
               document.getElementById('pop').innerHTML =
-
                   '<b>No Value<b>';
-
               document.getElementById('areasqmi').innerHTML =
-
                   '<b>No Value<b>';
-
               document.getElementById('lead_region').innerHTML =
-
                   '<b>No Value<b>';
-
               document.getElementById('name').innerHTML =
-
                   '';
-
             }
-
           });
-
-          // results.bindTooltip("hello",{permanent:true});
-
         };
-
         });
-
         function openAnalysis (){
-
-        var addAnal = document.getElementById("analyses");
-
-        addAnal.classList.add("analyses_open");
-
-        addAnal.classList.remove("analyses_closed");
-
-        var addriver_nums = document.getElementById("river_nums");
-
-        addriver_nums.classList.add("river_nums_open");
-
-        addriver_nums.classList.remove("river_num_closed");
-
-        };
-
- 
+              var addAnal = document.getElementById("analyses");
+              addAnal.classList.add("analyses_open");
+              addAnal.classList.remove("analyses_closed");
+              var addriver_nums = document.getElementById("river_nums");
+              addriver_nums.classList.add("river_nums_open");
+              addriver_nums.classList.remove("river_num_closed");
+              };
 
         document.getElementById("home_button").onclick = function() {homeBtn()};
-
         function homeBtn (){
-
-        m.flyTo([31.0,-98.0],6);
-
-        var addAnal = document.getElementById("analyses");
-
-        addAnal.classList.remove("analyses_open");
-
-        addAnal.classList.add("analyses_closed");
-
-        var addriver_nums = document.getElementById("river_nums");
-
-        addriver_nums.classList.remove("river_nums_open");
-
-        addriver_nums.classList.add("river_num_closed");
-
-        m.removeLayer(popPressure);
-
-        results.clearLayers();
-
-        };
-
- 
-
+              m.flyTo([31.0,-98.0],6);
+              var addAnal = document.getElementById("analyses");
+              addAnal.classList.remove("analyses_open");
+              addAnal.classList.add("analyses_closed");
+              var addriver_nums = document.getElementById("river_nums");
+              addriver_nums.classList.remove("river_nums_open");
+              addriver_nums.classList.add("river_num_closed");
+              m.removeLayer(popPressure);
+              results.clearLayers();
+              };
         const docLayers = {"<span style='font-size:1.5em;''><b>Population Pressure</span><br><span style='color:darkgray'>______________________________________________________</span><br></b><br><span style='color:darkmagenta'>Magenta dots indicate population loss or shrink.</span><br><span style='color:blue'>Blue dots indicate growth.</span><br><span style='color:darkgreen'>Green incidates growth more than 1.25% per year.</span>":popPressure};
 
         const ctrlLayers = L.control.layers(null,docLayers,{position:'bottomleft',collapsed:false}).addTo(m);
-
       </script>
-
- 
-
- 
-
- 
-
   </body>
-
- 
-
- 
-
 </html>
