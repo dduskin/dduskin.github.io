@@ -248,7 +248,7 @@
                 L.esri.query({
                   url: streamsUrl
                 }).within(hucQueried).run(function(error, streams, response){
-                  let streamQueried = L.geoJSON(streams,{style:style}}).addTo(results).bindTooltip("hello");
+                  let streamQueried = L.geoJSON(streams,{style:style}).addTo(results);
                 });
               });
           }
