@@ -207,7 +207,15 @@ transform: translateY(-50%);
   display:block;
 }
 .title{color:white;font-size:3em;padding:0.5%;margin-left:2.5%;font-family:impact;letter-spacing:0.15em;}
-
+.cntyClass {
+	background: transparent;
+	border: transparent;
+	text-shadow: -1.5px 0 black, 0 1.5px black,  1.5px 0 black, 0 -1.5px black;
+	color: white;
+	font-size: 1em;
+	white-space: nowrap;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.0);
+}
 
 
 </style>
@@ -421,7 +429,35 @@ transform: translateY(-50%);
             <p style="display:inline-block;" class="analysesTitle"><b>Airports</b></p>
             <p style="display:inline-block;" id="airports_id">0</p>            
             <p style="display:inline-block;" class="analysesTitle"><b>Antennas</b></p>
-            <p style="display:inline-block;" id="antenna_id">0</p>             
+            <p style="display:inline-block;" id="antenna_id">0</p>       
+            <p style="display:inline-block;" class="analysesTitle"><b>Railroad Station</b></p>
+            <p style="display:inline-block;" id="railstation_id">0</p> 
+            <p style="display:inline-block;" class="analysesTitle"><b>National Bridge Inventory</b></p>
+            <p style="display:inline-block;" id="nbi_id">0</p>   
+            <p style="display:inline-block;" class="analysesTitle"><b>Cellular Towers</b></p>
+            <p style="display:inline-block;" id="celltower_id">0</p>   
+            <p style="display:inline-block;" class="analysesTitle"><b>Waste Water<br>Treatment Plant</b></p>
+            <p style="display:inline-block;" id="wastewaterplant_id">0</p> 
+            <p style="display:inline-block;" class="analysesTitle"><b>Walmarts</b></p>
+            <p style="display:inline-block;" id="walmart_id">0</p>   
+            <p style="display:inline-block;" class="analysesTitle"><b>Ports</b></p>
+            <p style="display:inline-block;" id="port_id">0</p> 
+            <p style="display:inline-block;" class="analysesTitle"><b>Hospitals</b></p>
+            <p style="display:inline-block;" id="Hospitals_id">0</p>   
+            <p style="display:inline-block;" class="analysesTitle"><b>Veterans Health<br> Administration</b></p>
+            <p style="display:inline-block;" id="vha_id">0</p>    
+            <p style="display:inline-block;" class="analysesTitle"><b>Generating Units</b></p>
+            <p style="display:inline-block;" id="genunit_id">0</p>   
+            <p style="display:inline-block;" class="analysesTitle"><b>Local EOCs</b></p>
+            <p style="display:inline-block;" id="loceoc_id">0</p> 
+            <p style="display:inline-block;" class="analysesTitle"><b>FM Transmission Tower</b></p>
+            <p style="display:inline-block;" id="fmtower_id">0</p>   
+            <p style="display:inline-block;" class="analysesTitle"><b>AM Transmission Tower</b></p>
+            <p style="display:inline-block;" id="amtower_id">0</p>
+            <p style="display:inline-block;" class="analysesTitle"><b>Paging Tower</b></p>
+            <p style="display:inline-block;" id="pagingtower_id">0</p>   
+            <p style="display:inline-block;" class="analysesTitle"><b>Land Mobile <br>Private Tower</b></p>
+            <p style="display:inline-block;" id="landprivtower_id">0</p>                                                                                                                                                                                                                                                                        
             </div>
         </div>
     </div>    
@@ -615,7 +651,7 @@ transform: translateY(-50%);
         };
         if (antenna.features.length > 0) {
         document.getElementById('antenna_id').innerHTML =
-        antenna.features.length;
+        antenna.features.length+' | ';
         }              
       });
       L.esri.query({
@@ -687,6 +723,10 @@ transform: translateY(-50%);
         function btn16_() {
           markers.removeLayer(railstationLayer);
         };
+        if (railstation.features.length > 0) {
+        document.getElementById('railstation_id').innerHTML =
+         railstation.features.length+" | ";
+        }           
       });
       L.esri.query({
         url: nbiUrl
@@ -707,6 +747,10 @@ transform: translateY(-50%);
         function btn18_() {
           markers.removeLayer(nbiLayer);
         };
+        if (nbi.features.length > 0) {
+        document.getElementById('nbi_id').innerHTML =
+         nbi.features.length+" | ";
+        }       
       });
       L.esri.query({
         url: electric_holding_company_areasUrl
@@ -751,6 +795,10 @@ transform: translateY(-50%);
         function btn22_() {
           markers.removeLayer(celltowerLayer);
         };
+        if (celltower.features.length > 0) {
+        document.getElementById('celltower_id').innerHTML =
+         celltower.features.length+" | ";
+        }             
       });
       L.esri.query({
         url: wastewaterplantUrl
@@ -771,6 +819,10 @@ transform: translateY(-50%);
         function btn24_() {
           markers.removeLayer(wastewaterplantLayer);
         };
+        if (wastewaterplant.features.length > 0) {
+        document.getElementById('wastewaterplant_id').innerHTML =
+         wastewaterplant.features.length+" | ";
+        }        
       });
       L.esri.query({
         url: trafficUrl
@@ -811,6 +863,10 @@ transform: translateY(-50%);
         function btn28_() {
           markers.removeLayer(portLayer);
         };
+        if (port.features.length > 0) {
+        document.getElementById('port_id').innerHTML =
+         port.features.length+" | ";
+        }           
       });  
       L.esri.query({
         url: walmartUrl
@@ -831,6 +887,10 @@ transform: translateY(-50%);
         function btn30_() {
           markers.removeLayer(walmartLayer);
         };
+        if (walmart.features.length > 0) {
+        document.getElementById('walmart_id').innerHTML =
+         walmart.features.length+" | ";
+        }           
       });  
       L.esri.query({
         url: hospitalsUrl
@@ -851,6 +911,10 @@ transform: translateY(-50%);
         function btn32_() {
           markers.removeLayer(hospitalsLayer);
         };
+        if (hospitals.features.length > 0) {
+        document.getElementById('hospitals_id').innerHTML =
+         hospitals.features.length+" | ";
+        }             
       });  
       L.esri.query({
         url: vhaUrl
@@ -871,6 +935,10 @@ transform: translateY(-50%);
         function btn34_() {
           markers.removeLayer(vhaLayer);
         };
+        if (vha.features.length > 0) {
+        document.getElementById('vha_id').innerHTML =
+         vha.features.length+" | ";
+        }             
       }); 
       L.esri.query({
         url: genunitUrl
@@ -891,6 +959,10 @@ transform: translateY(-50%);
         function btn36_() {
           markers.removeLayer(genunitLayer);
         };
+        if (genunit.features.length > 0) {
+        document.getElementById('genunit_id').innerHTML =
+         genunit.features.length+" | ";
+        }                  
       });       
       L.esri.query({
         url: loceocUrl
@@ -911,6 +983,10 @@ transform: translateY(-50%);
         function btn38_() {
           markers.removeLayer(loceocLayer);
         };
+        if (loceoc.features.length > 0) {
+        document.getElementById('loceoc_id').innerHTML =
+         loceoc.features.length+" | ";
+        }            
       }); 
       L.esri.query({
         url: hurricaneevacUrl
@@ -971,6 +1047,10 @@ transform: translateY(-50%);
         function btn44_() {
           markers.removeLayer(fmtowerLayer);
         };
+        if (fmtower.features.length > 0) {
+        document.getElementById('fmtower_id').innerHTML =
+         fmtower.features.length+" | ";
+        }           
       });   
       L.esri.query({
         url: amtowerUrl
@@ -991,6 +1071,10 @@ transform: translateY(-50%);
         function btn46_() {
           markers.removeLayer(amtowerLayer);
         };
+        if (amtower.features.length > 0) {
+        document.getElementById('amtower_id').innerHTML =
+         amtower.features.length+" | ";
+        }              
       });  
       L.esri.query({
         url: pagingtowerUrl
@@ -1011,6 +1095,10 @@ transform: translateY(-50%);
         function btn48_() {
           markers.removeLayer(pagingtowerLayer);
         };
+        if (pagingtower.features.length > 0) {
+        document.getElementById('pagingtower_id').innerHTML =
+         landprivtower.features.length+" | ";
+        }             
       });  
       L.esri.query({
         url: landprivtowerUrl
@@ -1031,6 +1119,10 @@ transform: translateY(-50%);
         function btn50_() {
           markers.removeLayer(landprivtowerLayer);
         };
+        if (landprivtower.features.length > 0) {
+        document.getElementById('landprivtower_id').innerHTML =
+         landprivtower.features.length+" | ";
+        }             
       });     
       L.esri.query({
         url: landbroadtowerUrl
@@ -1295,8 +1387,13 @@ transform: translateY(-50%);
       L.esri.query({
         url: arcntyUrl
       }).intersects(aois).run(function(error, arcnty, response) {
-        var arcntyLayer = L.geoJSON(arcnty).setStyle({color:'black',fillOpacity:0.0,dashArray:3});
+        var arcntyLayer = L.geoJSON(arcnty).setStyle({color:'black',fillOpacity:0.0,dashArray:3,});
         lifelinesGroup.addLayer(arcntyLayer);
+
+        arcntyLayer.eachLayer(function(layer) {
+		var arcntyTooltip = layer;
+		arcntyTooltip.bindTooltip(layer.feature.properties.NAME10,{className:'cntyClass',permanent: true, offset: [0, 0], sticky: true, direction:'center'})
+	    });
         document.getElementById("btn77").onclick = function() {
           btn77_()
         };
@@ -1317,6 +1414,11 @@ transform: translateY(-50%);
       }).intersects(aois).run(function(error, lacnty, response) {
         var lacntyLayer = L.geoJSON(lacnty).setStyle({color:'black',fillOpacity:0.0,dashArray:5});
         lifelinesGroup.addLayer(lacntyLayer);
+
+        lacntyLayer.eachLayer(function(layer) {
+		var lacntyTooltip = layer;
+		lacntyTooltip.bindTooltip(layer.feature.properties.NAME10,{className:'cntyClass',permanent: true, offset: [0, 0], sticky: true, direction:'center'})
+	    });        
         document.getElementById("btn79").onclick = function() {
           btn79_()
         };
@@ -1337,6 +1439,11 @@ transform: translateY(-50%);
       }).intersects(aois).run(function(error, nmcnty, response) {
         var nmcntyLayer = L.geoJSON(nmcnty).setStyle({color:'black',fillOpacity:0.0,dashArray:5});
         lifelinesGroup.addLayer(nmcntyLayer);
+        nmcntyLayer.eachLayer(function(layer) {
+		var nmcntyTooltip = layer;
+		nmcntyTooltip.bindTooltip(layer.feature.properties.NAME10,{className:'cntyClass',permanent: true, offset: [0, 0], sticky: true, direction:'center'})
+	    });
+
         document.getElementById("btn81").onclick = function() {
           btn81_()
         };
@@ -1357,6 +1464,10 @@ transform: translateY(-50%);
       }).intersects(aois).run(function(error, okcnty, response) {
         var okcntyLayer = L.geoJSON(okcnty).setStyle({color:'black',fillOpacity:0.0,dashArray:5});
         lifelinesGroup.addLayer(okcntyLayer);
+        okcntyLayer.eachLayer(function(layer) {
+		var okcntyTooltip = layer;
+		okcntyTooltip.bindTooltip(layer.feature.properties.NAME10,{className:'cntyClass',permanent: true, offset: [0, 0], sticky: true, direction:'center'})
+	    });        
         document.getElementById("btn83").onclick = function() {
           btn83_()
         };
@@ -1377,6 +1488,10 @@ transform: translateY(-50%);
       }).intersects(aois).run(function(error, txcnty, response) {
         var txcntyLayer = L.geoJSON(txcnty).setStyle({color:'black',fillOpacity:0.0,dashArray:5});
         lifelinesGroup.addLayer(txcntyLayer);
+        txcntyLayer.eachLayer(function(layer) {
+		var txcntyTooltip = layer;
+		txcntyTooltip.bindTooltip(layer.feature.properties.NAME10,{className:'cntyClass',permanent: true, offset: [0, 0], sticky: true, direction:'center'})
+	    });        
         document.getElementById("btn85").onclick = function() {
           btn85_()
         };
@@ -1483,6 +1598,6 @@ $(document).ready(function(){
   });
 });
 </script>
-
+<a target="_blank" href="https://fema.maps.arcgis.com/home/webmap/viewer.html?webmap=a56f125f9a3040b2a41f56512700adbd"><button style="bottom:0">EDITS</button></a>
 </body>
 </html>
