@@ -30,7 +30,7 @@ body, html
   margin: 0;
   padding: 0;
 }
-
+td{text-align:center;}
 @import url('https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
 
     #map {
@@ -45,16 +45,26 @@ body, html
     
     #button_container {
       position: absolute;
-      bottom: 4%;
+      bottom: 0;
       left: 0;
       z-index: 650;
+      background-color:white;
+      font-size:4px;
     }
     
-    button {
-      font-size: 0.75em;color:white;background-color:darkblue;
-    }
-    button:hover{background-color:red;color:yellow;}
-    
+    .exp_anal {
+    font-size: 9px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 2px;
+    background: #2c5283;
+    font-family:'Raleway', sans-serif;
+    border-style:solid;
+    border-width:thin;
+    border-color:#2c5283;
+        }
+    .exp_anal:hover{color:red;}
     #btn2 {}
     #analyses{position:absolute;z-index:750;width:auto;bottom:top%;right:10%;padding:0.5%;border-radius:5px;opacity:.85;background-color:lightgray;box-shadow: 0 0 15px rgba(0,0,0,1);display:inline;font-size:0.75em;}
 .table_center{
@@ -226,7 +236,9 @@ transform: translateY(-50%);
   <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.Default.css" />
   <script src="https://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
   <div class="col-sm-12 col-md-12 col-lg-12" align="left"><span class="title">FEMA Region 6 | Modeling and Analysis</span>
+
   <div class="table_center" style="font-family:'Raleway', sans-serif;">
+       <button type="button" class="btn-md drop-down__button drop-down exp_anal" data-toggle="modal" data-target="#myModal">Exposure Analysis Numbers</button>
          <div class="drop-down">
            <div id="dropDown" class="drop-down__button">
              <span class="drop-down__name">Modeling and Analysis</span>
@@ -239,234 +251,435 @@ transform: translateY(-50%);
              </ul>
            </div>
          </div>
+
   </div>
+
   </div>
 <div id="col-md-10" style="-webkit-animation: bounceInLeft 1s;width:95%;height:90vh;border-radius:10px;box-shadow: 0 0 25px rgba(0,0,0,1);margin-left:2.55%;margin-top:1%;">
   <div id="map">
     <div id="button_container">
+      <div>
       <button id="btnaddAll">add<br>all Layers</button>
-      <button id="btnremoveAll">remove<br>all Layers</button>      
+      <button id="btnremoveAll">remove<br>all Layers</button> 
+      </div>
+      <div>    
       <button id="btn1">add
         <br>firestations</button>
       <button id="btn2">remove
         <br>firestations</button>
+      </div>
+      <div>          
       <button id="btn3">add
         <br>policetations</button>
       <button id="btn4">remove
         <br>policestations</button>
+      </div>
+      <div>            
       <button id="btn5">add
         <br>airports</button>
       <button id="btn6">remove
         <br>airports</button>
+      </div>
+      <div>            
       <button id="btn7">add
         <br>cell service</button>
       <button id="btn8">remove
         <br>cell service</button>
+      </div>
+      <div>            
       <button id="btn9">add
         <br>Antenna Structure Registrate</button>
       <button id="btn10">remove
         <br>Antenna Structure Registrate</button>
+      </div>
+      <div>            
       <button id="btn11">add
         <br>psap 911</button>
       <button id="btn12">remove
         <br>psap 911</button>
+      </div>
+      <div>            
       <button id="btn13">add
         <br>railroads</button>
       <button id="btn14">remove
         <br>railroads</button>
+      </div>
+      <div>            
       <button id="btn15">add
         <br>railstations</button>
       <button id="btn16">remove
         <br>railstations</button>
+      </div>
+      <div>            
       <button id="btn17">add
         <br>nbi</button>
       <button id="btn18">remove
         <br>nbi</button>
+      </div>
+      <div>            
       <button id="btn19">add
         <br>electric holding company areas</button>
       <button id="btn20">remove
         <br>electric holding company areas</button>
+      </div>
+      <div>            
       <button id="btn21">add
         <br>cellular towers</button>
       <button id="btn22">remove
         <br>cellular towers</button>
+      </div>
+      <div>            
       <button id="btn23">add
         <br>Waste Water Treatment Plant</button>
       <button id="btn24">remove
         <br>Waste Water Treatment Plant</button>
+      </div>
+      <div>            
       <button id="btn25">add
         <br>Traffic</button>
       <button id="btn26">remove
-        <br>Traffic</button>        
+        <br>Traffic</button>   
+      </div>
+      <div>                 
       <button id="btn27">add
         <br>Ports</button>
       <button id="btn28">remove
         <br>Ports</button>  
+      </div>
+      <div>            
       <button id="btn29">add
         <br>Walmarts</button>
       <button id="btn30">remove
         <br>Walmarts</button> 
+      </div>
+      <div>            
       <button id="btn31">add
         <br>Hospitals</button>
       <button id="btn32">remove
-        <br>Hospitals</button>     
+        <br>Hospitals</button> 
+      </div>
+      <div>                
       <button id="btn33">add
         <br>Veterans Health Administration<br>Medical Facilities</button>
       <button id="btn34">remove
         <br>Veterans Health Administration<br>Medical Facilities</button>
+      </div>
+      <div>            
       <button id="btn35">add
         <br>Generating Units</button>
       <button id="btn36">remove
-        <br>Generating Units</button>   
+        <br>Generating Units</button> 
+      </div>
+      <div>              
       <button id="btn37">add
         <br>Local EOC</button>
       <button id="btn38">remove
         <br>Local EOC</button>
+      </div>
+      <div>            
       <button id="btn39">add
         <br>Hurricane Evac Routes</button>
       <button id="btn40">remove
         <br>Hurricane Evac Routes</button> 
+      </div>
+      <div>            
       <button id="btn41">add
         <br>TV Broadcast Contours</button>
       <button id="btn42">remove
-        <br>TV Broadcast Contours</button>    
+        <br>TV Broadcast Contours</button> 
+      </div>
+      <div>               
       <button id="btn43">add
         <br>FM Transmission Tower</button>
       <button id="btn44">remove
-        <br>FM Transmission Tower</button>       
+        <br>FM Transmission Tower</button>
+      </div>
+      <div>
       <button id="btn45">add
         <br>AM Transmission Tower</button>
       <button id="btn46">remove
-        <br>AM Transmission Tower</button> 
+        <br>AM Transmission Tower</button>
+      </div>
+      <div>            
       <button id="btn47">add
         <br>Paging Transmission Tower</button>
       <button id="btn48">remove
-        <br>Paging Transmission Tower</button> 
+        <br>Paging Transmission Tower</button>
+      </div>
+      <div>        
       <button id="btn49">add
         <br>Land Mobile Private<br>Transmission Tower</button>
       <button id="btn50">remove
-        <br>Land Mobile Private<br>Transmission Tower</button>     
+        <br>Land Mobile Private<br>Transmission Tower</button>
+      </div>
+      <div>            
       <button id="btn51">add
         <br>Land Mobile<br> Broadcast Towers</button>
       <button id="btn52">remove
-        <br>Land Mobile<br> Broadcast Towers</button>  
+        <br>Land Mobile<br> Broadcast Towers</button>
+      </div>
+      <div>          
       <button id="btn53">add
         <br>Land Mobile<br>Commercial Transmission Towers</button>
       <button id="btn54">remove
         <br>Land Mobile<br>Commercial Transmission Towers</button>
+      </div>
+      <div>          
       <button id="btn55">add
         <br>Microwave <br>Service Towers</button>
       <button id="btn56">remove
         <br>Microwave <br>Service Towers</button>
+      </div>
+      <div>          
       <button id="btn57">add
         <br>Public Schools</button>
       <button id="btn58">remove
-        <br>Public Schools</button> 
+        <br>Public Schools</button>
+      </div>
+      <div>          
       <button id="btn59">add
         <br>Private Schools</button>
       <button id="btn60">remove
-        <br>Private Schools</button>  
+        <br>Private Schools</button>
+      </div>
+      <div>           
      <button id="btn61">add
         <br>Daycare Centers</button>
       <button id="btn62">remove
-        <br>Daycare Centers</button> 
+        <br>Daycare Centers</button>
+      </div>
+      <div>        
      <button id="btn63">add
         <br>College and Universities</button>
       <button id="btn64">remove
-        <br>College and Universities</button> 
+        <br>College and Universities</button>
+      </div>
+      <div>           
      <button id="btn65">add
         <br>Pharmacies</button>
       <button id="btn66">remove
-        <br>Pharmacies</button> 
+        <br>Pharmacies</button>
+      </div>
+      <div>          
      <button id="btn67">add
         <br>Nursing Homes</button>
       <button id="btn68">remove
         <br>Nursing Homes</button>
+      </div>
+      <div>          
      <button id="btn69">add
         <br>Urgent Care<br> Facilities</button>
       <button id="btn70">remove
         <br>Urgent Care<br> Facilities</button>
+      </div>
+      <div>          
      <button id="btn71">add
         <br>Power Plants</button>
       <button id="btn72">remove
-        <br>Power Plants</button> 
+        <br>Power Plants</button>
+      </div>
+      <div>          
      <button id="btn73">add
         <br>Natural Gas<br>Liquid Pipelines</button>
       <button id="btn74">remove
-        <br>Natural Gas<br>Liquid Pipelines</button>   
+        <br>Natural Gas<br>Liquid Pipelines</button>
+      </div>
+      <div>             
      <button id="btn75">add
         <br>Electric Power<br>Transmission Lines</button>
       <button id="btn76">remove
-        <br>Electric Power<br>Transmission Lines</button>  
+        <br>Electric Power<br>Transmission Lines</button>
+      </div>
+      <div>           
      <button id="btn77">add
         <br>Arkansas Counties</button>
       <button id="btn78">remove
-        <br>Arkansas Counties</button> 
+        <br>Arkansas Counties</button>
+      </div>
+      <div>          
      <button id="btn79">add
         <br>Louisiana Parishes</button>
       <button id="btn80">remove
         <br>Louisiana Parishes</button>
+      </div>
+      <div>          
      <button id="btn81">add
         <br>New Mexico Counties</button>
       <button id="btn82">remove
-        <br>New Mexico Counties</button> 
+        <br>New Mexico Counties</button>
+      </div>
+      <div>          
      <button id="btn83">add
         <br>Oklahoma Counties</button>
       <button id="btn84">remove
-        <br>Oklahoma Counties</button>  
+        <br>Oklahoma Counties</button>
+      </div>
+      <div>           
      <button id="btn85">add
         <br>Texas Counties</button>
       <button id="btn86">remove
-        <br>Texas Counties</button>          
+        <br>Texas Counties</button> 
+      </div>         
        
     </div>
-              <div id="analyses" class="analyses_closed" align="center">
-            <div style="display:inline-block;">
-            <p style="display:inline-block;" class="analysesTitle"><b>Fire Stations</b></p>
-            <p  style="display:inline-block;" id="fire_id">0</p>              
-            <p style="display:inline-block;" class="analysesTitle"><b>Police Stations</b></p>
-            <p  style="display:inline-block;" id="police_id">0</p>
-            <p style="display:inline-block;" class="analysesTitle"><b>Airports</b></p>
-            <p style="display:inline-block;" id="airports_id">0</p>            
-            <p style="display:inline-block;" class="analysesTitle"><b>Antennas</b></p>
-            <p style="display:inline-block;" id="antenna_id">0</p>       
-            <p style="display:inline-block;" class="analysesTitle"><b>Railroad Station</b></p>
-            <p style="display:inline-block;" id="railstation_id">0</p> 
-            <p style="display:inline-block;" class="analysesTitle"><b>National Bridge Inventory</b></p>
-            <p style="display:inline-block;" id="nbi_id">0</p>   
-            <p style="display:inline-block;" class="analysesTitle"><b>Cellular Towers</b></p>
-            <p style="display:inline-block;" id="celltower_id">0</p>   
-            <p style="display:inline-block;" class="analysesTitle"><b>Waste Water<br>Treatment Plant</b></p>
-            <p style="display:inline-block;" id="wastewaterplant_id">0</p> 
-            <p style="display:inline-block;" class="analysesTitle"><b>Walmarts</b></p>
-            <p style="display:inline-block;" id="walmart_id">0</p>   
-            <p style="display:inline-block;" class="analysesTitle"><b>Ports</b></p>
-            <p style="display:inline-block;" id="port_id">0</p> 
-            <p style="display:inline-block;" class="analysesTitle"><b>Hospitals</b></p>
-            <p style="display:inline-block;" id="Hospitals_id">0</p>   
-            <p style="display:inline-block;" class="analysesTitle"><b>Veterans Health<br> Administration</b></p>
-            <p style="display:inline-block;" id="vha_id">0</p>    
-            <p style="display:inline-block;" class="analysesTitle"><b>Generating Units</b></p>
-            <p style="display:inline-block;" id="genunit_id">0</p>   
-            <p style="display:inline-block;" class="analysesTitle"><b>Local EOCs</b></p>
-            <p style="display:inline-block;" id="loceoc_id">0</p> 
-            <p style="display:inline-block;" class="analysesTitle"><b>FM Transmission Tower</b></p>
-            <p style="display:inline-block;" id="fmtower_id">0</p>   
-            <p style="display:inline-block;" class="analysesTitle"><b>AM Transmission Tower</b></p>
-            <p style="display:inline-block;" id="amtower_id">0</p>
-            <p style="display:inline-block;" class="analysesTitle"><b>Paging Tower</b></p>
-            <p style="display:inline-block;" id="pagingtower_id">0</p>   
-            <p style="display:inline-block;" class="analysesTitle"><b>Land Mobile <br>Private Tower</b></p>
-            <p style="display:inline-block;" id="landprivtower_id">0</p>                                                                                                                                                                                                                                                                        
+
+    </div>
+
+
+
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content modal-lg">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Critical Intrastructure (CIKR)</h4>
+        </div>
+        <div class="modal-body">
+            <table class="table-bordered table-responsive">
+              <thead>
+                <tr>
+                  <th>Firestations</th>
+                  <th>Policestations</th>
+                  <th>Airports</th>
+                  <th>Antennas</th> 
+                  <th>Rail Stations</th>
+                  <th>Bridges</th>                                                                          
+                </tr>
+              </thead>   
+              <tbody>
+                <tr>
+                  <td id="fire_id">0</td>
+                  <td id="police_id">0</td>
+                  <td id="airports_id">0</td>
+                  <td id="antenna_id">0</td>
+                  <td id="railstation_id">0</td>
+                  <td id="nbi_id">0</td>                  
+                </tr>
+              </tbody>  
+              <thead>                                
+                <tr>
+                  <th>Wastewater Plant</th>
+                  <th>Walmarts</th>
+                  <th>Ports</th>
+                  <th>Hospitals</th> 
+                  <th>VHA Facilities</th>
+                  <th>Generating Units</th>                                                                          
+                </tr>
+              </thead>   
+              <tbody>                           
+                <tr>
+                  <td id="wastewaterplant_id">0</td>
+                  <td id="walmart_id">0</td>
+                  <td id="port_id">0</td>
+                  <td id="hospitals_id">0</td>
+                  <td id="vha_id">0</td>
+                  <td id="genunit_id">0</td>                  
+                </tr>
+              </tbody>
+              <thead>                                
+                <tr>
+                  <th>Local EOCs</th>
+                  <th>FM Towers</th>
+                  <th>AM Towers</th>
+                  <th>Paging Towers</th> 
+                  <th>Land Mobile Private Towers</th>
+                  <th>Land Commerical Towers</th>                                                                          
+                </tr>
+              </thead>   
+              <tbody>                           
+                <tr>
+                  <td id="loceoc_id">0</td>
+                  <td id="fmtower_id">0</td>
+                  <td id="amtower_id">0</td>
+                  <td id="pagingtower_id">0</td>
+                  <td id="landprivtower_id">0</td>
+                  <td id="landcom_id">0</td>                  
+                </tr>
+              </tbody> 
+              <thead>                                
+                <tr>
+                  <th>Public Schools</th>
+                  <th>Daycares</th>
+                  <th>Colleges</th>
+                  <th>Microwave Towers</th> 
+                  <th>Pharmacies</th>
+                  <th>Cell Towers</th>                                                                          
+                </tr>
+              </thead>   
+              <tbody>                           
+                <tr>
+                  <td id="publicshools_id">0</td>
+                  <td id="daycare_id">0</td>
+                  <td id="college_id">0</td>
+                  <td id="microwave_id">0</td>
+                  <td id="pharm_id">0</td>
+                  <td id="celltower_id">0</td>                  
+                </tr>
+              </tbody>
+              <thead>                                
+                <tr>
+                  <th>Nursing Homes</th>
+                  <th>Urgent Cares</th>
+                  <th>Power Plants</th>
+<!--                   <th>Arkansas Counties</th>  -->
+                  <th>Rail Road length</th>
+                  <th>Cell Towers</th>                                                                          
+                </tr>
+              </thead>   
+              <tbody>                           
+                <tr>
+                  <td id="nursing_id">0</td>
+                  <td id="urgent_id">0</td>
+                  <td id="powerplants_id">0</td>
+<!--                   <td id="arcnty_id">0</td> -->
+                  <td id="railroad_id">0</td>
+                  <td id="celltower_id">0</td>                  
+                </tr>
+              </tbody>  
+              <thead>                                
+                <tr>
+                  <th>Arkansas Counties</th>
+                  <th>Louisiana Parishes</th>
+                  <th>New Mexico Counties</th>
+                  <th>Oklahoma Counties</th> 
+                  <th>Texas Counties</th>
+<!--                   <th>xxxxxx</th>     -->                                                                      
+                </tr>
+              </thead>   
+              <tbody>                           
+                <tr>
+                  <td id="arcnty_id">0</td>
+                  <td id="laparish_id">0</td>
+                  <td id="nmcnty_id">0</td>
+                  <td id="okcnty_id">0</td>
+                  <td id="txcnty_id">0</td>
+<!--                   <td id="celltower_id">0</td> -->                  
+                </tr>
+              </tbody>                                                                            
+            </table>
+
+
+            <div style="display:inline-block;">                        
+            <p style="display:inline-block;"><b>Railline</b></p>
+            <p style="display:inline-block;" id="railroad_id">0</p>                                                                                                                                                                                                                                                                                                
             </div>
         </div>
-    </div>    
-</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>        
 
   <script>
     "use strict";
 
-    var map = L.map("map").setView([32.5252, -95.6284], 5);
+    var map = L.map("map",{zoomControl:false}).setView([32.5252, -95.6284], 5);
     var topo = L.esri.basemapLayer("Topographic").addTo(map);
 
     var aoiUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_aoi_draw/FeatureServer/0";
@@ -522,7 +735,7 @@ transform: translateY(-50%);
     var lifelinesGroup = L.layerGroup([]).addTo(map);
     //Boundaries
     var arcntyUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/r6_state_cnty_bndy/FeatureServer/1";
-    var lacntyUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/r6_state_cnty_bndy/FeatureServer/2";
+    var laparishUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/r6_state_cnty_bndy/FeatureServer/2";
     var nmcntyUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/r6_state_cnty_bndy/FeatureServer/3";
     var okcntyUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/r6_state_cnty_bndy/FeatureServer/4";   
     var txcntyUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/r6_state_cnty_bndy/FeatureServer/5";    
@@ -555,13 +768,26 @@ transform: translateY(-50%);
         };
         if (firestations.features.length > 0) {
         document.getElementById('fire_id').innerHTML =
-         firestations.features.length+" | ";
+         firestations.features.length;
         }             
       });
+      var geojsonMarkerOptions = L.icon({iconUrl:"http://www.clker.com/cliparts/N/v/B/D/u/e/glossy-red-icon-angle-md.png",iconSize:[32,32]});
+
       L.esri.query({
         url: policestationsUrl
       }).within(aois).run(function(error, policestations, response) {
-        var policestationsLayer = L.geoJSON(policestations);
+  
+        // var policestationsLayer = L.geoJSON(policestations);
+
+        var policestationsLayer = L.geoJSON(policestations,{
+        pointToLayer: function (geojson, latlng) {
+          return L.marker(latlng, {
+            icon: geojsonMarkerOptions
+          });
+        }
+      });
+
+
         markers.addLayer(policestationsLayer);
         document.getElementById("btn3").onclick = function() {
           btn3_()
@@ -579,7 +805,7 @@ transform: translateY(-50%);
         };
         if (policestations.features.length > 0) {
         document.getElementById('police_id').innerHTML =
-         policestations.features.length+" | ";
+         policestations.features.length;
         }        
       });
       L.esri.query({
@@ -603,7 +829,7 @@ transform: translateY(-50%);
         };
         if (airports.features.length > 0) {
         document.getElementById('airports_id').innerHTML =
-         airports.features.length+" | ";
+         airports.features.length;
         }          
       });
       L.esri.query({
@@ -651,7 +877,7 @@ transform: translateY(-50%);
         };
         if (antenna.features.length > 0) {
         document.getElementById('antenna_id').innerHTML =
-        antenna.features.length+' | ';
+        antenna.features.length;
         }              
       });
       L.esri.query({
@@ -699,10 +925,11 @@ transform: translateY(-50%);
         function btn14_() {
           lifelinesGroup.removeLayer(railroadLayer);
         };
-        // if (railroad.features.length > 0) {
-        // document.getElementById('railroad_id').innerHTML =
-        // railroad.features.YARD;
-        // }           
+        if (railroad.features.length > 0) {
+        document.getElementById('railroad_id').innerHTML =
+        railroad.features[0].properties.MILES;
+        }        
+
       });
       L.esri.query({
         url: railstationUrl
@@ -725,7 +952,7 @@ transform: translateY(-50%);
         };
         if (railstation.features.length > 0) {
         document.getElementById('railstation_id').innerHTML =
-         railstation.features.length+" | ";
+         railstation.features.length;
         }           
       });
       L.esri.query({
@@ -749,7 +976,7 @@ transform: translateY(-50%);
         };
         if (nbi.features.length > 0) {
         document.getElementById('nbi_id').innerHTML =
-         nbi.features.length+" | ";
+         nbi.features.length;
         }       
       });
       L.esri.query({
@@ -797,7 +1024,7 @@ transform: translateY(-50%);
         };
         if (celltower.features.length > 0) {
         document.getElementById('celltower_id').innerHTML =
-         celltower.features.length+" | ";
+         celltower.features.length;
         }             
       });
       L.esri.query({
@@ -821,7 +1048,7 @@ transform: translateY(-50%);
         };
         if (wastewaterplant.features.length > 0) {
         document.getElementById('wastewaterplant_id').innerHTML =
-         wastewaterplant.features.length+" | ";
+         wastewaterplant.features.length;
         }        
       });
       L.esri.query({
@@ -865,7 +1092,7 @@ transform: translateY(-50%);
         };
         if (port.features.length > 0) {
         document.getElementById('port_id').innerHTML =
-         port.features.length+" | ";
+         port.features.length;
         }           
       });  
       L.esri.query({
@@ -889,7 +1116,7 @@ transform: translateY(-50%);
         };
         if (walmart.features.length > 0) {
         document.getElementById('walmart_id').innerHTML =
-         walmart.features.length+" | ";
+         walmart.features.length;
         }           
       });  
       L.esri.query({
@@ -913,7 +1140,7 @@ transform: translateY(-50%);
         };
         if (hospitals.features.length > 0) {
         document.getElementById('hospitals_id').innerHTML =
-         hospitals.features.length+" | ";
+         hospitals.features.length;
         }             
       });  
       L.esri.query({
@@ -937,7 +1164,7 @@ transform: translateY(-50%);
         };
         if (vha.features.length > 0) {
         document.getElementById('vha_id').innerHTML =
-         vha.features.length+" | ";
+         vha.features.length;
         }             
       }); 
       L.esri.query({
@@ -961,7 +1188,7 @@ transform: translateY(-50%);
         };
         if (genunit.features.length > 0) {
         document.getElementById('genunit_id').innerHTML =
-         genunit.features.length+" | ";
+         genunit.features.length;
         }                  
       });       
       L.esri.query({
@@ -985,7 +1212,7 @@ transform: translateY(-50%);
         };
         if (loceoc.features.length > 0) {
         document.getElementById('loceoc_id').innerHTML =
-         loceoc.features.length+" | ";
+         loceoc.features.length;
         }            
       }); 
       L.esri.query({
@@ -1049,7 +1276,7 @@ transform: translateY(-50%);
         };
         if (fmtower.features.length > 0) {
         document.getElementById('fmtower_id').innerHTML =
-         fmtower.features.length+" | ";
+         fmtower.features.length;
         }           
       });   
       L.esri.query({
@@ -1073,7 +1300,7 @@ transform: translateY(-50%);
         };
         if (amtower.features.length > 0) {
         document.getElementById('amtower_id').innerHTML =
-         amtower.features.length+" | ";
+         amtower.features.length;
         }              
       });  
       L.esri.query({
@@ -1097,7 +1324,7 @@ transform: translateY(-50%);
         };
         if (pagingtower.features.length > 0) {
         document.getElementById('pagingtower_id').innerHTML =
-         landprivtower.features.length+" | ";
+         pagingtower.features.length;
         }             
       });  
       L.esri.query({
@@ -1121,7 +1348,7 @@ transform: translateY(-50%);
         };
         if (landprivtower.features.length > 0) {
         document.getElementById('landprivtower_id').innerHTML =
-         landprivtower.features.length+" | ";
+         landprivtower.features.length;
         }             
       });     
       L.esri.query({
@@ -1163,6 +1390,10 @@ transform: translateY(-50%);
         function btn54_() {
           markers.removeLayer(landcommericaltowerLayer);
         };
+        if (landcommericaltower.features.length > 0) {
+        document.getElementById('landcom_id').innerHTML =
+         landcommericaltower.features.length;
+        }          
       });   
       L.esri.query({
         url: microwavetowerUrl
@@ -1183,18 +1414,22 @@ transform: translateY(-50%);
         function btn56_() {
           markers.removeLayer(microwavetowerLayer);
         };
+        if (microwavetower.features.length > 0) {
+        document.getElementById('microwave_id').innerHTML =
+         microwavetower.features.length;
+        }          
       });  
       L.esri.query({
         url: publicschoolUrl
-      }).within(aois).run(function(error, publicshool, response) {
-        var publicshoolLayer = L.geoJSON(publicshool);
-        markers.addLayer(publicshoolLayer);
+      }).within(aois).run(function(error, publicschool, response) {
+        var publicschoolLayer = L.geoJSON(publicschool);
+        markers.addLayer(publicschoolLayer);
         document.getElementById("btn57").onclick = function() {
           btn57_()
         };
 
         function btn57_() {
-          markers.addLayer(publicshoolLayer);
+          markers.addLayer(publicschoolLayer);
         };
         document.getElementById("btn58").onclick = function() {
           btn58_()
@@ -1203,6 +1438,10 @@ transform: translateY(-50%);
         function btn58_() {
           markers.removeLayer(publicshoolLayer);
         };
+        if (publicschool.features.length > 0) {
+        document.getElementById('publicshools_id').innerHTML =
+         publicschool.features.length;
+        }          
       });   
       L.esri.query({
         url: privateschoolUrl
@@ -1243,6 +1482,10 @@ transform: translateY(-50%);
         function btn62_() {
           markers.removeLayer(daycareLayer);
         };
+        if (daycare.features.length > 0) {
+        document.getElementById('daycare_id').innerHTML =
+         daycare.features.length;
+        }          
       });   
       L.esri.query({
         url: collegeUrl
@@ -1263,6 +1506,10 @@ transform: translateY(-50%);
         function btn64_() {
           markers.removeLayer(collegeLayer);
         };
+        if (college.features.length > 0) {
+        document.getElementById('college_id').innerHTML =
+         college.features.length;
+        }         
       });   
       L.esri.query({
         url: pharmUrl
@@ -1283,6 +1530,10 @@ transform: translateY(-50%);
         function btn66_() {
           markers.removeLayer(pharmLayer);
         };
+        if (pharm.features.length > 0) {
+        document.getElementById('pharm_id').innerHTML =
+         pharm.features.length;
+        }          
       });   
       L.esri.query({
         url: nursingUrl
@@ -1303,6 +1554,10 @@ transform: translateY(-50%);
         function btn68_() {
           markers.removeLayer(nursingLayer);
         };
+        if (nursing.features.length > 0) {
+        document.getElementById('nursing_id').innerHTML =
+         nursing.features.length;
+        }            
       });    
       L.esri.query({
         url: urgentUrl
@@ -1323,6 +1578,10 @@ transform: translateY(-50%);
         function btn70_() {
           markers.removeLayer(urgentLayer);
         };
+        if (urgent.features.length > 0) {
+        document.getElementById('urgent_id').innerHTML =
+         urgent.features.length;
+        }         
       });     
       L.esri.query({
         url: powerplantsUrl
@@ -1343,6 +1602,10 @@ transform: translateY(-50%);
         function btn72_() {
           markers.removeLayer(powerplantsLayer);
         };
+        if (powerplants.features.length > 0) {
+        document.getElementById('powerplants_id').innerHTML =
+         powerplants.features.length;
+        }        
       });  
       L.esri.query({
         url: ngliqpipelineUrl
@@ -1407,32 +1670,40 @@ transform: translateY(-50%);
 
         function btn78_() {
           lifelinesGroup.removeLayer(arcntyLayer);
-        };
+        }
+        if (arcnty.features.length > 0) {
+        document.getElementById('arcnty_id').innerHTML =
+         arcnty.features.length;
+        }            
       }); 
       L.esri.query({
-        url: lacntyUrl
-      }).intersects(aois).run(function(error, lacnty, response) {
-        var lacntyLayer = L.geoJSON(lacnty).setStyle({color:'black',fillOpacity:0.0,dashArray:5});
-        lifelinesGroup.addLayer(lacntyLayer);
+        url: laparishUrl
+      }).intersects(aois).run(function(error, laparish, response) {
+        var laparishLayer = L.geoJSON(laparish).setStyle({color:'black',fillOpacity:0.0,dashArray:5});
+        lifelinesGroup.addLayer(laparishLayer);
 
-        lacntyLayer.eachLayer(function(layer) {
-		var lacntyTooltip = layer;
-		lacntyTooltip.bindTooltip(layer.feature.properties.NAME10,{className:'cntyClass',permanent: true, offset: [0, 0], sticky: true, direction:'center'})
+        laparishLayer.eachLayer(function(layer) {
+		var laparishTooltip = layer;
+		laparishTooltip.bindTooltip(layer.feature.properties.NAME10,{className:'cntyClass',permanent: true, offset: [0, 0], sticky: true, direction:'center'})
 	    });        
         document.getElementById("btn79").onclick = function() {
           btn79_()
         };
 
         function btn79_() {
-          lifelinesGroup.addLayer(lacntyLayer);
+          lifelinesGroup.addLayer(laparishLayer);
         };
         document.getElementById("btn80").onclick = function() {
           btn80_()
         };
 
         function btn80_() {
-          lifelinesGroup.removeLayer(lacntyLayer);
+          lifelinesGroup.removeLayer(laparishLayer);
         };
+        if (laparish.features.length > 0) {
+        document.getElementById('laparish_id').innerHTML =
+         laparish.features.length;
+        }           
       });    
       L.esri.query({
         url: nmcntyUrl
@@ -1458,6 +1729,10 @@ transform: translateY(-50%);
         function btn82_() {
           lifelinesGroup.removeLayer(nmcntyLayer);
         };
+        if (nmcnty.features.length > 0) {
+        document.getElementById('nmcnty_id').innerHTML =
+         nmcnty.features.length;
+        }           
       });    
       L.esri.query({
         url: okcntyUrl
@@ -1482,6 +1757,10 @@ transform: translateY(-50%);
         function btn84_() {
           lifelinesGroup.removeLayer(okcntyLayer);
         };
+        if (okcnty.features.length > 0) {
+        document.getElementById('okcnty_id').innerHTML =
+         okcnty.features.length;
+        }           
       });
       L.esri.query({
         url: txcntyUrl
@@ -1506,6 +1785,10 @@ transform: translateY(-50%);
         function btn86_() {
           lifelinesGroup.removeLayer(txcntyLayer);
         };
+        if (txcnty.features.length > 0) {
+        document.getElementById('txcnty_id').innerHTML =
+         txcnty.features.length;
+        }           
       });      
       // L.esri.query({
       //   url: crimeindexUrl
@@ -1598,6 +1881,6 @@ $(document).ready(function(){
   });
 });
 </script>
-<a target="_blank" href="https://fema.maps.arcgis.com/home/webmap/viewer.html?webmap=a56f125f9a3040b2a41f56512700adbd"><button style="bottom:0">EDITS</button></a>
+
 </body>
 </html>
