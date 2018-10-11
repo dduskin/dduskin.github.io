@@ -5,265 +5,59 @@
 <meta name="viewport" content="initial-scale=1.0">
 <meta name="viewport" content="width=device-width">
 <title>Modeling and Analysis</title>
-<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- jQuery library -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
-<!-- Latest compiled JavaScript -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-  <!-- Load Leaflet from CDN -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="" />
   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
-
-
-  <!-- Load Esri Leaflet from CDN -->
   <script src="https://unpkg.com/esri-leaflet@2.2.3/dist/esri-leaflet.js" integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g==" crossorigin=""></script>
 <style>
-
-body, html
-{
-  background-color:#2c5283;
-}
-*{
-  margin: 0;
-  padding: 0;
-}
+body, html{background-color:#2c5283;}
+*{margin: 0;padding: 0;}
 td{text-align:center;}
 @import url('https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
-
-    #map {
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      width:100%;
-      height:95%;
-
-    }
-
-    #button_container {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      z-index: 650;
-      background-color:white;
-      font-size:4px;
-    }
-
-    .exp_anal {
-    font-size: 9px;
-    text-transform: uppercase;
-    color: #fff;
-    font-weight: 800;
-    letter-spacing: 2px;
-    background: #2c5283;
-    font-family:'Raleway', sans-serif;
-    border-style:solid;
-    border-width:thin;
-    border-color:#2c5283;
-        }
+    #map {top: 0;bottom: 0;right: 0;left: 0;width:100%;height:95%;}
+    #button_container {position: absolute;bottom: 0;left: 0;z-index: 650;background-color:white;font-size:4px;}
+    .exp_anal {font-size: 9px;text-transform: uppercase;color: #fff;font-weight: 800;letter-spacing: 2px;background: #2c5283;font-family:'Raleway', sans-serif;border-style:solid;border-width:thin;border-color:#2c5283;}
     .exp_anal:hover{color:red;}
     #btn2 {}
     #analyses{position:absolute;z-index:750;width:auto;bottom:top%;right:10%;padding:0.5%;border-radius:5px;opacity:.85;background-color:lightgray;box-shadow: 0 0 15px rgba(0,0,0,1);display:inline;font-size:0.75em;}
-.table_center{
-  display:table-cell;
-  vertical-align: right;
-  float:right;
-  margin-right:5%;
-  margin-top:0.5%;
-  z-index:650;
- box-shadow: 0 0 25px rgba(0,0,0,1);
-}
-.drop-down{
-    display: inline-block;
-    position: relative;
-   z-index:700;
-}
-
-.drop-down__button{
-  background: #2c5283;
-  display: inline-block;
-  line-height: 40px;
-  padding: 0 18px;
-  text-align: left;
-  border-radius: 4px;
-  box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.2);
-  cursor: pointer;
-}
-
-.drop-down__name {
-    font-size: 9px;
-    text-transform: uppercase;
-    color: #fff;
-    font-weight: 800;
-    letter-spacing: 2px;
-
-}
-
-.drop-down__icon {
-    width: 18px;
-    vertical-align: middle;
-    margin-left: 14px;
-    height: 18px;
-    border-radius: 50%;
-    transition: all 0.4s;
-  -webkit-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  -ms-transition: all 0.4s;
-  -o-transition: all 0.4s;
-
-}
-
-
-
-.drop-down__menu-box {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    background-color: #fff;
-    border-radius: 4px;
-  box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.2);
-     transition: all 0.3s;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  -o-transition: all 0.3s;
- visibility: hidden;
-opacity: 0;
-  margin-top: 5px;
-   z-index:700;
-}
-
-.drop-down__menu {
-    margin: 0;
-    padding: 0 13px;
-    list-style: none;
-
-}
-.drop-down__menu-box:before{
-  content:'';
-  background-color: transparent;
-  border-right: 8px solid transparent;
-  position: absolute;
-  border-left: 8px solid transparent;
-  border-bottom: 8px solid #fff;
-  border-top: 8px solid transparent;
-  top: -15px;
-  right: 18px;
-
-}
-
-.drop-down__menu-box:after{
-  content:'';
-  background-color: transparent;
-}
-
-.drop-down__item {
-    font-size: 13px;
-    padding: 13px 0;
-    text-align: left;
-    font-weight: 500;
-    color: #2c5283;
-    cursor: pointer;
-    position: relative;
-    border-bottom: 1px solid #e0e2e9;
-}
-
-.drop-down__item-icon {
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    right: 0px;
-    fill: #2c5283;
-
-}
-
-.drop-down__item:hover .drop-down__item-icon{
-  fill: #2c5283
-}
-
-.drop-down__item:hover{
-  color: #2c5283;
-}
-
-
-
-.drop-down__item:last-of-type{
-  border-bottom: 0;
-}
-
-
-.drop-down--active .drop-down__menu-box{
-visibility: visible;
-opacity: 1;
-  margin-top: 15px;
-}
-
-.drop-down__item:before{
-  content:'';
-  position: absolute;
-width: 3px;
-height: 28px;
-background-color: #2c5283;
-left: -13px;
-top: 50%;
-transform: translateY(-50%);
-  display:none;
-}
-
-.drop-down__item:hover:before{
-  display:block;
-}
+.table_center{display:table-cell;vertical-align: right;float:right;margin-right:5%;margin-top:0.5%;z-index:650;box-shadow: 0 0 25px rgba(0,0,0,1);}
+.drop-down{display: inline-block;position: relative;z-index:700;}
+.drop-down__button{background: #2c5283;display: inline-block;line-height: 40px;padding: 0 18px;text-align: left;border-radius: 4px;box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.2);cursor: pointer;}
+.drop-down__name {font-size: 9px;text-transform: uppercase;color: #fff;font-weight: 800;letter-spacing: 2px;}
+.drop-down__icon {width: 18px;vertical-align: middle;margin-left: 14px;height: 18px;border-radius: 50%;transition: all 0.4s;-webkit-transition: all 0.4s;-moz-transition: all 0.4s;-ms-transition: all 0.4s;-o-transition: all 0.4s;}
+.drop-down__menu-box {position: absolute;width: 100%;left: 0;background-color: #fff;border-radius: 4px;box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.2);transition: all 0.3s;-webkit-transition: all 0.3s;-moz-transition: all 0.3s;-ms-transition: all 0.3s;-o-transition: all 0.3s;visibility: hidden;opacity: 0;margin-top: 5px;z-index:700;}
+.drop-down__menu {margin: 0;padding: 0 13px;list-style: none;}
+.drop-down__menu-box:before{content:'';background-color: transparent;border-right: 8px solid transparent;position: absolute;border-left: 8px solid transparent;border-bottom: 8px solid #fff;border-top: 8px solid transparent;top: -15px;right: 18px;}
+.drop-down__menu-box:after{content:'';background-color: transparent;}
+.drop-down__item {font-size: 13px;padding: 13px 0;text-align: left;font-weight: 500;color: #2c5283;cursor: pointer;position: relative;border-bottom: 1px solid #e0e2e9;}
+.drop-down__item-icon {width: 15px;height: 15px;position: absolute;right: 0px;fill: #2c5283;}
+.drop-down__item:hover .drop-down__item-icon{fill: #2c5283}
+.drop-down__item:hover{color: #2c5283;}
+.drop-down__item:last-of-type{border-bottom: 0;}
+.drop-down--active .drop-down__menu-box{visibility: visible;opacity: 1;margin-top: 15px;}
+.drop-down__item:before{content:'';position: absolute;width: 3px;height: 28px;background-color: #2c5283;left: -13px;top: 50%;transform: translateY(-50%);display:none;}
+.drop-down__item:hover:before{display:block;}
 #title{color:white;font-size:3em;padding:0.5%;margin-left:2.5%;font-family:impact;letter-spacing:0.15em;}
-.cntyClass {
-  background: transparent;
-  border: transparent;
-  text-shadow: -1.5px 0 black, 0 1.5px black,  1.5px 0 black, 0 -1.5px black;
-  color: white;
-  font-size: 1.25em;
-  white-space: nowrap;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.0);
-        transition: all 0.5s ease-in-out;
-  animation: test1 2s infinite;
-        transform: translateY(130%);
-}
-/* .majorRiversClass:hover { transform: scale(1.1); } */
-@keyframes test {
- 0% {
--webkit-filter: brightness(100%) contrast(200%);
-filter: brightness(100%) contrast(200%);
-color:red;
-}
- 50% {
--webkit-filter: brightness(150%);
-filter: brightness(150%);
-color:gold;
-}
- 100% {
--webkit-filter: brightness(100%) contrast(200%);
-filter: brightness(100%)contrast(200%);
-color:red;
-}
-}
-
+.cntyClass {background: transparent;border: transparent;text-shadow: -1.5px 0 black, 0 1.5px black,  1.5px 0 black, 0 -1.5px black;color: white;font-size: 1.25em;white-space: nowrap;box-shadow: 0 1px 1px rgba(0,0,0,0.0);transition: all 0.5s ease-in-out;animation: test1 2s infinite;transform: translateY(130%);}
+@keyframes test { 0% {-webkit-filter: brightness(100%) contrast(200%);filter: brightness(100%) contrast(200%);color:red;}
+ 50% {-webkit-filter: brightness(150%);filter: brightness(150%);color:gold;}
+ 100% {-webkit-filter: brightness(100%) contrast(200%);filter: brightness(100%)contrast(200%);color:red;}}
 </style>
 </head>
-
 <body>
   <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.Default.css" />
   <script src="https://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
   <div class="col-sm-12 col-md-12 col-lg-12" align="left"><span id="title"></span>
-
   <div class="table_center" style="font-family:'Raleway', sans-serif;">
     <a class="exp_anal drop-down__button drop-down" href="https://data.femadata.com/Region6/aoi2">
       <button style="bottom:0;background-color:#2c5283;border-style:none;">AOI 2</button></a>
-
     <a target="_blank" class="exp_anal drop-down__button drop-down" href="https://fema.maps.arcgis.com/home/webmap/viewer.html?webmap=a56f125f9a3040b2a41f56512700adbd">
       <button style="bottom:0;background-color:#2c5283;border-style:none;">Edit AOI</button></a>
-
        <button type="button" class="btn-md drop-down__button drop-down exp_anal" data-toggle="modal" data-target="#myModal">Exposure Numbers</button>
          <!--<div class="drop-down">-->
          <!--  <div id="dropDown" class="drop-down__button">-->
@@ -277,11 +71,9 @@ color:red;
          <!--    </ul>-->
          <!--  </div>-->
          <!--</div>-->
-
   </div>
-
   </div>
-<div id="col-md-10" style="-webkit-animation: bounceInLeft 1s;width:95%;height:90vh;border-radius:10px;box-shadow: 0 0 25px rgba(0,0,0,1);margin-left:2.55%;margin-top:1%;">
+<div id="col-md-10" style=width:95%;height:90vh;border-radius:10px;box-shadow: 0 0 25px rgba(0,0,0,1);margin-left:2.55%;margin-top:1%;">
   <div id="map" style="border-radius:5px;">
     <div style="background-color:white;position:absolute;top:1.5%;left:2.55%;z-index:650;padding:3px;border-radius:3px;font-family:'Raleway', sans-serif;font-size:1.5em;">
       <div id="pop_counts">Total Population Exposed: 0</div>
@@ -289,7 +81,6 @@ color:red;
     </div>
     <div id="button_container" style="display:none">
       <div>
-
       <div>
       <button id="btnaddAll">add<br>all Layers</button>
       <button id="btnremoveAll">remove<br>all Layers</button>
@@ -552,18 +343,10 @@ color:red;
       <button id="btn86">remove
         <br>Texas Counties</button>
       </div>
-
     </div>
-
     </div>
-
-
-
-
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-
-      <!-- Modal content-->
       <div class="modal-content modal-lg">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -692,10 +475,9 @@ color:red;
                 </tr>
               </tbody>
             </table>
-            <!-- <div style="display:inline-block;">                        -->
-            <!--<p style="display:inline-block;"><b>Railline</b></p>-->
-            <!--<p style="display:inline-block;" id="railroad_id">0</p>                                                                                                                                                                                                                                                                                            -->
-            <!--</div>-->
+            <!-- <div style="display:inline-block;">                      
+            <p style="display:inline-block;"><b>Railline</b></p>
+            <p style="display:inline-block;" id="railroad_id">0</p>                                                                                                                                                                                             </div>-->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -704,10 +486,8 @@ color:red;
     </div>
   </div>
 </div>
-
   <script>
     "use strict";
-
     var map = L.map("map",{zoomControl:false}).setView([32.5252, -95.6284], 5);
     const tile_ = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw",{
     id: 'mapbox.satellite-afternoon'}).addTo(map);
@@ -737,7 +517,6 @@ color:red;
     var localeocsUrl = "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Local_Emergency_Operations_Centers_EOC/FeatureServer/0";
     var policestationsUrl = "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Local_Law_Enforcement_Locations/FeatureServer/0";
     var psap911Url = "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/PSAP_911_Service_Area_Boundaries/FeatureServer/0";
-
     //Food Water Sheltering Lifeline
     var walmartUrl = "https://services1.arcgis.com/Nt1b6lBKgKX3wost/arcgis/rest/services/Walmart_Locations/FeatureServer/0";
     var publicschoolUrl = "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Public_Schools/FeatureServer/0";
@@ -769,29 +548,16 @@ color:red;
     var okcntyUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/r6_state_cnty_bndy/FeatureServer/4";
     var txcntyUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/r6_state_cnty_bndy/FeatureServer/5";
     var rivers_concernUrl = "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/r6_rivers_gauged/FeatureServer/0";
-
     var aoi_layer = L.esri.featureLayer({url:'aoiUrl'});
-
-
-    var query = L.esri.query({
-      url: aoiUrl
-    }).where("AOI = 1").run(function(error, aoi) {
+    var query = L.esri.query({url: aoiUrl}).where("AOI = 1").run(function(error, aoi) {
               document.getElementById('title').innerHTML =
               aoi.features[0].properties.AOI_NAME;
-
               document.getElementById('pop_counts').innerHTML =
               "Total Population Exposed: "+aoi.features[0].properties.TOTPOP_CY;
               document.getElementById('hh_counts').innerHTML =
               "Total Households Exposed: "+aoi.features[0].properties.TOTHH_CY;
-
-
-      var aois = L.geoJSON(aoi).setStyle({
-        color: 'red',
-        fillOpacity: 0.2,
-        weight:0.35
-      }).addTo(map);
+      var aois = L.geoJSON(aoi).setStyle({color: 'red',fillOpacity: 0.2,weight:0.35}).addTo(map);
       map.fitBounds(aois.getBounds().pad(0.5));
-
       L.esri.query({
         url: firestationsUrl
       }).within(aois).run(function(error, firestations, response) {
@@ -907,14 +673,12 @@ color:red;
         document.getElementById("btn7").onclick = function() {
           btn7_()
         };
-
         function btn7_() {
           lifelinesGroup.addLayer(cellserviceLayer);
         };
         document.getElementById("btn8").onclick = function() {
           btn8_()
         };
-
         function btn8_() {
           lifelinesGroup.removeLayer(cellserviceLayer);
         };
@@ -965,14 +729,12 @@ color:red;
         document.getElementById("btn11").onclick = function() {
           btn11_()
         };
-
         function btn11_() {
           lifelinesGroup.addLayer(psap911Layer);
         };
         document.getElementById("btn12").onclick = function() {
           btn12_()
         };
-
         function btn12_() {
           lifelinesGroup.removeLayer(psap911Layer);
         };
@@ -987,14 +749,12 @@ color:red;
         document.getElementById("btn13").onclick = function() {
           btn13_()
         };
-
         function btn13_() {
           lifelinesGroup.addLayer(railroadLayer);
         };
         document.getElementById("btn14").onclick = function() {
           btn14_()
         };
-
         function btn14_() {
           lifelinesGroup.removeLayer(railroadLayer);
         };
@@ -1002,7 +762,6 @@ color:red;
         document.getElementById('railroad_id').innerHTML =
         railroad.features[0].properties.YARD;
         }
-
       });
       L.esri.query({
         url: railstationUrl
@@ -1012,14 +771,12 @@ color:red;
         document.getElementById("btn15").onclick = function() {
           btn15_()
         };
-
         function btn15_() {
           markers.addLayer(railstationLayer);
         };
         document.getElementById("btn16").onclick = function() {
           btn16_()
         };
-
         function btn16_() {
           markers.removeLayer(railstationLayer);
         };
@@ -1073,14 +830,12 @@ color:red;
         document.getElementById("btn19").onclick = function() {
           btn19_()
         };
-
         function btn19_() {
           lifelinesGroup.addLayer(ehcaLayer);
         };
         document.getElementById("btn20").onclick = function() {
           btn20_()
         };
-
         function btn20_() {
           lifelinesGroup.removeLayer(ehcaLayer);
         };
@@ -1093,14 +848,12 @@ color:red;
         document.getElementById("btn21").onclick = function() {
           btn21_()
         };
-
         function btn21_() {
           markers.addLayer(celltowerLayer);
         };
         document.getElementById("btn22").onclick = function() {
           btn22_()
         };
-
         function btn22_() {
           markers.removeLayer(celltowerLayer);
         };
@@ -1151,14 +904,12 @@ color:red;
         document.getElementById("btn25").onclick = function() {
           btn25_()
         };
-
         function btn25_() {
           markers.addLayer(trafficLayer);
         };
         document.getElementById("btn26").onclick = function() {
           btn26_()
         };
-
         function btn26_() {
           markers.removeLayer(trafficLayer);
         };
@@ -1195,14 +946,12 @@ color:red;
         document.getElementById("btn29").onclick = function() {
           btn29_()
         };
-
         function btn29_() {
           markers.addLayer(walmartLayer);
         };
         document.getElementById("btn30").onclick = function() {
           btn30_()
         };
-
         function btn30_() {
           markers.removeLayer(walmartLayer);
         };
@@ -1219,14 +968,12 @@ color:red;
         document.getElementById("btn31").onclick = function() {
           btn31_()
         };
-
         function btn31_() {
           markers.addLayer(hospitalsLayer);
         };
         document.getElementById("btn32").onclick = function() {
           btn32_()
         };
-
         function btn32_() {
           markers.removeLayer(hospitalsLayer);
         };
@@ -1415,14 +1162,12 @@ color:red;
         document.getElementById("btn45").onclick = function() {
           btn45_()
         };
-
         function btn45_() {
           markers.addLayer(amtowerLayer);
         };
         document.getElementById("btn46").onclick = function() {
           btn46_()
         };
-
         function btn46_() {
           markers.removeLayer(amtowerLayer);
         };
@@ -1448,18 +1193,15 @@ color:red;
                "</td></tr></tbody</table>",
                {className:'em_tooltip',permanent: false, offset: [10, 0], sticky: true, direction:'right'});
         });
-
         document.getElementById("btn47").onclick = function() {
           btn47_()
         };
-
         function btn47_() {
           markers.addLayer(pagingtowerLayer);
         };
         document.getElementById("btn48").onclick = function() {
           btn48_()
         };
-
         function btn48_() {
           markers.removeLayer(pagingtowerLayer);
         };
@@ -1487,14 +1229,12 @@ color:red;
         document.getElementById("btn49").onclick = function() {
           btn49_()
         };
-
         function btn49_() {
           markers.addLayer(landprivtowerLayer);
         };
         document.getElementById("btn50").onclick = function() {
           btn50_()
         };
-
         function btn50_() {
           markers.removeLayer(landprivtowerLayer);
         };
@@ -1555,14 +1295,12 @@ color:red;
         document.getElementById("btn53").onclick = function() {
           btn53_()
         };
-
         function btn53_() {
           markers.addLayer(landcommericaltowerLayer);
         };
         document.getElementById("btn54").onclick = function() {
           btn54_()
         };
-
         function btn54_() {
           markers.removeLayer(landcommericaltowerLayer);
         };
@@ -1590,14 +1328,12 @@ color:red;
         document.getElementById("btn55").onclick = function() {
           btn55_()
         };
-
         function btn55_() {
           markers.addLayer(microwavetowerLayer);
         };
         document.getElementById("btn56").onclick = function() {
           btn56_()
         };
-
         function btn56_() {
           markers.removeLayer(microwavetowerLayer);
         };
@@ -1614,14 +1350,12 @@ color:red;
         document.getElementById("btn57").onclick = function() {
           btn57_()
         };
-
         function btn57_() {
           markers.addLayer(publicschoolLayer);
         };
         document.getElementById("btn58").onclick = function() {
           btn58_()
         };
-
         function btn58_() {
           markers.removeLayer(publicshoolLayer);
         };
@@ -1638,14 +1372,12 @@ color:red;
         document.getElementById("btn59").onclick = function() {
           btn59_()
         };
-
         function btn59_() {
           markers.addLayer(privateshoolLayer);
         };
         document.getElementById("btn60").onclick = function() {
           btn60_()
         };
-
         function btn60_() {
           markers.removeLayer(privateshoolLayer);
         };
@@ -1658,14 +1390,12 @@ color:red;
         document.getElementById("btn61").onclick = function() {
           btn61_()
         };
-
         function btn61_() {
           markers.addLayer(daycareLayer);
         };
         document.getElementById("btn62").onclick = function() {
           btn62_()
         };
-
         function btn62_() {
           markers.removeLayer(daycareLayer);
         };
@@ -1682,14 +1412,12 @@ color:red;
         document.getElementById("btn63").onclick = function() {
           btn63_()
         };
-
         function btn63_() {
           markers.addLayer(collegeLayer);
         };
         document.getElementById("btn64").onclick = function() {
           btn64_()
         };
-
         function btn64_() {
           markers.removeLayer(collegeLayer);
         };
@@ -1706,14 +1434,12 @@ color:red;
         document.getElementById("btn65").onclick = function() {
           btn65_()
         };
-
         function btn65_() {
           markers.addLayer(pharmLayer);
         };
         document.getElementById("btn66").onclick = function() {
           btn66_()
         };
-
         function btn66_() {
           markers.removeLayer(pharmLayer);
         };
@@ -1730,14 +1456,12 @@ color:red;
         document.getElementById("btn67").onclick = function() {
           btn67_()
         };
-
         function btn67_() {
           markers.addLayer(nursingLayer);
         };
         document.getElementById("btn68").onclick = function() {
           btn68_()
         };
-
         function btn68_() {
           markers.removeLayer(nursingLayer);
         };
@@ -1754,14 +1478,12 @@ color:red;
         document.getElementById("btn69").onclick = function() {
           btn69_()
         };
-
         function btn69_() {
           markers.addLayer(urgentLayer);
         };
         document.getElementById("btn70").onclick = function() {
           btn70_()
         };
-
         function btn70_() {
           markers.removeLayer(urgentLayer);
         };
@@ -1778,14 +1500,12 @@ color:red;
         document.getElementById("btn71").onclick = function() {
           btn71_()
         };
-
         function btn71_() {
           markers.addLayer(powerplantsLayer);
         };
         document.getElementById("btn72").onclick = function() {
           btn72_()
         };
-
         function btn72_() {
           markers.removeLayer(powerplantsLayer);
         };
@@ -1802,14 +1522,12 @@ color:red;
         document.getElementById("btn73").onclick = function() {
           btn73_()
         };
-
         function btn73_() {
           lifelinesGroup.addLayer(ngliqpipelineLayer);
         };
         document.getElementById("btn74").onclick = function() {
           btn74_()
         };
-
         function btn74_() {
           lifelinesGroup.removeLayer(ngliqpipelineLayer);
         };
@@ -1822,14 +1540,12 @@ color:red;
         document.getElementById("btn75").onclick = function() {
           btn75_()
         };
-
         function btn75_() {
           lifelinesGroup.addLayer(electriclinesLayer);
         };
         document.getElementById("btn76").onclick = function() {
           btn76_()
         };
-
         function btn76_() {
           lifelinesGroup.removeLayer(electriclinesLayer);
         };
@@ -1840,14 +1556,11 @@ color:red;
                var rivers_concernLayer = L.geoJSON(rivers_concern).setStyle({color:'cyan',fillOpacity:0.0,dashArray:5});
         lifelinesGroup.addLayer(rivers_concernLayer);
         });
-
-
       L.esri.query({
         url: arcntyUrl
       }).intersects(aois).run(function(error, arcnty, response) {
         var arcntyLayer = L.geoJSON(arcnty).setStyle({color:'black',fillOpacity:0.0,dashArray:3,});
         lifelinesGroup.addLayer(arcntyLayer);
-
         arcntyLayer.eachLayer(function(layer) {
     var arcntyTooltip = layer;
     arcntyTooltip.bindTooltip(layer.feature.properties.NAME10,{className:'cntyClass',permanent: true, offset: [0, 0], sticky: true, direction:'center'})
@@ -1862,7 +1575,6 @@ color:red;
         document.getElementById("btn78").onclick = function() {
           btn78_()
         };
-
         function btn78_() {
           lifelinesGroup.removeLayer(arcntyLayer);
         }
@@ -1876,7 +1588,6 @@ color:red;
       }).intersects(aois).run(function(error, laparish, response) {
         var laparishLayer = L.geoJSON(laparish).setStyle({color:'black',fillOpacity:0.0,dashArray:5});
         lifelinesGroup.addLayer(laparishLayer);
-
         laparishLayer.eachLayer(function(layer) {
     var laparishTooltip = layer;
     laparishTooltip.bindTooltip(layer.feature.properties.NAME10,{className:'cntyClass',permanent: true, offset: [0, 0], sticky: true, direction:'center'})
@@ -1884,7 +1595,6 @@ color:red;
         document.getElementById("btn79").onclick = function() {
           btn79_()
         };
-
         function btn79_() {
           lifelinesGroup.addLayer(laparishLayer);
         };
@@ -1909,11 +1619,9 @@ color:red;
     var nmcntyTooltip = layer;
     nmcntyTooltip.bindTooltip(layer.feature.properties.NAME10,{className:'cntyClass',permanent: true, offset: [0, 0], sticky: true, direction:'center'})
       });
-
         document.getElementById("btn81").onclick = function() {
           btn81_()
         };
-
         function btn81_() {
           lifelinesGroup.addLayer(nmcntyLayer);
         };
@@ -1941,14 +1649,12 @@ color:red;
         document.getElementById("btn83").onclick = function() {
           btn83_()
         };
-
         function btn83_() {
           lifelinesGroup.addLayer(okcntyLayer);
         };
         document.getElementById("btn84").onclick = function() {
           btn84_()
         };
-
         function btn84_() {
           lifelinesGroup.removeLayer(okcntyLayer);
         };
@@ -1969,14 +1675,12 @@ color:red;
         document.getElementById("btn85").onclick = function() {
           btn85_()
         };
-
         function btn85_() {
           lifelinesGroup.addLayer(txcntyLayer);
         };
         document.getElementById("btn86").onclick = function() {
           btn86_()
         };
-
         function btn86_() {
           lifelinesGroup.removeLayer(txcntyLayer);
         };
@@ -1985,12 +1689,8 @@ color:red;
          txcnty.features.length;
         }
       });
-
     });
-
-
     lifelinesGroup.addLayer(markers);
-
       document.getElementById("btnaddAll").onclick = function() {btnaddAll_()};
             function btnaddAll_ (){
                   map.addLayer(lifelinesGroup);
@@ -2009,15 +1709,11 @@ color:red;
                 function btnremoveAll_ (){
                       map.removeLayer(lifelinesGroup);
                       };
-
-
 $(document).ready(function(){
   $('#dropDown').click(function(){
     $('.drop-down').toggleClass('drop-down--active');
   });
 });
-
 </script>
-
 </body>
 </html>
