@@ -76,7 +76,7 @@ a:link,a:visited,a:hover,a:active{color:white;}
 <button class='basemap3'><i class="fa fa-globe fa-2x" aria-hidden="true"></i></button>
 <button id="sectiorchem_Btn" class="btn-warning"><div class="col-xs-6"><b>EXPOSURE<br> NUMBERS</b></div></button>
 <!-- <button id="a1_Btn"  class="btn-default watch_warnBtn"><div class="col-xs-6"<b>Watches and <br> Warnings</b></div></button> -->
-<a class="btn btn-danger clearBtn hidden" href="http://r6gis.fema.net/demo44" role="button"><b>Back</b></a>
+<a class="btn btn-danger clearBtn hidden" href="https://dduskin.github.io/expose_tool" role="button"><b>Back</b></a>
 <div id="sidebar" class="hide_element">
   <div class="col-xs-12"><b>Click Area of Interest (AOIs)</b><br>
   <div id="aoi_name"></div>
@@ -319,7 +319,7 @@ m.fitBounds(aois.getBounds().pad(0.5));
       })
       .within(feature)
       .run(function(error, featureCollection) {
-        const celltowerIcon = L.icon({iconUrl:'http://r6gis.fema.net/demo44/img/cell.png',iconSize:[26,62]});
+        const celltowerIcon = L.icon({iconUrl:'./img/cell.png',iconSize:[26,62]});
         var celltower_ = L.geoJSON(featureCollection,{pointToLayer: function (feature, latlng) {
         return L.marker(latlng,{icon:celltowerIcon});
         }});
@@ -349,7 +349,7 @@ m.fitBounds(aois.getBounds().pad(0.5));
       })
       .within(feature)
       .run(function(error, featureCollection) {
-        const publicschoolIcon = L.icon({iconUrl:'http://r6gis.fema.net/demo44/img/public_school.png',iconSize:[26,62]});
+        const publicschoolIcon = L.icon({iconUrl:'./img/public_school.png',iconSize:[26,62]});
         var publicschoolLayer_ = L.geoJSON(featureCollection,{pointToLayer: function (feature, latlng) {
         return L.marker(latlng,{icon:publicschoolIcon});
         }});
@@ -376,7 +376,7 @@ m.fitBounds(aois.getBounds().pad(0.5));
       })
       .within(feature)
       .run(function(error, featureCollection) {
-        const privateschoolIcon = L.icon({iconUrl:'http://r6gis.fema.net/demo44/img/private_school.png',iconSize:[26,62]});
+        const privateschoolIcon = L.icon({iconUrl:'./img/private_school.png',iconSize:[26,62]});
         var privateschoolLayer_ = L.geoJSON(featureCollection,{pointToLayer: function (feature, latlng) {
         return L.marker(latlng,{icon:privateschoolIcon});
         }});
@@ -402,7 +402,7 @@ m.fitBounds(aois.getBounds().pad(0.5));
       })
       .within(feature)
       .run(function(error, featureCollection) {
-        const hospitalsIcon = L.icon({iconUrl:'http://r6gis.fema.net/demo44/img/hospital.png',iconSize:[26,62]});
+        const hospitalsIcon = L.icon({iconUrl:'./img/hospital.png',iconSize:[26,62]});
         var hospitals_ = L.geoJSON(featureCollection,{pointToLayer: function (feature, latlng) {
         return L.marker(latlng,{icon:hospitalsIcon});
         }});
@@ -429,7 +429,7 @@ m.fitBounds(aois.getBounds().pad(0.5));
       })
       .within(feature)
       .run(function(error, featureCollection) {
-        const nursinghomeIcon = L.icon({iconUrl:'http://r6gis.fema.net/demo44/img/nursinghome.png',iconSize:[26,62]});
+        const nursinghomeIcon = L.icon({iconUrl:'./img/nursinghome.png',iconSize:[26,62]});
         var nursinghomeLayer_ = L.geoJSON(featureCollection,{pointToLayer: function (feature, latlng) {
         return L.marker(latlng,{icon:nursinghomeIcon});
         }});
@@ -456,7 +456,7 @@ m.fitBounds(aois.getBounds().pad(0.5));
       })
       .within(feature)
       .run(function(error, featureCollection) {
-        const pharmacyIcon = L.icon({iconUrl:'http://r6gis.fema.net/demo44/img/pharmacy.png',iconSize:[26,62]});
+        const pharmacyIcon = L.icon({iconUrl:'./img/pharmacy.png',iconSize:[26,62]});
         var pharmacyLayer_ = L.geoJSON(featureCollection,{pointToLayer: function (feature, latlng) {
         return L.marker(latlng,{icon:pharmacyIcon});
         }});
@@ -520,7 +520,7 @@ m.fitBounds(aois.getBounds().pad(0.5));
       })
       .within(feature)
       .run(function(error, featureCollection) {
-        const airportIcon = L.icon({iconUrl:'http://r6gis.fema.net/demo44/img/airport.png',iconSize:[26,62]});
+        const airportIcon = L.icon({iconUrl:'./img/airport.png',iconSize:[26,62]});
         var airport_ = L.geoJSON(featureCollection,{pointToLayer: function (feature, latlng) {
         return L.marker(latlng,{icon:airportIcon});
         }});
@@ -607,7 +607,7 @@ m.fitBounds(aois.getBounds().pad(0.5));
       })
       .within(feature)
       .run(function(error, featureCollection) {
-        const wastewaterplantIcon = L.icon({iconUrl:'http://r6gis.fema.net/demo44/img/wastewater.png',iconSize:[26,62]});
+        const wastewaterplantIcon = L.icon({iconUrl:'./img/wastewater.png',iconSize:[26,62]});
         var wastewaterplant_ = L.geoJSON(featureCollection,{pointToLayer: function (feature, latlng) {
         return L.marker(latlng,{icon:wastewaterplantIcon});
         }});
