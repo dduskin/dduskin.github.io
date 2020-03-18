@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css?family=Anton|Oswald&display=swap');
+  body { margin:0; padding:0; font-family: 'Oswald', sans-serif;overflow:hidden;}
+  #map { position: absolute; top:0; bottom:0; right:0; left:0; }
+  .leaflet-popup-content-wrapper {
+    padding: 1px;
+    text-align: left;
+    border-radius: 3px;
+}
+  .cluster {
+/* background: #bf382a; */
+background: green;
+/* background-image:url(./img/hospital.png)
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center; */
+border-radius: 50%;
+text-align: center;
+color: white;
+font-weight: 700;
+border: 1px solid #df9b94;
+font-family: monospace;
+}
+
+.cluster:before {
+content: ' ';
+position: absolute;
+border-radius: 50%;
+z-index: -1;
+top: 1px;
+left: 1px;
+right: 1px;
+bottom: 1px;
+border: 1px solid white;
+}
+
+.digits-1 {
+font-size: 14px;
+height: 28px;
+width: 28px;
+line-height: 28px;
+margin-top: -14px;
+margin-left: -14px;
+}
+
+.digits-2 {
+font-size: 16px;
+height: 34px;
+width: 34px;
+line-height: 35px;
+margin-top: -17px;
+margin-left: -17px;
+}
+
+.digits-2:before {
+border-width: 2px;
+}
+
+.digits-3 {
+font-size: 18px;
+height: 48px;
+width: 47px;
+line-height: 47px;
+border-width: 3px;
+margin-top: -24px;
+margin-left: -24px;
+}
+
+.digits-3:before {
+border-width: 3px;
+}
+
+.digits-4 {
+font-size: 18px;
+height: 58px;
+width: 58px;
+line-height: 57px;
+border-width: 4px;
+margin-top: -29px;
+margin-left: -29px;
+}
+
+.digits-4:before {
+border-width: 4px;
+}
+.hide{display:none;}
+#driveTesting{
+background-image:url(./img/hospital.png);
+width:100px;
+}
+.header{
+position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+padding:0.25em;z-index:650;top:0;width:100%;background-color:#2c5283;opacity:0.75;color:white;
+}
+.header:hover{opacity:1;}
+.grayscale{-webkit-filter: grayscale(90%);}
+.fixed-bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;text-align:center;padding:0.25em;
+}
+footer, nav {
+  background:#2c5283;
+  color: white;
+  -webkit-transition: opacity .4s;
+  transition: opacity .4s;
+  font-size:0.75em;opacity: 0.6;
+}
+.fixed-bottom:hover{opacity:1;}
+a{text-decoration:none;color:white;}
+a:hover{text-decoration:underline;}
+
+.basemapsContainer{z-index:600;position:fixed;top:3%;left:5%;margin-top:1%;}
+.basemapsMainBtn{border-width:thin;font-family: 'Oswald', sans-serif;color:#fff;line-height: 1.42857143;background-color:#286090;border-color:#122b40;padding:6px 12px;font-size:14px;cursor: pointer;}
+.basemapsMainContainer,.splashMainContainer{font-family: 'Oswald', sans-serif;background-color:white;color:black;width:auto;border: 1px solid #777;padding: 10px;background-color: #f5f5f5;box-shadow: 5px 5px 15px rgba(0,0,0,0.4);padding-bottom:25px;}
+.basemaps{display:inline-block;width: 100px;margin: 0px;background-color: white;cursor: pointer;padding:3px;border-width:thin;border-color:lightgray;border-style:solid;}
+.basemapSelected{background-color:#286090;color:white;}
+.basemapImg{border: 1px solid #e3e3e3;box-sizing: border-box;display: block;max-width: 100%;height: auto;}
+.basemapLabel{padding: 3px 0px 0px 0px;text-align:center;font-size:0.5em}
+.baseMapClose{float:right;border-width:thin;border-style:solid;color: #333;background-color: #e6e6e6;border-color: #adadad;padding: 1px 5px;font-size: 10px;line-height: 1.5;cursor: pointer;}
+.caret {display: inline-block;width: 0;height: 0;margin-left: 2px;vertical-align: middle;border-top: 4px dashed;border-top: 4px solid \9;border-right: 4px solid transparent;border-left: 4px solid transparent;}

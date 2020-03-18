@@ -1,0 +1,228 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Simple FeatureLayer</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+  <!-- Load Leaflet from CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+  crossorigin=""></script>
+
+
+  <!-- Load Esri Leaflet from CDN -->
+  <script src="https://unpkg.com/esri-leaflet@2.3.3/dist/esri-leaflet.js"
+  integrity="sha512-cMQ5e58BDuu1pr9BQ/eGRn6HaR6Olh0ofcHFWe5XesdCITVuSBiBZZbhCijBe5ya238f/zMMRYIMIIg1jxv4sQ=="
+  crossorigin=""></script>
+  <!-- Load Leaflet MarkerCluster and Esri Leaflet Cluster from CDN -->
+  <link rel="stylesheet" type="text/css"
+    href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"
+    integrity="sha512-BBToHPBStgMiw0lD4AtkRIZmdndhB6aQbXpX7omcrXeG2PauGBl2lzq2xUZTxaLxYz5IDHlmneCZ1IJ+P3kYtQ=="
+    crossorigin="">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"
+    integrity="sha512-RLEjtaFGdC4iQMJDbMzim/dOvAu+8Qp9sw7QE4wIMYcg2goVoivzwgSZq9CsIxp4xKAZPKh5J2f2lOko2Ze6FQ=="
+    crossorigin="">
+  <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"
+    integrity="sha512-MQlyPV+ol2lp4KodaU/Xmrn+txc1TP15pOBF/2Sfre7MRsA/pB4Vy58bEqe9u7a7DczMLtU5wT8n7OblJepKbg=="
+    crossorigin=""></script>
+  <script src="https://unpkg.com/esri-leaflet-cluster@2.0.1/dist/esri-leaflet-cluster.js"
+    integrity="sha512-2/Nwrks+A2omjKeWrF4TKFLIrUbAhSl8EDEm6xunuwXXYqMoJI71PZtlW0/vqt9d3DOyP1md/bzAnNH2KuAhaQ=="
+    crossorigin=""></script>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="L.Icon.Pulse.css">
+  <style>
+  .rows{margin-right:1em;font-size:0.65em;color:black;}
+  .leaflet-control-layers{font-family: 'Oswald', sans-serif;border-radius: 0px;border-width:thin;border-color:black;}
+  .table{  border-collapse: collapse;
+  width: 100%;}
+  .table td, .table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.table tr:nth-child(even){background-color: #f2f2f2;}
+
+.table tr:hover {background-color: #ddd;}
+.table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+  </style>
+</head>
+<body>
+<div id="map"></div>
+<!-- <div style="box-shadow: 1px 2.5px 5px -1px rgba(0,0,0,1);z-index:600;bottom:5%;right:1%;position:absolute;background-color:white;color:black;width:400px;height:125px;padding:3px;border-radius:5px;border-color:black;border-style:solid;border-width:thin;">
+<span style='font-size:0.75em;margin-bottom:0.75em;'>EXPLANATION</span><br>
+<div style="width:395px;border-style:solid;border-width:thin;border-color:black;">
+<span class="rows">Drive-Thru Test Site</span><span class="rows">Shipping Location</span><span class="rows">Affected County/Parish</span><span class="rows">Incident Facilities</span><br>
+
+
+
+</div> -->
+
+
+
+
+</div>
+<script src="basemaps.js"></script>
+<script src="L.Icon.Pulse.js"></script>
+<script>
+  var icon1 = L.icon({
+    iconUrl: './img/hospital.png',
+    iconSize:[17,41],
+  });
+  var icon2 = L.icon({
+    iconUrl: './img/bus.png',
+    iconSize:[17,41],
+  });
+  var icon = L.icon({
+  iconUrl: './img/eoc_active.png',
+  iconSize: [22, 22],
+});
+var pulsingIcon = L.icon.pulse({iconSize:[18,18],color:'red',heartbeat:2})
+  var driveThruTesting = L.esri.Cluster.featureLayer({
+    url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
+    where:"TYPE = 'MEDICAL'",
+    spiderfyOnMaxZoom: false,
+    removeOutsideVisibleBounds: true,
+    disableClusteringAtZoom: 8,
+    iconCreateFunction: function (cluster) {
+      var count = cluster.getChildCount();
+      var digits = (count + '').length;
+      return L.divIcon({
+        html: count,
+        className: 'cluster digits-' + digits,
+        iconSize: null
+      });
+    },
+    pointToLayer: function (geojson, latlng) {
+    return L.marker(latlng, {
+    icon: icon1
+  });
+}
+  }).addTo(map);
+  driveThruTesting.bindPopup(function (layer) {
+    return L.Util.template(
+        "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+        "</td></tr><tr><td>Address</td><td>"
+        +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+        "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+        "</td></tr></tr></tbody</table>");
+  });
+  var bus = L.esri.featureLayer({
+    url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
+    where:"TYPE = 'TRANSPORTATION'",
+    pointToLayer: function (geojson, latlng) {
+    return L.marker(latlng, {
+    icon: icon2
+  });
+}
+  }).addTo(map);
+  bus.bindPopup(function (layer) {
+    return L.Util.template(
+        "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+        "</td></tr><tr><td>Address</td><td>"
+        +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+        "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+        "</td></tr></tr></tbody</table>");
+  });
+  var aoi = L.esri.featureLayer({
+    url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_AOI/FeatureServer/0',
+    where:"AOI = 'Affected'",
+    simplifyFactor: 0.5,
+    precision: 5,
+    style: {color:'red', weight:0.5, dashArray:3,fillOpacity:0.25}
+  }).addTo(map);
+
+var boundary = L.esri.featureLayer({url:'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_Boundaries/FeatureServer/0',
+  style:{color:'black',weight:0.75},
+  simplifyFactor: 0.5,
+  precision: 5,
+}).addTo(map);
+
+  var dailyEventsIcons = {
+      EOC_ACTIVATED: L.icon.pulse({
+        iconSize: [18,18],
+        color: 'red',
+        animate: true,
+        heartbeat: 2,
+      }),
+      TEAMS: L.icon({
+        iconSize: [22,22],
+        iconUrl:'./img/team.png'
+      }),
+      EOC: L.icon({
+        iconSize: [18,18],
+        iconUrl:'./img/eoc.png'
+      }),
+      TEAMS2: L.icon.pulse({
+        iconSize: [8,8],
+        fillColor: 'yellow',
+        color: 'yellow',
+        animate: false,
+        heartbeat: 2.5,
+      }),
+    };
+  var dailyEvents = L.esri.featureLayer({
+    url: 'http://services.arcgis.com/XG15cJAlne2vxtgt/ArcGIS/rest/services/R6_DAILY_EVENT2/FeatureServer/0',
+    pointToLayer: function (geojson, latlng) {
+      return L.marker(latlng, {
+        icon: dailyEventsIcons[geojson.properties.TYPE]
+      });
+    }
+  }).addTo(map);
+
+    dailyEvents.bindPopup(function (layer) {
+      return L.Util.template(
+          "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+          "</td></tr><tr><td>Address</td><td>"
+          +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+          "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+          "</td></tr></tr></tbody</table>");
+    });
+// document.querySelector(".leaflet-control-attribution").classList.add("hide");
+
+// document.getElementById("driveTesting").onclick = function(){
+//   if(map.hasLayer(driveThruTesting)){
+//     map.removeLayer(driveThruTesting)
+//     document.getElementById("driveTesting").classList.add("grayscale");
+//   } else {
+//     map.addLayer(driveThruTesting);
+//     document.getElementById("driveTesting").classList.remove("grayscale");
+//     }
+//
+// }
+// document.getElementById("busSite").onclick = function(){
+//   if(map.hasLayer(bus)){
+//     map.removeLayer(bus)} else {
+//       map.addLayer(bus);
+//     }
+//
+// }
+// var footer = document.createElement("DIV");
+//
+// footer.innerHTML =
+// "<footer class='fixed-bottom'>"+
+// "<a href='https://www.dhs.gov/' target='_blank'>U.S. Department of Homeland Security</a>&nbsp;&nbsp;|&nbsp;&nbsp;"+
+// "<a href='https://www.oig.dhs.gov/' target='_blank'>DHS Inspector General </a>&nbsp;&nbsp;|&nbsp;&nbsp;"+
+// "<a href='https://www.whitehouse.gov/' target='_blank'>White House </a>&nbsp;&nbsp;|&nbsp;&nbsp;"+
+// "<a href='https://www.dhs.gov/homeland-security-no-fear-act-reporting/' target='_blank'>No Fear Act </a>&nbsp;&nbsp;|&nbsp;&nbsp;"+
+// "<a href='https://www.fema.gov/foia/' target='_blank'>FOIA </a>"+
+//         "</footer>";
+// document.body.appendChild(footer);
+
+var overlays = {
+    "<span style='margin-left:1em;'>Incident Facilities / Current Events</span><br><img style='margin-left:2.5em;' height=50 src='./img/currentEvents.png'/>": dailyEvents,
+    "<span style='margin-left:1em;'>Drive Thru Test Sites<br><img style='margin-left:2.5em;' height=50 src='./img/driveThru.png'/>": driveThruTesting,
+    "<span style='margin-left:1em;'>Shipping Location<br><img style='margin-left:4.5em;' height=50 src='./img/bus.png'/>": bus,
+    "<span style='margin-left:1em;'>Affected Counties<br><img style='margin-left:2.5em;' height=50 src='./img/affected.png'/>": aoi
+};
+L.control.layers(null, overlays,{position:"bottomright",collapsed:false}).addTo(map);
+</script>
+</body>
+</html>
