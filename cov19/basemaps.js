@@ -82,45 +82,55 @@ closeBase_.onclick = ()=>{
 var basemap1_ = document.getElementById("basemap1")
 basemap1_.onclick = ()=> {
   if(!map.hasLayer(google_hybrid)){
-  map.removeLayer(OpenTopoMap);map.removeLayer(OpenStreetMap_HOT);map.removeLayer(NASAGIBS_ViirsEarthAtNight2012);map.removeLayer(Stadia_AlidadeSmoothDark);map.removeLayer(CartoDB_PositronNoLabels);map.removeLayer(Esri_WorldImagery);map.addLayer(google_hybrid);map.removeLayer(googleRoad);map.removeLayer(google_terrain);basemap1_.classList.add("basemapSelected");basemap2_.classList.remove("basemapSelected");basemap3_.classList.remove("basemapSelected");basemap4_.classList.remove("basemapSelected");basemap5_.classList.remove("basemapSelected");basemap6_.classList.remove("basemapSelected");basemap7_.classList.remove("basemapSelected");basemap8_.classList.remove("basemapSelected");basemap9_.classList.remove("basemapSelected");}
+  map.removeLayer(OpenTopoMap);map.removeLayer(OpenStreetMap_HOT);map.removeLayer(NASAGIBS_ViirsEarthAtNight2012);map.removeLayer(Stadia_AlidadeSmoothDark);map.removeLayer(CartoDB_PositronNoLabels);map.removeLayer(Esri_WorldImagery);map.addLayer(google_hybrid);map.removeLayer(googleRoad);map.removeLayer(google_terrain);basemap1_.classList.add("basemapSelected");basemap2_.classList.remove("basemapSelected");basemap3_.classList.remove("basemapSelected");basemap4_.classList.remove("basemapSelected");basemap5_.classList.remove("basemapSelected");basemap6_.classList.remove("basemapSelected");basemap7_.classList.remove("basemapSelected");basemap8_.classList.remove("basemapSelected");basemap9_.classList.remove("basemapSelected");
+	boundary.setStyle({color:"white"})
+}
 }
 var basemap2_ = document.getElementById("basemap2");
 basemap2_.onclick = ()=> {
   if(!map.hasLayer(google_terrain)){
   map.removeLayer(OpenTopoMap);map.removeLayer(OpenStreetMap_HOT);map.removeLayer(NASAGIBS_ViirsEarthAtNight2012);map.removeLayer(Stadia_AlidadeSmoothDark);map.removeLayer(CartoDB_PositronNoLabels);map.removeLayer(Esri_WorldImagery);map.addLayer(google_terrain);map.removeLayer(googleRoad);map.removeLayer(google_hybrid);basemap1_.classList.remove("basemapSelected");basemap2_.classList.add("basemapSelected");basemap3_.classList.remove("basemapSelected");basemap4_.classList.remove("basemapSelected");basemap5_.classList.remove("basemapSelected");basemap6_.classList.remove("basemapSelected");basemap7_.classList.remove("basemapSelected");basemap8_.classList.remove("basemapSelected");basemap9_.classList.remove("basemapSelected");}
+boundary.setStyle({color:"black"});
 }
 var basemap3_ = document.getElementById("basemap3");
 basemap3_.onclick = ()=> {
   if(!map.hasLayer(googleRoad)){
   map.removeLayer(OpenTopoMap);map.removeLayer(OpenStreetMap_HOT);map.removeLayer(NASAGIBS_ViirsEarthAtNight2012);map.removeLayer(Stadia_AlidadeSmoothDark);map.removeLayer(CartoDB_PositronNoLabels);map.removeLayer(Esri_WorldImagery);map.removeLayer(google_terrain);map.addLayer(googleRoad);map.removeLayer(google_hybrid);basemap1_.classList.remove("basemapSelected");basemap2_.classList.remove("basemapSelected");basemap3_.classList.add("basemapSelected");basemap4_.classList.remove("basemapSelected");basemap5_.classList.remove("basemapSelected");basemap6_.classList.remove("basemapSelected");basemap7_.classList.remove("basemapSelected");basemap8_.classList.remove("basemapSelected");basemap9_.classList.remove("basemapSelected");}
+boundary.setStyle({color:"black"});
 }
 var basemap4_ = document.getElementById("basemap4");
 basemap4_.onclick = ()=> {
   if(!map.hasLayer(Esri_WorldImagery)){
   map.removeLayer(OpenTopoMap);map.removeLayer(OpenStreetMap_HOT);map.removeLayer(NASAGIBS_ViirsEarthAtNight2012);map.removeLayer(Stadia_AlidadeSmoothDark);map.removeLayer(CartoDB_PositronNoLabels);map.addLayer(Esri_WorldImagery);map.removeLayer(google_terrain);map.removeLayer(googleRoad);map.removeLayer(google_hybrid);basemap1_.classList.remove("basemapSelected");basemap2_.classList.remove("basemapSelected");basemap3_.classList.remove("basemapSelected");basemap4_.classList.add("basemapSelected");basemap5_.classList.remove("basemapSelected");basemap6_.classList.remove("basemapSelected");basemap7_.classList.remove("basemapSelected");basemap8_.classList.remove("basemapSelected");basemap9_.classList.remove("basemapSelected");}
+boundary.setStyle({color:"white"})
 }
 var basemap5_ = document.getElementById("basemap5");
 basemap5_.onclick = ()=> {
   if(!map.hasLayer(CartoDB_PositronNoLabels)){
   map.removeLayer(OpenTopoMap);map.removeLayer(OpenStreetMap_HOT);map.removeLayer(NASAGIBS_ViirsEarthAtNight2012);map.removeLayer(Stadia_AlidadeSmoothDark);map.addLayer(CartoDB_PositronNoLabels);map.removeLayer(Esri_WorldImagery);map.removeLayer(google_terrain);map.removeLayer(googleRoad);map.removeLayer(google_hybrid);basemap1_.classList.remove("basemapSelected");basemap2_.classList.remove("basemapSelected");basemap3_.classList.remove("basemapSelected");basemap4_.classList.remove("basemapSelected");basemap5_.classList.add("basemapSelected");basemap6_.classList.remove("basemapSelected");basemap7_.classList.remove("basemapSelected");basemap8_.classList.remove("basemapSelected");basemap9_.classList.remove("basemapSelected");}
+boundary.setStyle({color:"black"});
 }
 var basemap6_ = document.getElementById("basemap6");
 basemap6_.onclick = ()=> {
   if(!map.hasLayer(Stadia_AlidadeSmoothDark)){
   map.removeLayer(OpenTopoMap);map.removeLayer(OpenStreetMap_HOT);map.removeLayer(NASAGIBS_ViirsEarthAtNight2012);map.addLayer(Stadia_AlidadeSmoothDark);map.removeLayer(CartoDB_PositronNoLabels);map.removeLayer(Esri_WorldImagery);map.removeLayer(google_terrain);map.removeLayer(googleRoad);map.removeLayer(google_hybrid);basemap1_.classList.remove("basemapSelected");basemap2_.classList.remove("basemapSelected");basemap3_.classList.remove("basemapSelected");basemap4_.classList.remove("basemapSelected");basemap5_.classList.remove("basemapSelected");basemap6_.classList.add("basemapSelected");basemap7_.classList.remove("basemapSelected");basemap8_.classList.remove("basemapSelected");basemap9_.classList.remove("basemapSelected");}
+boundary.setStyle({color:"white"})
 }
 var basemap7_ = document.getElementById("basemap7");
 basemap7_.onclick = ()=> {
   if(!map.hasLayer(NASAGIBS_ViirsEarthAtNight2012)){
   map.removeLayer(OpenTopoMap);map.removeLayer(OpenStreetMap_HOT);map.addLayer(NASAGIBS_ViirsEarthAtNight2012);map.removeLayer(Stadia_AlidadeSmoothDark);map.removeLayer(CartoDB_PositronNoLabels);map.removeLayer(Esri_WorldImagery);map.removeLayer(google_terrain);map.removeLayer(googleRoad);map.removeLayer(google_hybrid);basemap1_.classList.remove("basemapSelected");basemap2_.classList.remove("basemapSelected");basemap3_.classList.remove("basemapSelected");basemap4_.classList.remove("basemapSelected");basemap5_.classList.remove("basemapSelected");basemap6_.classList.remove("basemapSelected");basemap7_.classList.add("basemapSelected");basemap8_.classList.remove("basemapSelected");basemap9_.classList.remove("basemapSelected");}
+boundary.setStyle({color:"white"})
 }
 var basemap8_ = document.getElementById("basemap8");
 basemap8_.onclick = ()=> {
   if(!map.hasLayer(OpenStreetMap_HOT)){
   map.removeLayer(OpenTopoMap);map.addLayer(OpenStreetMap_HOT);map.removeLayer(NASAGIBS_ViirsEarthAtNight2012);map.removeLayer(Stadia_AlidadeSmoothDark);map.removeLayer(CartoDB_PositronNoLabels);map.removeLayer(Esri_WorldImagery);map.removeLayer(google_terrain);map.removeLayer(googleRoad);map.removeLayer(google_hybrid);basemap1_.classList.remove("basemapSelected");basemap2_.classList.remove("basemapSelected");basemap3_.classList.remove("basemapSelected");basemap4_.classList.remove("basemapSelected");basemap5_.classList.remove("basemapSelected");basemap6_.classList.remove("basemapSelected");basemap7_.classList.remove("basemapSelected");basemap8_.classList.add("basemapSelected");basemap9_.classList.remove("basemapSelected");}
+boundary.setStyle({color:"black"});
 }
 var basemap9_ = document.getElementById("basemap9");
 basemap9_.onclick = ()=> {
   if(!map.hasLayer(OpenTopoMap)){
   map.addLayer(OpenTopoMap);map.removeLayer(OpenStreetMap_HOT);map.removeLayer(NASAGIBS_ViirsEarthAtNight2012);map.removeLayer(Stadia_AlidadeSmoothDark);map.removeLayer(CartoDB_PositronNoLabels);map.removeLayer(Esri_WorldImagery);map.removeLayer(google_terrain);map.removeLayer(googleRoad);map.removeLayer(google_hybrid);basemap1_.classList.remove("basemapSelected");basemap2_.classList.remove("basemapSelected");basemap3_.classList.remove("basemapSelected");basemap4_.classList.remove("basemapSelected");basemap5_.classList.remove("basemapSelected");basemap6_.classList.remove("basemapSelected");basemap7_.classList.remove("basemapSelected");basemap8_.classList.remove("basemapSelected");basemap9_.classList.add("basemapSelected");}
+boundary.setStyle({color:"black"});
 }
