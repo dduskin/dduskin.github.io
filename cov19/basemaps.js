@@ -6,7 +6,7 @@ maxZoom: 21,attribution: '&copy; <a href="http://www.google.com">Google</a>',sub
 var google_hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {maxZoom: 21,attribution: '&copy; <a href="http://www.google.com">Google</a>',subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
 });
 const Esri_WorldImagery = L.tileLayer('https://servicesbeta.arcgisonline.com/arcgis/rest/services/Firefly_World_Imagery/MapServer/tile/{z}/{y}/{x}');
-const CartoDB_PositronNoLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png').addTo(map);
+const CartoDB_PositronNoLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png');
 const Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png');
 const NASAGIBS_ViirsEarthAtNight2012 = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {
 	bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
@@ -16,7 +16,7 @@ const NASAGIBS_ViirsEarthAtNight2012 = L.tileLayer('https://map1.vis.earthdata.n
 	time: '',
 	tilematrixset: 'GoogleMapsCompatible_Level'
 });
-var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png');
+var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png').addTo(map);
 var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png');
 var basemapDiv = document.createElement("DIV");
 basemapDiv.innerHTML =
@@ -39,7 +39,7 @@ basemapDiv.innerHTML =
 "<div id='basemap4' class='basemaps'>"+
 "<img class='basemapImg' src='./img/esri_imagery.PNG'>"+
 "<div class='basemapLabel'>ESRI Imagery (Firefly)</div></div>"+
-"<div id='basemap5' class='basemaps basemapSelected'>"+
+"<div id='basemap5' class='basemaps'>"+
 "<img class='basemapImg' src='./img/cartodb_positron.PNG'>"+
 "<div class='basemapLabel'>CartoDB Positron (No Labels)</div></div>"+
 "<div id='basemap6' class='basemaps'>"+
@@ -48,7 +48,7 @@ basemapDiv.innerHTML =
 "<div id='basemap7' class='basemaps'>"+
 "<img class='basemapImg' src='./img/nasa_night.png'>"+
 "<div class='basemapLabel'>NASA GIBS (Night)</div></div>"+
-"<div id='basemap8' class='basemaps'>"+
+"<div id='basemap8' class='basemaps basemapSelected'>"+
 "<img class='basemapImg' src='./img/osm_hot.PNG'>"+
 "<div class='basemapLabel'>Open Street Map HOT</div></div>"+
 "<div id='basemap9' class='basemaps'>"+
