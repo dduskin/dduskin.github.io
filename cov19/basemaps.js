@@ -23,7 +23,7 @@ basemapDiv.innerHTML =
 "<img style='margin-right:1em;position:absolute;top:0.75%;left:1%;z-index:750;' height=20 width=20 src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Seal_of_the_United_States_Department_of_Homeland_Security.svg/2000px-Seal_of_the_United_States_Department_of_Homeland_Security.svg.png'/>"+
 "<div class='header'><span style='margin-left:3em;'>FEMA Region 6 | Posture and Footprint</span></div>"+
 "<div id='baseMapsid' class='basemapsContainer'>"+
-"<button id='baseMapsBtn' class='basemapsMainBtn'><img height=12 width=12 src='./img/basemap_gly.png'/>&nbsp;&nbsp;Base Map&nbsp;&nbsp;<span class='caret'></span></button>"+
+"<button id='baseMapsBtn' class='basemapsMainBtn'><img height=12 width=12 src='./img/basemap_gly.PNG'/>&nbsp;&nbsp;Base Map&nbsp;&nbsp;<span class='caret'></span></button>"+
 "<div id='baseMaps' class='hide basemapsMainContainer animated'>"+
 "<div style='padding:3px;margin-bottom: 10px;background-color: lightgray;'>"+
 "<p style='margin:0px 0px 5px 0px;font-size:0.75em;'>Select a base map:</p>"+
@@ -34,22 +34,22 @@ basemapDiv.innerHTML =
 "<img class='basemapImg' src='./img/google_terrain.png'>"+
 "<div class='basemapLabel'>Google Terrain</div></div>"+
 "<div id='basemap3' class='basemaps'>"+
-"<img class='basemapImg' src='./img/google_roads.png'>"+
+"<img class='basemapImg' src='./img/google_roads.PNG'>"+
 "<div class='basemapLabel'>Google Roads</div></div><br>"+
 "<div id='basemap4' class='basemaps'>"+
-"<img class='basemapImg' src='./img/esri_imagery.png'>"+
+"<img class='basemapImg' src='./img/esri_imagery.PNG'>"+
 "<div class='basemapLabel'>ESRI Imagery (Firefly)</div></div>"+
 "<div id='basemap5' class='basemaps basemapSelected'>"+
-"<img class='basemapImg' src='./img/cartodb_positron.png'>"+
+"<img class='basemapImg' src='./img/cartodb_positron.PNG'>"+
 "<div class='basemapLabel'>CartoDB Positron (No Labels)</div></div>"+
 "<div id='basemap6' class='basemaps'>"+
-"<img class='basemapImg' src='./img/stadia_dark.png'>"+
+"<img class='basemapImg' src='./img/stadia_dark.PNG'>"+
 "<div class='basemapLabel'>Stadia Dark</div></div><br>"+
 "<div id='basemap7' class='basemaps'>"+
 "<img class='basemapImg' src='./img/nasa_night.png'>"+
 "<div class='basemapLabel'>NASA GIBS (Night)</div></div>"+
 "<div id='basemap8' class='basemaps'>"+
-"<img class='basemapImg' src='./img/osm_hot.png'>"+
+"<img class='basemapImg' src='./img/osm_hot.PNG'>"+
 "<div class='basemapLabel'>Open Street Map HOT</div></div>"+
 "<div id='basemap9' class='basemaps'>"+
 "<img class='basemapImg' src='./img/open_topo.png'>"+
