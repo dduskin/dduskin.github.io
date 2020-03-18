@@ -52,10 +52,22 @@
   background-color: #4CAF50;
   color: white;
 }
+#info-pane {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  z-index: 700;
+  padding: 1em;
+  font-size:1.5em;
+  background: white;
+  border-radius:0;
+  color:red;
+}
   </style>
 </head>
 <body>
 <div id="map"></div>
+<div id="info-pane" class="leaflet-bar hide"></div>
 <!-- <div style="box-shadow: 1px 2.5px 5px -1px rgba(0,0,0,1);z-index:600;bottom:5%;right:1%;position:absolute;background-color:white;color:black;width:400px;height:125px;padding:3px;border-radius:5px;border-color:black;border-style:solid;border-width:thin;">
 <span style='font-size:0.75em;margin-bottom:0.75em;'>EXPLANATION</span><br>
 <div style="width:395px;border-style:solid;border-width:thin;border-color:black;">
@@ -243,6 +255,31 @@ L.control.watermark = function(opts) {
 }
 
 L.control.watermark({ position: 'bottomleft' }).addTo(map);
+var oldId;
+
+aoi.on('mouseout', function(e){
+  document.getElementById('info-pane').innerHTML = 'Hover to Inspect';
+  aoi.setFeatureStyle(e.layer.feature.id, {
+    color: 'red',
+    weight: 1,
+    opacity: 1
+  });
+    document.getElementById("info-pane").classList.add("hide");
+});
+
+aoi.on('mouseover', function(e){
+  aoi.resetStyle(oldId);
+  oldId = e.layer.feature.id;
+  document.getElementById('info-pane').innerHTML = e.layer.feature.properties.POLYGON_NM + ', ' + e.layer.feature.properties.STATE_NM+ '<br><span style="font-size:0.75em;">'+e.layer.feature.properties.AOI+'</span>';
+  e.layer.bringToFront();
+  aoi.setFeatureStyle(e.layer.feature.id, {
+    color: 'red',
+    weight: 3,
+    opacity: 1,
+    dashArray:1
+  });
+  document.getElementById("info-pane").classList.remove("hide");
+});
 </script>
 </body>
 </html>
