@@ -52,7 +52,7 @@ basemapDiv.innerHTML =
 "<img class='basemapImg' src='./img/osm_hot.PNG'>"+
 "<div class='basemapLabel'>Open Street Map HOT</div></div>"+
 "<div id='basemap9' class='basemaps'>"+
-"<img class='basemapImg' src='./img/open_topo.png'>"+
+"<img class='basemapImg' src='./img/open_topo.PNG'>"+
 "<div class='basemapLabel'>Open Street Map OpenTopo</div></div>"+
 "</div>"+
 "<button id='closeBase' class='baseMapClose'>Close</button></div></div>";
