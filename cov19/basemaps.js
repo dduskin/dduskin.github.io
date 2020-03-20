@@ -1,4 +1,6 @@
-const map = L.map('map',{zoomControl:false,attributionControl:false,doubleClickZoom: false}).setView([31.5,-99], 6);
+const map = L.map('map',{zoomControl:false,attributionControl:false,doubleClickZoom: false}).setView([31.5,-99], 4);
+
+map.flyTo([31.5,-99], 6);
 const googleRoad = L.tileLayer('http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}', {
 maxZoom: 21,attribution: '&copy; <a href="http://www.google.com">Google</a>',subdomains: ['mt0', 'mt1', 'mt2', 'mt3']});
 const google_terrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
