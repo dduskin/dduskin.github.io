@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Anton|Oswald&display=swap');
+body {background-color:transparent;}
+
+#timedate {
+  font: small-caps lighter 43px/150% 'Oswald', sans-serif;
+  text-align:left;
+  /* width: 50%; */
+  font-size:1.5em;
+  margin: 40px auto;
+   color:#fff;
+  /*border-left: 3px solid #ed1f24;
+  padding: 20px; */
+}
