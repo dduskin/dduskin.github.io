@@ -267,7 +267,7 @@ aoi.on('mouseout', function(e){
 aoi.on('mouseover', function(e){
   aoi.resetStyle(oldId);
   oldId = e.layer.feature.id;
-  document.getElementById('info-pane').innerHTML = e.layer.feature.properties.POLYGON_NM + ', ' + e.layer.feature.properties.STATE_NM+ '<br><span style="font-size:0.75em;">'+e.layer.feature.properties.AOI+'</span>';
+  document.getElementById('info-pane').innerHTML = e.layer.feature.properties.POLYGON_NM + ', ' + e.layer.feature.properties.STATE_NM+ '<br><span style="font-size:0.75em;">'+e.layer.feature.properties.AOI+'<br><span style="font-size:0.75em;">'+e.layer.feature.properties.COV19_Cnt+'</span>';
   e.layer.bringToFront();
   aoi.setFeatureStyle(e.layer.feature.id, {
     color: 'red',
