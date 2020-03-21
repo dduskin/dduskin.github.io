@@ -23,7 +23,7 @@ function updateClock() {
 
 function initClock() {
   updateClock();
-  window.setInterval("updateClock()", 1000);
+  window.setInterval("updateClock()", 1);
 }
 
 // END CLOCK SCRIPT
