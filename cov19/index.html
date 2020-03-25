@@ -141,7 +141,7 @@ var pulsingIcon = L.icon.pulse({iconSize:[18,18],color:'red',heartbeat:2})
     where:"TYPE = 'TRANSPORTATION' OR TYPE = 'TEAMS2'",
     pointToLayer: function (geojson, latlng) {
     return L.marker(latlng, {
-    icon: currentEventsIcons
+    icon: currentEventsIcons[geojson.properties.TYPE]
   });
 }
   }).addTo(map);
