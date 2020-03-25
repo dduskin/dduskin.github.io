@@ -84,18 +84,28 @@
 <script src="basemaps.js"></script>
 <script src="L.Icon.Pulse.js"></script>
 <script>
+var currentEventsIcons = {
+    TEAMS2: L.icon({
+      iconSize: [22,22],
+      iconUrl:'./img/team.png'
+    }),
+    TRANSPORTATION: L.icon({
+      iconSize: [18,18],
+      iconUrl:'./img/bus.png'
+    }),
+  };
   var icon1 = L.icon({
     iconUrl: './img/hospital.png',
     iconSize:[17,41],
   });
-  var icon2 = L.icon({
-    iconUrl: './img/bus.png',
-    iconSize:[17,41],
-  });
-  var icon = L.icon({
-  iconUrl: './img/eoc_active.png',
-  iconSize: [22, 22],
-});
+  // var icon2 = L.icon({
+  //   iconUrl: './img/bus.png',
+  //   iconSize:[17,41],
+  // });
+//   var icon = L.icon({
+//   iconUrl: './img/eoc_active.png',
+//   iconSize: [22, 22],
+// });
 var pulsingIcon = L.icon.pulse({iconSize:[18,18],color:'red',heartbeat:2})
   var driveThruTesting = L.esri.Cluster.featureLayer({
     url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
@@ -128,10 +138,10 @@ var pulsingIcon = L.icon.pulse({iconSize:[18,18],color:'red',heartbeat:2})
   });
   var bus = L.esri.featureLayer({
     url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
-    where:"TYPE = 'TRANSPORTATION'",
+    where:"TYPE = 'TRANSPORTATION' OR TYPE = 'TEAMS2'",
     pointToLayer: function (geojson, latlng) {
     return L.marker(latlng, {
-    icon: icon2
+    icon: currentEventsIcons
   });
 }
   }).addTo(map);
