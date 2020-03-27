@@ -85,9 +85,9 @@
 <script src="L.Icon.Pulse.js"></script>
 <script>
 var currentEventsIcons = {
-    TEAMS2: L.icon({
-      iconSize: [17,41],
-      iconUrl:'./img/lno.png'
+    OTHER: L.icon({
+      iconSize: [24,24],
+      iconUrl:'./img/staging.png'
     }),
     TRANSPORTATION: L.icon({
       iconSize: [17,41],
@@ -138,7 +138,7 @@ var pulsingIcon = L.icon.pulse({iconSize:[18,18],color:'red',heartbeat:2})
   });
   var bus = L.esri.featureLayer({
     url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
-    where:"TYPE = 'TRANSPORTATION' OR TYPE = 'TEAMS2'",
+    where:"TYPE = 'TRANSPORTATION' OR TYPE = 'OTHER'",
     pointToLayer: function (geojson, latlng) {
     return L.marker(latlng, {
     icon: currentEventsIcons[geojson.properties.TYPE]
