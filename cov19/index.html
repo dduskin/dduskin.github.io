@@ -154,7 +154,7 @@ var pulsingIcon = L.icon.pulse({iconSize:[18,18],color:'red',heartbeat:2})
         "</td></tr></tr></tbody</table>");
   });
   var aoi = L.esri.featureLayer({
-    url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_AOI/FeatureServer/0',
+    url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/covid_19_aoi/FeatureServer/0',
     where:"AOI = 'Affected'",
     simplifyFactor: 0.5,
     precision: 5,
