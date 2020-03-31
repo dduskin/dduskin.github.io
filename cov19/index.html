@@ -63,10 +63,31 @@
   border-radius:0;
   color:white;
 }
+#safeRoombtn	{
+position: absolute;
+  top: 4%;
+left: 18%;
+z-index:3000;
+}
   </style>
 </head>
 <body>
 <div id="map"></div>
+<div class="dropdown" id='safeRoombtn'>
+  <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">Areas of Interest
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li class="dropdown-header">Areas of Interest</li>
+    <li><a href="#" onclick=map.flyTo([31.5,-99],6)>Region 6 Extent</a></li>
+    <li><a href="#"  onclick=map.flyTo([30.26974231529823,-97.74257206181598],11)>Austin</a></li>
+    <li><a href="#"  onclick=map.flyTo([29.421058433894057,-98.49579496005558],11)>San Antonio</a></li>
+    <li><a href="#" onclick=map.flyTo([29.75126321250455,-95.35576673331241],11)>Houston</a></li>
+    <li><a href="#" onclick=map.flyTo([29.977493031057612,-90.16307830810548],11)>New Orleans</a></li>
+    <li><a href="#"  onclick=map.flyTo([32.78236773363648,-96.79874050459675],11)>Dallas</a></li>
+    <li><a href="#"  onclick=map.flyTo([32.75176633003113,-97.31683924334692],11)>Fort Worth</a></li>
+    <li><a href="#"  onclick=map.flyTo([32.76649095995108,-97.04456077273197],10)>Dallas/Fort Worth</a></li>
+  </ul>
+</div>
 <div id="info-pane" class="leaflet-bar hide"></div>
 <!-- <div style="box-shadow: 1px 2.5px 5px -1px rgba(0,0,0,1);z-index:600;bottom:5%;right:1%;position:absolute;background-color:white;color:black;width:400px;height:125px;padding:3px;border-radius:5px;border-color:black;border-style:solid;border-width:thin;">
 <span style='font-size:0.75em;margin-bottom:0.75em;'>EXPLANATION</span><br>
@@ -81,6 +102,8 @@
 
 
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="basemaps.js"></script>
 <script src="L.Icon.Pulse.js"></script>
 <script>
