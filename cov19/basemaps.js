@@ -1,5 +1,5 @@
-const map = L.map('map',{zoomControl:false,attributionControl:false,doubleClickZoom: false}).setView([31.5,-99], 4);
-L.control.zoom({position:'bottomleft'}).addTo(map);
+const map = L.map('map',{zoomControl:true,attributionControl:false,doubleClickZoom: false}).setView([31.5,-99], 4);
+// L.control.zoom({position:'bottomleft'}).addTo(map);
 map.flyTo([31.5,-99], 6);
 const googleRoad = L.tileLayer('http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}', {
 maxZoom: 21,attribution: '&copy; <a href="http://www.google.com">Google</a>',subdomains: ['mt0', 'mt1', 'mt2', 'mt3']});
@@ -22,8 +22,8 @@ var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{
 var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png');
 var basemapDiv = document.createElement("DIV");
 basemapDiv.innerHTML =
-"<img style='margin-right:1em;position:absolute;top:0.75%;left:1%;z-index:750;' height=20 width=20 src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Seal_of_the_United_States_Department_of_Homeland_Security.svg/2000px-Seal_of_the_United_States_Department_of_Homeland_Security.svg.png'/>"+
-"<div class='header'><span style='margin-left:3em;'>FEMA Region 6 | Posture and Footprint</span></div>"+
+// "<img style='margin-right:1em;position:absolute;top:0.75%;left:1%;z-index:750;' height=20 width=20 src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Seal_of_the_United_States_Department_of_Homeland_Security.svg/2000px-Seal_of_the_United_States_Department_of_Homeland_Security.svg.png'/>"+
+// "<div class='header'><span style='margin-left:3em;'>FEMA Region 6 | Posture and Footprint</span></div>"+
 "<div id='baseMapsid' class='basemapsContainer'>"+
 "<button id='baseMapsBtn' class='basemapsMainBtn'><img height=12 width=12 src='./img/basemap_gly.PNG'/>&nbsp;&nbsp;Base Map&nbsp;&nbsp;<span class='caret'></span></button>"+
 "<div id='baseMaps' class='hide basemapsMainContainer animated'>"+
