@@ -242,26 +242,26 @@ var overlays = {
     "<span style='margin-left:1em;'>Affected Counties/Parishes<br><img style='margin-left:2.5em;' height=50 src='./img/affected.png'/>": aoi
 };
 L.control.layers(null, overlays,{position:"bottomright",collapsed:false}).addTo(map);
-L.Control.Watermark = L.Control.extend({
-    onAdd: function(map) {
-        var img = L.DomUtil.create('img');
-
-        img.src = 'https://upload.wikimedia.org/wikipedia/commons/6/67/FEMA_logo.svg';
-        img.style.width = '200px';
-
-        return img;
-    },
-
-    onRemove: function(map) {
-        // Nothing to do here
-    }
-});
-
-L.control.watermark = function(opts) {
-    return new L.Control.Watermark(opts);
-}
-
-L.control.watermark({ position: 'bottomleft' }).addTo(map);
+// L.Control.Watermark = L.Control.extend({
+//     onAdd: function(map) {
+//         var img = L.DomUtil.create('img');
+//
+//         img.src = 'https://upload.wikimedia.org/wikipedia/commons/6/67/FEMA_logo.svg';
+//         img.style.width = '200px';
+//
+//         return img;
+//     },
+//
+//     onRemove: function(map) {
+//         // Nothing to do here
+//     }
+// });
+//
+// L.control.watermark = function(opts) {
+//     return new L.Control.Watermark(opts);
+// }
+//
+// L.control.watermark({ position: 'bottomleft' }).addTo(map);
 var oldId;
 
 aoi.on('mouseout', function(e){
