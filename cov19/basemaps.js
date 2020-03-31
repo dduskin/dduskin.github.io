@@ -1,4 +1,4 @@
-const map = L.map('map',{attributionControl:false,doubleClickZoom: false}).setView([31.5,-99], 4);
+const map = L.map('map',{zoomControl:false,attributionControl:false,doubleClickZoom: false}).setView([31.5,-99], 4);
 L.control.zoom({position:'bottomleft'}).addTo(map);
 map.flyTo([31.5,-99], 6);
 const googleRoad = L.tileLayer('http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}', {
