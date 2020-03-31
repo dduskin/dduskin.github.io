@@ -114,6 +114,10 @@ var currentEventsIcons = {
       iconSize: [17,41],
       iconUrl:'./img/bus.png'
     }),
+    FACILITY: L.icon({
+      iconSize: [17,41],
+      iconUrl:'./img/ems.png'
+    }),
   };
   var icon1 = L.icon({
     iconUrl: './img/hospital.png',
@@ -159,7 +163,7 @@ var pulsingIcon = L.icon.pulse({iconSize:[18,18],color:'red',heartbeat:2})
   });
   var bus = L.esri.featureLayer({
     url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
-    where:"TYPE = 'TRANSPORTATION' OR TYPE = 'OTHER'",
+    where:"TYPE = 'TRANSPORTATION' OR TYPE = 'OTHER' OR TYPE = 'FACILITY'",
     pointToLayer: function (geojson, latlng) {
     return L.marker(latlng, {
     icon: currentEventsIcons[geojson.properties.TYPE]
