@@ -181,9 +181,9 @@ var pulsingIcon = L.icon.pulse({iconSize:[18,18],color:'red',heartbeat:2})
   var aoi = L.esri.featureLayer({
     url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/covid_19_aoi/FeatureServer/0',
     where:"AOI = 'Affected'",
-    simplifyFactor: 0.5,
-    precision: 5,
-    style: {color:'red', weight:0.5, dashArray:3,fillOpacity:0.25}
+    // simplifyFactor: 0.5,
+    // precision: 5,
+    style: {color:'red', weight:0.75, dashArray:3,fillOpacity:0.25}
   }).addTo(map);
 
 var boundary = L.esri.featureLayer({url:'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_Boundaries/FeatureServer/0',
