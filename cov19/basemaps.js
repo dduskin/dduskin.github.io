@@ -2,7 +2,7 @@ const map = L.map('map',{zoomControl:true,attributionControl:false,doubleClickZo
 // L.control.zoom({position:'bottomleft'}).addTo(map);
 map.flyTo([31.5,-99], 6);
 const googleRoad = L.tileLayer('http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}', {
-maxZoom: 21,attribution: '&copy; <a href="http://www.google.com">Google</a>',subdomains: ['mt0', 'mt1', 'mt2', 'mt3']});
+maxZoom: 21,attribution: '&copy; <a href="http://www.google.com">Google</a>',subdomains: ['mt0', 'mt1', 'mt2', 'mt3']}).addTo(map);
 const google_terrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
 maxZoom: 21,attribution: '&copy; <a href="http://www.google.com">Google</a>',subdomains: ['mt0', 'mt1', 'mt2', 'mt3']});
 var google_hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {maxZoom: 21,attribution: '&copy; <a href="http://www.google.com">Google</a>',subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
@@ -18,7 +18,7 @@ const NASAGIBS_ViirsEarthAtNight2012 = L.tileLayer('https://map1.vis.earthdata.n
 	time: '',
 	tilematrixset: 'GoogleMapsCompatible_Level'
 });
-var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png').addTo(map);
+var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png');
 var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png');
 var basemapDiv = document.createElement("DIV");
 basemapDiv.innerHTML =
@@ -35,7 +35,7 @@ basemapDiv.innerHTML =
 "<div id='basemap2' class='basemaps'>"+
 "<img class='basemapImg' src='./img/google_terrain.png'>"+
 "<div class='basemapLabel'>Google Terrain</div></div>"+
-"<div id='basemap3' class='basemaps'>"+
+"<div id='basemap3' class='basemaps basemapSelected'>"+
 "<img class='basemapImg' src='./img/google_roads.PNG'>"+
 "<div class='basemapLabel'>Google Roads</div></div><br>"+
 "<div id='basemap4' class='basemaps'>"+
@@ -50,7 +50,7 @@ basemapDiv.innerHTML =
 "<div id='basemap7' class='basemaps'>"+
 "<img class='basemapImg' src='./img/nasa_night.png'>"+
 "<div class='basemapLabel'>NASA GIBS (Night)</div></div>"+
-"<div id='basemap8' class='basemaps basemapSelected'>"+
+"<div id='basemap8' class='basemaps'>"+
 "<img class='basemapImg' src='./img/osm_hot.PNG'>"+
 "<div class='basemapLabel'>Open Street Map HOT</div></div>"+
 "<div id='basemap9' class='basemaps'>"+
