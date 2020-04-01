@@ -76,14 +76,14 @@ z-index:600;position:fixed;top:0%;left:50%;
   <span class="caret"></span></button>
   <ul class="dropdown-menu">
     <li class="dropdown-header">Areas of Interest</li>
-    <li><a href="javascript:void(0)" onclick=map.setView([31.5,-99],6)>Region 6 Extent</a></li>
-    <li><a href="javascript:void(0)"  onclick=map.setView([30.26974231529823,-97.74257206181598],11)>Austin</a></li>
-    <li><a href="javascript:void(0)"  onclick=map.setView([32.78236773363648,-96.79874050459675],11)>Dallas</a></li>
-    <li><a href="javascript:void(0)"  onclick=map.setView([32.76649095995108,-97.04456077273197],10)>Dallas/Fort Worth</a></li>
-    <li><a href="javascript:void(0)"  onclick=map.setView([32.75176633003113,-97.31683924334692],11)>Fort Worth</a></li>
-    <li><a href="javascript:void(0)" onclick=map.setView([29.75126321250455,-95.35576673331241],10)>Houston</a></li>
-    <li><a href="javascript:void(0)" onclick=map.setView([29.977493031057612,-90.16307830810548],11)>New Orleans</a></li>
-    <li><a href="javascript:void(0)"  onclick=map.setView([29.421058433894057,-98.49579496005558],11)>San Antonio</a></li>
+    <li><a id="bm1" href="javascript:void(0)" >Region 6 Extent</a></li>
+    <li><a id="bm2" href="javascript:void(0)"  >Austin</a></li>
+    <li><a id="bm3" href="javascript:void(0)"  >Dallas</a></li>
+    <li><a id="bm4" href="javascript:void(0)"  >Dallas/Fort Worth</a></li>
+    <li><a id="bm5" href="javascript:void(0)"  >Fort Worth</a></li>
+    <li><a id="bm6" href="javascript:void(0)" >Houston</a></li>
+    <li><a id="bm7" href="javascript:void(0)" >New Orleans</a></li>
+    <li><a id="bm8" href="javascript:void(0)"  >San Antonio</a></li>
   </ul>
 </div>
 <div id="info-pane" class="leaflet-bar hide"></div>
@@ -312,6 +312,31 @@ aoi.on('mouseover', function(e){
   });
   document.getElementById("info-pane").classList.remove("hide");
 });
+  document.getElementById("bm1").onclick = function(){
+map.setView([31.5,-99],6);
+  }
+  document.getElementById("bm2").onclick = function(){
+map.setView([30.26974231529823,-97.74257206181598],11)
+  }
+  document.getElementById("bm3").onclick = function(){
+map.setView([32.78236773363648,-96.79874050459675],11)
+  }
+  document.getElementById("bm4").onclick = function(){
+map.setView([32.76649095995108,-97.04456077273197],10)
+  }
+  document.getElementById("bm5").onclick = function(){
+map.setView([32.75176633003113,-97.31683924334692],11)
+  }
+  document.getElementById("bm6").onclick = function(){
+map.setView([29.75126321250455,-95.35576673331241],10)
+  }
+  document.getElementById("bm7").onclick = function(){
+map.setView([29.977493031057612,-90.16307830810548],11)
+  }
+  document.getElementById("bm8").onclick = function(){
+map.setView([29.421058433894057,-98.49579496005558],11)
+  }
+
 </script>
 </body>
 </html>
