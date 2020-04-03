@@ -105,18 +105,18 @@ z-index:600;position:fixed;top:0%;left:50%;
 <script src="basemaps.js"></script>
 <script src="L.Icon.Pulse.js"></script>
 <script>
-var currentEventsIcons = {
-    OTHER: L.icon({
+var logIcons = {
+    Staging: L.icon({
       iconSize: [24,24],
       iconUrl:'./img/staging.png'
     }),
-    TRANSPORTATION: L.icon({
+    shipping: L.icon({
       iconSize: [17,41],
       iconUrl:'./img/bus.png'
     }),
-    FACILITY: L.icon({
-      iconSize: [21,51],
-      iconUrl:'./img/ems.png'
+    PPE: L.icon({
+      iconSize: [17,41],
+      iconUrl:'./img/ppe.png'
     }),
   };
   var icon1 = L.icon({
@@ -134,7 +134,7 @@ var currentEventsIcons = {
 var pulsingIcon = L.icon.pulse({iconSize:[18,18],color:'red',heartbeat:2})
   var driveThruTesting = L.esri.Cluster.featureLayer({
     url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
-    where:"TYPE = 'MEDICAL'",
+    where:"Source = 'CBTS'",
     spiderfyOnMaxZoom: false,
     removeOutsideVisibleBounds: true,
     disableClusteringAtZoom: 8,
@@ -163,14 +163,49 @@ var pulsingIcon = L.icon.pulse({iconSize:[18,18],color:'red',heartbeat:2})
   });
   var bus = L.esri.featureLayer({
     url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
-    where:"TYPE = 'TRANSPORTATION' OR TYPE = 'OTHER' OR TYPE = 'FACILITY'",
+    where:"Source = 'shipping' OR Source = 'Staging' OR Source = 'PPE'",
     pointToLayer: function (geojson, latlng) {
     return L.marker(latlng, {
-    icon: currentEventsIcons[geojson.properties.TYPE]
+    icon: logIcons[geojson.properties.Source]
   });
 }
   }).addTo(map);
   bus.bindPopup(function (layer) {
+    return L.Util.template(
+        "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+        "</td></tr><tr><td>Address</td><td>"
+        +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+        "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+        "</td></tr></tr></tbody</table>");
+  });
+  var medicalIcons = {
+      FMS: L.icon({
+        iconSize: [17,41],
+        iconUrl:'./img/ems.png'
+      }),
+      VHA: L.icon({
+        iconSize: [17,41],
+        iconUrl:'./img/vha.png'
+      }),
+      ACS: L.icon({
+        iconSize: [17,41],
+        iconUrl:'./img/acs.png'
+      }),
+      SMMS: L.icon({
+        iconSize: [17,41],
+        iconUrl:'./img/smms.png'
+      }),
+    };
+  var medicalSites = L.esri.featureLayer({
+    url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
+    where:"Source = 'FMS' OR Source = 'ACS' OR Source = 'SMMS' OR Source = 'VHA'",
+    pointToLayer: function (geojson, latlng) {
+    return L.marker(latlng, {
+    icon: medicalIcons[geojson.properties.Source]
+  });
+}
+  }).addTo(map);
+  medicalSites.bindPopup(function (layer) {
     return L.Util.template(
         "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
         "</td></tr><tr><td>Address</td><td>"
@@ -261,10 +296,11 @@ var boundary = L.esri.featureLayer({url:'https://services.arcgis.com/XG15cJAlne2
 // document.body.appendChild(footer);
 
 var overlays = {
-    "<span style='margin-left:1em;'>Incident Facilities / Current Events</span><br><img style='margin-left:2.5em;' height=40 width=180 src='./img/currentEvents.png'/>": dailyEvents,
-    "<span style='margin-left:1em;'>Community Based Testing Sites (CBTS)<br><img style='margin-left:2.5em;' height=50 src='./img/drivethru.png'/>": driveThruTesting,
-    "<span style='margin-left:1em;'>FMS (KBHCCD)| Shipping Location | Staging Areas<br><img style='margin-left:4.5em;' height=35 src='./img/bus_staging.png'/>": bus,
-    "<span style='margin-left:1em;'>Affected Counties/Parishes<br><img style='margin-left:2.5em;' height=50 src='./img/affected.png'/>": aoi
+    "<span style='margin-left:1em;font-size:0.85em;'>EOCs | IMAT Teams</span><br><img style='margin-left:2.5em;' height=40 width=160 src='./img/currentEvents.png'/>": dailyEvents,
+    "<span style='margin-left:1em;font-size:0.85em;'>ACS | FMS | SMMS | VHA<br><img style='margin-left:4.5em;' height=30 src='./img/medical.png'/>": medicalSites,
+    "<span style='margin-left:1em;font-size:0.85em;'>Community Based Testing Sites (CBTS)<br><img style='margin-left:2.5em;' height=40 src='./img/drivethru.png'/>": driveThruTesting,
+    "<span style='margin-left:1em;font-size:0.85em;'>PPE | Shipping Location | Staging Areas<br><img style='margin-left:4.5em;' height=30 src='./img/bus_staging.png'/>": bus,
+    "<span style='margin-left:1em;font-size:0.85em;'>Affected Counties/Parishes<br><img style='margin-left:2.5em;' height=40 src='./img/affected.png'/>": aoi
 };
 L.control.layers(null, overlays,{position:"bottomright",collapsed:false}).addTo(map);
 L.Control.Watermark = L.Control.extend({
@@ -310,7 +346,11 @@ aoi.on('mouseover', function(e){
     opacity: 1,
     dashArray:1
   });
-  document.getElementById("info-pane").classList.remove("hide");
+
+
+
+
+document.getElementById("info-pane").classList.remove("hide");
 });
   document.getElementById("bm1").onclick = function(){
 map.setView([31.5,-99],6);
