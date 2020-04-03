@@ -134,7 +134,7 @@ var logIcons = {
 var pulsingIcon = L.icon.pulse({iconSize:[18,18],color:'red',heartbeat:2})
   var driveThruTesting = L.esri.Cluster.featureLayer({
     url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
-    where:"Source = 'CBTS'",
+    where:"Source = 'CBTS' AND filter = 'N'",
     spiderfyOnMaxZoom: false,
     removeOutsideVisibleBounds: true,
     disableClusteringAtZoom: 8,
@@ -163,7 +163,7 @@ var pulsingIcon = L.icon.pulse({iconSize:[18,18],color:'red',heartbeat:2})
   });
   var bus = L.esri.featureLayer({
     url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
-    where:"Source = 'shipping' OR Source = 'Staging' OR Source = 'PPE'",
+    where:"Source = 'shipping' OR Source = 'Staging' OR Source = 'PPE' and filter = 'N'",
     pointToLayer: function (geojson, latlng) {
     return L.marker(latlng, {
     icon: logIcons[geojson.properties.Source]
@@ -198,7 +198,7 @@ var pulsingIcon = L.icon.pulse({iconSize:[18,18],color:'red',heartbeat:2})
     };
   var medicalSites = L.esri.featureLayer({
     url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
-    where:"Source = 'FMS' OR Source = 'ACS' OR Source = 'SMMS' OR Source = 'VHA'",
+    where:"Source = 'FMS' OR Source = 'ACS' OR Source = 'SMMS' OR Source = 'VHA' AND filter = 'N'",
     pointToLayer: function (geojson, latlng) {
     return L.marker(latlng, {
     icon: medicalIcons[geojson.properties.Source]
