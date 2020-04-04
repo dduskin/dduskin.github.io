@@ -160,9 +160,9 @@ layersDiv.innerHTML =
 "<div id='layer4' class='layertoggles'>"+
 "<img class='layerImg' src='./img/ppe_legend.png'>"+
 "<div class='layerLabel'>PPE</div></div>"+
-"<div id='layer5' class='layertoggles'>"+
-"<img class='layerImg' src='./img/smms_legend.png'>"+
-"<div class='layerLabel'>SMMS</div></div>"+
+// "<div id='layer5' class='layertoggles'>"+
+// "<img class='layerImg' src='./img/smms_legend.png'>"+
+// "<div class='layerLabel'>SMMS</div></div>"+
 
 
 "<div id='layer6' class='layertoggles'>"+
@@ -231,7 +231,7 @@ document.getElementById("layer1").classList.remove("layernotSelected");
 document.getElementById("layer2").classList.remove("layernotSelected");
 document.getElementById("layer3").classList.remove("layernotSelected");
 document.getElementById("layer4").classList.remove("layernotSelected");
-document.getElementById("layer5").classList.remove("layernotSelected");
+// document.getElementById("layer5").classList.remove("layernotSelected");
 document.getElementById("layer6").classList.remove("layernotSelected");
 document.getElementById("layer7").classList.remove("layernotSelected");
 document.getElementById("layer8").classList.remove("layernotSelected");
@@ -245,7 +245,7 @@ document.getElementById("layer1").classList.add("layernotSelected");
 document.getElementById("layer2").classList.add("layernotSelected");
 document.getElementById("layer3").classList.add("layernotSelected");
 document.getElementById("layer4").classList.add("layernotSelected");
-document.getElementById("layer5").classList.add("layernotSelected");
+// document.getElementById("layer5").classList.add("layernotSelected");
 document.getElementById("layer6").classList.add("layernotSelected");
 document.getElementById("layer7").classList.add("layernotSelected");
 document.getElementById("layer8").classList.add("layernotSelected");
@@ -273,11 +273,11 @@ document.getElementById("layer4").onclick = function(){
 		layerGroup.addLayer(ppe);document.getElementById("layer4").classList.remove("layernotSelected");
 	}
 }
-document.getElementById("layer5").onclick = function(){
-	if(layerGroup.hasLayer(smms)){layerGroup.removeLayer(smms);document.getElementById("layer5").classList.add("layernotSelected");} else {
-		layerGroup.addLayer(smms);document.getElementById("layer5").classList.remove("layernotSelected");
-	}
-}
+// document.getElementById("layer5").onclick = function(){
+// 	if(layerGroup.hasLayer(smms)){layerGroup.removeLayer(smms);document.getElementById("layer5").classList.add("layernotSelected");} else {
+// 		layerGroup.addLayer(smms);document.getElementById("layer5").classList.remove("layernotSelected");
+// 	}
+// }
 document.getElementById("layer6").onclick = function(){
 	if(layerGroup.hasLayer(vha)){layerGroup.removeLayer(vha);document.getElementById("layer6").classList.add("layernotSelected");} else {
 		layerGroup.addLayer(vha);document.getElementById("layer6").classList.remove("layernotSelected");
