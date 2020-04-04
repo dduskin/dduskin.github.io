@@ -115,12 +115,42 @@ footer, nav {
 a{text-decoration:none;color:white;}
 a:hover{text-decoration:underline;}
 
+.layersContainer{z-index:600;position:fixed;bottom:0%;right:2%;margin-bottom:1%;}
+.layersMainBtn{z-index:600;position:fixed;bottom:0%;right:2%;margin-bottom:1%;border-width:thin;font-family: 'Oswald', sans-serif;color:#fff;line-height: 1.42857143;background-color:#286090;border-color:#122b40;padding:6px 12px;font-size:14px;cursor: pointer;}
+.layerImg{border: 1px solid #e3e3e3;box-sizing: border-box;display: block;max-width: 100%;height: auto;}
+.layertoggles{display:inline-block;width: 50px;margin: 0px;background-color: white;cursor: pointer;padding:3px;border-width:thin;border-color:lightgray;border-style:solid;}
+.layernotSelected{background-color:gray;color:white;
+  -webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+  filter: grayscale(100%);}
+  .addallLayerImg{
+    padding:0.5em;
+    background-repeat: no-repeat;
+background-size:contain;
+background-position: center;
+background-image: url(./img/addLayers.png);
+width:100%;height:3.5vh;
+
+  }
+  .removeallLayerImg{
+    padding:0.5em;
+    background-repeat: no-repeat;
+background-size:contain;
+background-position: center;
+background-image: url(./img/removeLayers.png);
+width:100%;height:3.5vh;
+
+  }
+
+
 .basemapsContainer{z-index:600;position:fixed;top:3%;left:5%;margin-top:1%;}
 .basemapsMainBtn{border-width:thin;font-family: 'Oswald', sans-serif;color:#fff;line-height: 1.42857143;background-color:#286090;border-color:#122b40;padding:6px 12px;font-size:14px;cursor: pointer;}
 .basemapsMainContainer,.splashMainContainer{font-family: 'Oswald', sans-serif;background-color:white;color:black;width:auto;border: 1px solid #777;padding: 10px;background-color: #f5f5f5;box-shadow: 5px 5px 15px rgba(0,0,0,0.4);padding-bottom:25px;}
 .basemaps{display:inline-block;width: 100px;margin: 0px;background-color: white;cursor: pointer;padding:3px;border-width:thin;border-color:lightgray;border-style:solid;}
 .basemapSelected{background-color:#286090;color:white;}
 .basemapImg{border: 1px solid #e3e3e3;box-sizing: border-box;display: block;max-width: 100%;height: auto;}
-.basemapLabel{padding: 3px 0px 0px 0px;text-align:center;font-size:0.5em}
+.basemapLabel{padding: 3px 0px 0px 0px;text-align:center;font-size:0.7em}
 .baseMapClose{float:right;border-width:thin;border-style:solid;color: #333;background-color: #e6e6e6;border-color: #adadad;padding: 1px 5px;font-size: 10px;line-height: 1.5;cursor: pointer;}
 .caret {display: inline-block;width: 0;height: 0;margin-left: 2px;vertical-align: middle;border-top: 4px dashed;border-top: 4px solid \9;border-right: 4px solid transparent;border-left: 4px solid transparent;}

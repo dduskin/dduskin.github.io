@@ -43,7 +43,7 @@ basemapDiv.innerHTML =
 "<div class='basemapLabel'>ESRI Imagery (Firefly)</div></div>"+
 "<div id='basemap5' class='basemaps'>"+
 "<img class='basemapImg' src='./img/cartodb_positron.PNG'>"+
-"<div class='basemapLabel'>CartoDB Positron (No Labels)</div></div>"+
+"<div class='basemapLabel'>CartoDB Positron</div></div>"+
 "<div id='basemap6' class='basemaps'>"+
 "<img class='basemapImg' src='./img/stadia_dark.PNG'>"+
 "<div class='basemapLabel'>Stadia Dark</div></div><br>"+
@@ -52,10 +52,10 @@ basemapDiv.innerHTML =
 "<div class='basemapLabel'>NASA GIBS (Night)</div></div>"+
 "<div id='basemap8' class='basemaps'>"+
 "<img class='basemapImg' src='./img/osm_hot.PNG'>"+
-"<div class='basemapLabel'>Open Street Map HOT</div></div>"+
+"<div class='basemapLabel'>OSM HOT</div></div>"+
 "<div id='basemap9' class='basemaps'>"+
 "<img class='basemapImg' src='./img/open_topo.PNG'>"+
-"<div class='basemapLabel'>Open Street Map OpenTopo</div></div>"+
+"<div class='basemapLabel'>OSM OpenTopo</div></div>"+
 "</div>"+
 "<button id='closeBase' class='baseMapClose'>Close</button></div></div>";
 document.body.appendChild(basemapDiv);
@@ -135,4 +135,176 @@ basemap9_.onclick = function() {
   if(!map.hasLayer(OpenTopoMap)){
   map.addLayer(OpenTopoMap);map.removeLayer(OpenStreetMap_HOT);map.removeLayer(NASAGIBS_ViirsEarthAtNight2012);map.removeLayer(Stadia_AlidadeSmoothDark);map.removeLayer(CartoDB_PositronNoLabels);map.removeLayer(Esri_WorldImagery);map.removeLayer(google_terrain);map.removeLayer(googleRoad);map.removeLayer(google_hybrid);basemap1_.classList.remove("basemapSelected");basemap2_.classList.remove("basemapSelected");basemap3_.classList.remove("basemapSelected");basemap4_.classList.remove("basemapSelected");basemap5_.classList.remove("basemapSelected");basemap6_.classList.remove("basemapSelected");basemap7_.classList.remove("basemapSelected");basemap8_.classList.remove("basemapSelected");basemap9_.classList.add("basemapSelected");}
 boundary.setStyle({color:"black"});
+}
+
+
+var layersDiv = document.createElement("DIV");
+layersDiv.innerHTML =
+// "<img style='margin-right:1em;position:absolute;top:0.75%;left:1%;z-index:750;' height=20 width=20 src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Seal_of_the_United_States_Department_of_Homeland_Security.svg/2000px-Seal_of_the_United_States_Department_of_Homeland_Security.svg.png'/>"+
+// "<div class='header'><span style='margin-left:3em;'>FEMA Region 6 | Posture and Footprint</span></div>"+
+"<button id='openLayer_' class='layersMainBtn hide'><img height=12 width=12 src='./img/basemap_gly.PNG'/>&nbsp;&nbsp; Layers&nbsp;&nbsp;</button>"+
+"<div id='layersContainer_' class='layersContainer'>"+
+// "<button id='baseMapsBtn' class='basemapsMainBtn'><img height=12 width=12 src='./img/basemap_gly.PNG'/>&nbsp;&nbsp;Base Map&nbsp;&nbsp;<span class='caret'></span></button>"+
+"<div class='basemapsMainContainer animated'>"+
+"<div style='padding:3px;margin-bottom: 10px;background-color: lightgray;'>"+
+"<p style='margin:0px 0px 5px 0px;font-size:0.85em;'>EXPLANATION:</p>"+
+"<div id='layer1' class='layertoggles'>"+
+"<img class='layerImg' src='./img/acs_legend.png'>"+
+"<div class='layerLabel'>ACS</div></div>"+
+"<div id='layer2' class='layertoggles'>"+
+"<img class='layerImg' src='./img/cbts_legend.png'>"+
+"<div class='layerLabel'>CBTS</div></div>"+
+"<div id='layer3' class='layertoggles'>"+
+"<img class='layerImg' src='./img/fms_legend.png'>"+
+"<div class='layerLabel'>FMS</div></div>"+
+"<div id='layer4' class='layertoggles'>"+
+"<img class='layerImg' src='./img/ppe_legend.png'>"+
+"<div class='layerLabel'>PPE</div></div>"+
+"<div id='layer5' class='layertoggles'>"+
+"<img class='layerImg' src='./img/smms_legend.png'>"+
+"<div class='layerLabel'>SMMS</div></div>"+
+
+
+"<div id='layer6' class='layertoggles'>"+
+"<img class='layerImg' src='./img/vha_legend.png'>"+
+"<div class='layerLabel'>VHA</div></div><br>"+
+"<div id='layer7' class='layertoggles'><div class='layerLabel'>Shipping</div>"+
+"<img class='layerImg' src='./img/shipping_legend.png'>"+
+"<div class='layerLabel'>Location</div></div>"+
+"<div id='layer8' class='layertoggles'><div class='layerLabel'>Staging</div>"+
+"<img class='layerImg' src='./img/staging_legend.png'>"+
+"<div class='layerLabel'>Area</div></div>"+
+"<div id='layer9' class='layertoggles'><div class='layerLabel'>EOC</div>"+
+"<img class='layerImg' src='./img/eoc_legend.png'>"+
+"<div class='layerLabel'>Active</div></div>"+
+"<div id='layer10' class='layertoggles'><div class='layerLabel'>IMAT</div>"+
+"<img class='layerImg' src='./img/imat_legend.png'>"+
+"<div class='layerLabel'>TEAMS</div></div>"+
+"<div id='layer11' class='layertoggles'><div class='layerLabel'>Affected</div>"+
+"<img class='layerImg' src='./img/affected_legend.png'>"+
+"<div class='layerLabel' style='font-size:0.6em;padding-top:0.85em;padding-bottom:0.2em;'>County/Parish</div></div>"+
+"<div class='layertoggles'>"+
+"<button id='addallLayer'class='addallLayerImg'></button><br>"+
+"<button id='removeallLayer'class='removeallLayerImg'></button>"+
+"<div class='layerLabel' style='font-size:0.5em;'>add | remove</div></div>"+
+"</div>"+
+"<button id='closeLayer' class='baseMapClose'>Close</button></div></div>";
+
+
+
+
+
+document.body.appendChild(layersDiv);
+
+var closeLayer_ = document.getElementById("closeLayer");
+closeLayer_.onclick = function(){
+    document.getElementById("layersContainer_").classList.add("hide");
+		document.getElementById("openLayer_").classList.remove("hide");
+
+}
+var openLayer_ = document.getElementById("openLayer_");
+openLayer_.onclick = function(){
+    document.getElementById("layersContainer_").classList.remove("hide");
+				document.getElementById("openLayer_").classList.add("hide");
+
+}
+
+
+
+
+const layerGroup = L.featureGroup([]).addTo(map);
+document.getElementById("addallLayer").onclick = function(){
+layerGroup.addLayer(acs);
+layerGroup.addLayer(cbts);
+layerGroup.addLayer(fms);
+layerGroup.addLayer(smms);
+layerGroup.addLayer(vha);
+layerGroup.addLayer(ppe);
+layerGroup.addLayer(shipping);
+layerGroup.addLayer(staging);
+
+
+layerGroup.addLayer(eocs);
+layerGroup.addLayer(teams);
+layerGroup.addLayer(aoi);
+document.getElementById("layer1").classList.remove("layernotSelected");
+document.getElementById("layer2").classList.remove("layernotSelected");
+document.getElementById("layer3").classList.remove("layernotSelected");
+document.getElementById("layer4").classList.remove("layernotSelected");
+document.getElementById("layer5").classList.remove("layernotSelected");
+document.getElementById("layer6").classList.remove("layernotSelected");
+document.getElementById("layer7").classList.remove("layernotSelected");
+document.getElementById("layer8").classList.remove("layernotSelected");
+document.getElementById("layer9").classList.remove("layernotSelected");
+document.getElementById("layer10").classList.remove("layernotSelected");
+document.getElementById("layer11").classList.remove("layernotSelected");
+}
+document.getElementById("removeallLayer").onclick = function(){
+layerGroup.clearLayers();
+document.getElementById("layer1").classList.add("layernotSelected");
+document.getElementById("layer2").classList.add("layernotSelected");
+document.getElementById("layer3").classList.add("layernotSelected");
+document.getElementById("layer4").classList.add("layernotSelected");
+document.getElementById("layer5").classList.add("layernotSelected");
+document.getElementById("layer6").classList.add("layernotSelected");
+document.getElementById("layer7").classList.add("layernotSelected");
+document.getElementById("layer8").classList.add("layernotSelected");
+document.getElementById("layer9").classList.add("layernotSelected");
+document.getElementById("layer10").classList.add("layernotSelected");
+document.getElementById("layer11").classList.add("layernotSelected");
+}
+document.getElementById("layer1").onclick = function(){
+	if(layerGroup.hasLayer(acs)){layerGroup.removeLayer(acs);document.getElementById("layer1").classList.add("layernotSelected");} else {
+		layerGroup.addLayer(acs);document.getElementById("layer1").classList.remove("layernotSelected");
+	}
+}
+document.getElementById("layer2").onclick = function(){
+	if(layerGroup.hasLayer(cbts)){layerGroup.removeLayer(cbts);document.getElementById("layer2").classList.add("layernotSelected");} else {
+		layerGroup.addLayer(cbts);document.getElementById("layer2").classList.remove("layernotSelected");
+	}
+}
+document.getElementById("layer3").onclick = function(){
+	if(layerGroup.hasLayer(fms)){layerGroup.removeLayer(fms);document.getElementById("layer3").classList.add("layernotSelected");} else {
+		layerGroup.addLayer(fms);document.getElementById("layer3").classList.remove("layernotSelected");
+	}
+}
+document.getElementById("layer4").onclick = function(){
+	if(layerGroup.hasLayer(ppe)){layerGroup.removeLayer(ppe);document.getElementById("layer4").classList.add("layernotSelected");} else {
+		layerGroup.addLayer(ppe);document.getElementById("layer4").classList.remove("layernotSelected");
+	}
+}
+document.getElementById("layer5").onclick = function(){
+	if(layerGroup.hasLayer(smms)){layerGroup.removeLayer(smms);document.getElementById("layer5").classList.add("layernotSelected");} else {
+		layerGroup.addLayer(smms);document.getElementById("layer5").classList.remove("layernotSelected");
+	}
+}
+document.getElementById("layer6").onclick = function(){
+	if(layerGroup.hasLayer(vha)){layerGroup.removeLayer(vha);document.getElementById("layer6").classList.add("layernotSelected");} else {
+		layerGroup.addLayer(vha);document.getElementById("layer6").classList.remove("layernotSelected");
+	}
+}
+document.getElementById("layer7").onclick = function(){
+	if(layerGroup.hasLayer(shipping)){layerGroup.removeLayer(shipping);document.getElementById("layer7").classList.add("layernotSelected");} else {
+		layerGroup.addLayer(shipping);document.getElementById("layer7").classList.remove("layernotSelected");
+	}
+}
+document.getElementById("layer8").onclick = function(){
+	if(layerGroup.hasLayer(staging)){layerGroup.removeLayer(staging);document.getElementById("layer8").classList.add("layernotSelected");} else {
+		layerGroup.addLayer(staging);document.getElementById("layer8").classList.remove("layernotSelected");
+	}
+}
+document.getElementById("layer9").onclick = function(){
+	if(layerGroup.hasLayer(eocs)){layerGroup.removeLayer(eocs);document.getElementById("layer9").classList.add("layernotSelected");} else {
+		layerGroup.addLayer(eocs);document.getElementById("layer9").classList.remove("layernotSelected");
+	}
+}
+document.getElementById("layer10").onclick = function(){
+	if(layerGroup.hasLayer(teams)){layerGroup.removeLayer(teams);document.getElementById("layer10").classList.add("layernotSelected");} else {
+		layerGroup.addLayer(teams);document.getElementById("layer10").classList.remove("layernotSelected");
+	}
+}
+document.getElementById("layer11").onclick = function(){
+	if(layerGroup.hasLayer(aoi)){layerGroup.removeLayer(aoi);document.getElementById("layer11").classList.add("layernotSelected");} else {
+		layerGroup.addLayer(aoi);document.getElementById("layer11").classList.remove("layernotSelected");
+	}
 }
