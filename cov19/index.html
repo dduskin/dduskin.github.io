@@ -231,7 +231,7 @@ fms.bindPopup(function (layer) {
 });
 var ppe = L.esri.featureLayer({
   url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
-  where:"Source = 'PPE' and filter = 'N'",
+  where:"Source = 'PPE' AND filter = 'N'",
   pointToLayer: function (geojson, latlng) {
   return L.marker(latlng, {
   icon: currentEventIcons[geojson.properties.Source]
@@ -266,7 +266,7 @@ smms.bindPopup(function (layer) {
 
 var shipping = L.esri.featureLayer({
   url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
-  where:"Source = 'shipping' and filter = 'N'",
+  where:"Source = 'shipping' AND filter = 'N'",
   pointToLayer: function (geojson, latlng) {
   return L.marker(latlng, {
   icon: currentEventIcons[geojson.properties.Source]
@@ -283,7 +283,7 @@ shipping.bindPopup(function (layer) {
 });
 var staging = L.esri.featureLayer({
   url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
-  where:"Source = 'Staging' and filter = 'N'",
+  where:"Source = 'Staging' AND filter = 'N'",
   pointToLayer: function (geojson, latlng) {
   return L.marker(latlng, {
   icon: currentEventIcons[geojson.properties.Source]
@@ -351,7 +351,7 @@ var boundary = L.esri.featureLayer({url:'https://services.arcgis.com/XG15cJAlne2
     });
     var teams = L.esri.featureLayer({
       url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/ArcGIS/rest/services/R6_DAILY_EVENT2/FeatureServer/0',
-      where:"TYPE = 'TEAMS' OR TYPE = 'TEAMS2' and filter = 'N'",
+      where:"TYPE = 'TEAMS' OR TYPE = 'TEAMS2' AND filter = 'N'",
       pointToLayer: function (geojson, latlng) {
         return L.marker(latlng, {
           icon: dailyEventsIcons[geojson.properties.TYPE]
