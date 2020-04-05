@@ -351,7 +351,7 @@ var boundary = L.esri.featureLayer({url:'https://services.arcgis.com/XG15cJAlne2
     });
     var teams = L.esri.featureLayer({
       url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/ArcGIS/rest/services/R6_DAILY_EVENT2/FeatureServer/0',
-      where:"TYPE = 'TEAMS' OR TYPE = 'TEAMS2' AND filter = 'N'",
+      where:"TYPE = 'TEAMS' OR TYPE = 'TEAMS2' AND filter = 0",
       pointToLayer: function (geojson, latlng) {
         return L.marker(latlng, {
           icon: dailyEventsIcons[geojson.properties.TYPE]
