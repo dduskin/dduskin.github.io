@@ -167,7 +167,7 @@ var currentEventIcons = {
 var pulsingIcon = L.icon.pulse({iconSize:[18,18],color:'red',heartbeat:2})
 
 var acs = L.esri.featureLayer({
-  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
+  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
   where:"Source = 'ACS' AND filter = 'N'",
   pointToLayer: function (geojson, latlng) {
   return L.marker(latlng, {
@@ -184,7 +184,7 @@ acs.bindPopup(function (layer) {
       "</td></tr></tr></tbody</table>");
 });
 var cbts = L.esri.Cluster.featureLayer({
-  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
+  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
   where:"Source = 'CBTS' AND filter = 'N'",
   spiderfyOnMaxZoom: false,
   removeOutsideVisibleBounds: true,
@@ -213,7 +213,7 @@ cbts.bindPopup(function (layer) {
       "</td></tr></tr></tbody</table>");
 });
 var fms = L.esri.featureLayer({
-  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
+  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
   where:"Source = 'FMS' AND filter = 'N'",
   pointToLayer: function (geojson, latlng) {
   return L.marker(latlng, {
@@ -230,7 +230,7 @@ fms.bindPopup(function (layer) {
       "</td></tr></tr></tbody</table>");
 });
 var ppe = L.esri.featureLayer({
-  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
+  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
   where:"Source = 'PPE' AND filter = 'N'",
   pointToLayer: function (geojson, latlng) {
   return L.marker(latlng, {
@@ -247,7 +247,7 @@ ppe.bindPopup(function (layer) {
       "</td></tr></tr></tbody</table>");
 });
 var smms = L.esri.featureLayer({
-  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
+  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
   where:"Source = 'SMMS' AND filter = 'N'",
   pointToLayer: function (geojson, latlng) {
   return L.marker(latlng, {
@@ -265,7 +265,7 @@ smms.bindPopup(function (layer) {
 });
 
 var shipping = L.esri.featureLayer({
-  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
+  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
   where:"Source = 'shipping' AND filter = 'N'",
   pointToLayer: function (geojson, latlng) {
   return L.marker(latlng, {
@@ -282,7 +282,7 @@ shipping.bindPopup(function (layer) {
       "</td></tr></tr></tbody</table>");
 });
 var staging = L.esri.featureLayer({
-  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
+  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
   where:"Source = 'Staging' AND filter = 'N'",
   pointToLayer: function (geojson, latlng) {
   return L.marker(latlng, {
@@ -299,7 +299,7 @@ staging.bindPopup(function (layer) {
       "</td></tr></tr></tbody</table>");
 });
 var vha = L.esri.featureLayer({
-  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_CURRENT_EVENT2/FeatureServer/0',
+  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
   where:"Source = 'VHA' AND filter = 'N'",
   pointToLayer: function (geojson, latlng) {
   return L.marker(latlng, {
