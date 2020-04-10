@@ -157,9 +157,9 @@ layersDiv.innerHTML =
 "<div id='layer3' class='layertoggles'>"+
 "<img class='layerImg' src='./img/fms_legend.png'>"+
 "<div class='layerLabel'>FMS</div></div>"+
-"<div id='layer4' class='layertoggles'>"+
-"<img class='layerImg' src='./img/ppe_legend.png'>"+
-"<div class='layerLabel'>PPE</div></div>"+
+// "<div id='layer4' class='layertoggles'>"+
+// "<img class='layerImg' src='./img/ppe_legend.png'>"+
+// "<div class='layerLabel'>PPE</div></div>"+
 // "<div id='layer5' class='layertoggles'>"+
 // "<img class='layerImg' src='./img/smms_legend.png'>"+
 // "<div class='layerLabel'>SMMS</div></div>"+
@@ -170,9 +170,9 @@ layersDiv.innerHTML =
 "<div class='layerLabel'>VHA</div></div><br>"+
 "<div id='layer7' class='layertoggles'><div class='layerLabel'>Shipping</div>"+
 "<img class='layerImg' src='./img/shipping_legend.png'>"+
-"<div class='layerLabel'>Location</div></div>"+
-"<div id='layer8' class='layertoggles'><div class='layerLabel'>Staging</div>"+
-"<img class='layerImg' src='./img/staging_legend.png'>"+
+// "<div class='layerLabel'>Location</div></div>"+
+// "<div id='layer8' class='layertoggles'><div class='layerLabel'>Staging</div>"+
+// "<img class='layerImg' src='./img/staging_legend.png'>"+
 "<div class='layerLabel'>Area</div></div>"+
 "<div id='layer9' class='layertoggles'><div class='layerLabel'>EOC</div>"+
 "<img class='layerImg' src='./img/eoc_legend.png'>"+

@@ -237,7 +237,7 @@ var ppe = L.esri.featureLayer({
   icon: currentEventIcons[geojson.properties.Source]
 });
 }
-}).addTo(layerGroup);
+});
 ppe.bindPopup(function (layer) {
   return L.Util.template(
       "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
@@ -254,7 +254,7 @@ var smms = L.esri.featureLayer({
   icon: currentEventIcons[geojson.properties.Source]
 });
 }
-}).addTo(layerGroup);
+});
 smms.bindPopup(function (layer) {
   return L.Util.template(
       "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
@@ -289,7 +289,7 @@ var staging = L.esri.featureLayer({
   icon: currentEventIcons[geojson.properties.Source]
 });
 }
-}).addTo(layerGroup);
+});
 staging.bindPopup(function (layer) {
   return L.Util.template(
       "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
