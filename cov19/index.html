@@ -138,6 +138,10 @@ var currentEventIcons = {
       iconSize: [17,41],
       iconUrl:'./img/hospital.png'
     }),
+    battelle: L.icon({
+      iconSize: [17,41],
+      iconUrl:'./img/hospital.png'
+    }),
   };
   var dailyEventsIcons = {
       EOC_ACTIVATED: L.icon.pulse({
@@ -222,6 +226,23 @@ var fms = L.esri.featureLayer({
 }
 }).addTo(layerGroup);
 fms.bindPopup(function (layer) {
+  return L.Util.template(
+      "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+      "</td></tr><tr><td>Address</td><td>"
+      +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+      "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+      "</td></tr></tr></tbody</table>");
+});
+var battelle = L.esri.featureLayer({
+  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
+  where:"Source = 'battelle' AND filter = 'N'",
+  pointToLayer: function (geojson, latlng) {
+  return L.marker(latlng, {
+  icon: currentEventIcons[geojson.properties.Source]
+});
+}
+}).addTo(layerGroup);
+battelle.bindPopup(function (layer) {
   return L.Util.template(
       "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
       "</td></tr><tr><td>Address</td><td>"
@@ -349,24 +370,24 @@ var boundary = L.esri.featureLayer({url:'https://services.arcgis.com/XG15cJAlne2
           "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
           "</td></tr></tr></tbody</table>");
     });
-    var teams = L.esri.featureLayer({
-      url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/ArcGIS/rest/services/R6_DAILY_EVENT2/FeatureServer/0',
-      where:"TYPE = 'TEAMS' AND filter = 'N' OR TYPE = 'TEAMS2' AND filter = 'N'",
-      pointToLayer: function (geojson, latlng) {
-        return L.marker(latlng, {
-          icon: dailyEventsIcons[geojson.properties.TYPE]
-        });
-      }
-    }).addTo(layerGroup);
+    // var teams = L.esri.featureLayer({
+    //   url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/ArcGIS/rest/services/R6_DAILY_EVENT2/FeatureServer/0',
+    //   where:"TYPE = 'TEAMS' AND filter = 'N' OR TYPE = 'TEAMS2' AND filter = 'N'",
+    //   pointToLayer: function (geojson, latlng) {
+    //     return L.marker(latlng, {
+    //       icon: dailyEventsIcons[geojson.properties.TYPE]
+    //     });
+    //   }
+    // }).addTo(layerGroup);
 
-      teams.bindPopup(function (layer) {
-        return L.Util.template(
-            "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
-            "</td></tr><tr><td>Address</td><td>"
-            +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
-            "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
-            "</td></tr></tr></tbody</table>");
-      });
+      // teams.bindPopup(function (layer) {
+      //   return L.Util.template(
+      //       "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+      //       "</td></tr><tr><td>Address</td><td>"
+      //       +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+      //       "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+      //       "</td></tr></tr></tbody</table>");
+      // });
 L.Control.Watermark = L.Control.extend({
     onAdd: function(map) {
         var img = L.DomUtil.create('img');

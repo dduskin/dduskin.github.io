@@ -177,9 +177,12 @@ layersDiv.innerHTML =
 "<div id='layer9' class='layertoggles'><div class='layerLabel'>EOC</div>"+
 "<img class='layerImg' src='./img/eoc_legend.png'>"+
 "<div class='layerLabel'>Active</div></div>"+
-"<div id='layer10' class='layertoggles'><div class='layerLabel'>IMAT</div>"+
-"<img class='layerImg' src='./img/imat_legend.png'>"+
-"<div class='layerLabel'>TEAMS</div></div>"+
+// "<div id='layer10' class='layertoggles'><div class='layerLabel'>IMAT</div>"+
+// "<img class='layerImg' src='./img/imat_legend.png'>"+
+// "<div class='layerLabel'>TEAMS</div></div>"+
+"<div id='layer10' class='layertoggles'><div class='layerLabel'>Battelle</div>"+
+"<img class='layerImg' src='./img/fms_legend.png'>"+
+"<div class='layerLabel'> _</div></div>"+
 "<div id='layer11' class='layertoggles'><div class='layerLabel'>Affected</div>"+
 "<img class='layerImg' src='./img/affected_legend.png'>"+
 "<div class='layerLabel' style='font-size:0.6em;padding-top:0.85em;padding-bottom:0.2em;'>County/Parish</div></div>"+
@@ -299,8 +302,8 @@ document.getElementById("layer9").onclick = function(){
 	}
 }
 document.getElementById("layer10").onclick = function(){
-	if(layerGroup.hasLayer(teams)){layerGroup.removeLayer(teams);document.getElementById("layer10").classList.add("layernotSelected");} else {
-		layerGroup.addLayer(teams);document.getElementById("layer10").classList.remove("layernotSelected");
+	if(layerGroup.hasLayer(battelle)){layerGroup.removeLayer(battelle);document.getElementById("layer10").classList.add("layernotSelected");} else {
+		layerGroup.addLayer(battelle);document.getElementById("layer10").classList.remove("layernotSelected");
 	}
 }
 document.getElementById("layer11").onclick = function(){
