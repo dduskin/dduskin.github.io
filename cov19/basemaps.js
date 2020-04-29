@@ -165,7 +165,7 @@ layersDiv.innerHTML =
 // "<div class='layerLabel'>SMMS</div></div>"+
 "<div id='layer6' class='layertoggles'>"+
 "<img class='layerImg' src='./img/ppe_legend.png'>"+
-"<div class='layerLabel'>Battelle (CCDS)</div></div><br>"+
+"<div class='layerLabel'>Battelle</div></div><br>"+
 
 // "<div id='layer6' class='layertoggles'>"+
 // "<img class='layerImg' src='./img/vha_legend.png'>"+
