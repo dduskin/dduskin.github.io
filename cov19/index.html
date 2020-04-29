@@ -138,7 +138,7 @@ var currentEventIcons = {
       iconSize: [17,41],
       iconUrl:'./img/hospital.png'
     }),
-    battelle: L.icon({
+    Battelle: L.icon({
       iconSize: [17,41],
       iconUrl:'./img/hospital.png'
     }),
@@ -235,7 +235,7 @@ fms.bindPopup(function (layer) {
 });
 var battelle = L.esri.featureLayer({
   url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
-  where:"Source = 'battelle' AND filter = 'N'",
+  where:"Source = 'Battelle' AND filter = 'N'",
   pointToLayer: function (geojson, latlng) {
   return L.marker(latlng, {
   icon: currentEventIcons[geojson.properties.Source]
