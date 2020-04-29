@@ -222,9 +222,9 @@ document.getElementById("addallLayer").onclick = function(){
 layerGroup.addLayer(acs);
 layerGroup.addLayer(cbts);
 layerGroup.addLayer(fms);
-layerGroup.addLayer(smms);
-layerGroup.addLayer(vha);
-layerGroup.addLayer(ppe);
+// layerGroup.addLayer(smms);
+//layerGroup.addLayer(vha);
+//layerGroup.addLayer(ppe);
 layerGroup.addLayer(shipping);
 layerGroup.addLayer(staging);
 
