@@ -163,11 +163,13 @@ layersDiv.innerHTML =
 // "<div id='layer5' class='layertoggles'>"+
 // "<img class='layerImg' src='./img/smms_legend.png'>"+
 // "<div class='layerLabel'>SMMS</div></div>"+
-
-
 "<div id='layer6' class='layertoggles'>"+
-"<img class='layerImg' src='./img/vha_legend.png'>"+
-"<div class='layerLabel'>VHA</div></div><br>"+
+"<img class='layerImg' src='./img/ppe_legend.png'>"+
+"<div class='layerLabel'>Battelle (CCDS)</div></div><br>"+
+
+// "<div id='layer6' class='layertoggles'>"+
+// "<img class='layerImg' src='./img/vha_legend.png'>"+
+// "<div class='layerLabel'>VHA</div></div><br>"+
 "<div id='layer7' class='layertoggles'><div class='layerLabel'>Shipping</div>"+
 "<img class='layerImg' src='./img/shipping_legend.png'>"+
 // "<div class='layerLabel'>Location</div></div>"+
@@ -180,9 +182,9 @@ layersDiv.innerHTML =
 // "<div id='layer10' class='layertoggles'><div class='layerLabel'>IMAT</div>"+
 // "<img class='layerImg' src='./img/imat_legend.png'>"+
 // "<div class='layerLabel'>TEAMS</div></div>"+
-"<div id='layer10' class='layertoggles'><div class='layerLabel'>Battelle</div>"+
-"<img class='layerImg' src='./img/ppe_legend.png'>"+
-"<div class='layerLabel'>CCDS</div></div>"+
+// "<div id='layer10' class='layertoggles'><div class='layerLabel'>Battelle</div>"+
+// "<img class='layerImg' src='./img/ppe_legend.png'>"+
+// "<div class='layerLabel'>CCDS</div></div>"+
 "<div id='layer11' class='layertoggles'><div class='layerLabel'>Affected</div>"+
 "<img class='layerImg' src='./img/affected_legend.png'>"+
 "<div class='layerLabel' style='font-size:0.6em;padding-top:0.85em;padding-bottom:0.2em;'>County/Parish</div></div>"+
@@ -253,7 +255,7 @@ document.getElementById("layer6").classList.add("layernotSelected");
 document.getElementById("layer7").classList.add("layernotSelected");
 // document.getElementById("layer8").classList.add("layernotSelected");
 document.getElementById("layer9").classList.add("layernotSelected");
-document.getElementById("layer10").classList.add("layernotSelected");
+// document.getElementById("layer10").classList.add("layernotSelected");
 document.getElementById("layer11").classList.add("layernotSelected");
 }
 document.getElementById("layer1").onclick = function(){
@@ -282,8 +284,8 @@ document.getElementById("layer3").onclick = function(){
 // 	}
 // }
 document.getElementById("layer6").onclick = function(){
-	if(layerGroup.hasLayer(vha)){layerGroup.removeLayer(vha);document.getElementById("layer6").classList.add("layernotSelected");} else {
-		layerGroup.addLayer(vha);document.getElementById("layer6").classList.remove("layernotSelected");
+	if(layerGroup.hasLayer(battelle)){layerGroup.removeLayer(battelle);document.getElementById("layer6").classList.add("layernotSelected");} else {
+		layerGroup.addLayer(battelle);document.getElementById("layer6").classList.remove("layernotSelected");
 	}
 }
 document.getElementById("layer7").onclick = function(){
@@ -301,11 +303,11 @@ document.getElementById("layer9").onclick = function(){
 		layerGroup.addLayer(eocs);document.getElementById("layer9").classList.remove("layernotSelected");
 	}
 }
-document.getElementById("layer10").onclick = function(){
-	if(layerGroup.hasLayer(battelle)){layerGroup.removeLayer(battelle);document.getElementById("layer10").classList.add("layernotSelected");} else {
-		layerGroup.addLayer(battelle);document.getElementById("layer10").classList.remove("layernotSelected");
-	}
-}
+// document.getElementById("layer10").onclick = function(){
+// 	if(layerGroup.hasLayer(battelle)){layerGroup.removeLayer(battelle);document.getElementById("layer10").classList.add("layernotSelected");} else {
+// 		layerGroup.addLayer(battelle);document.getElementById("layer10").classList.remove("layernotSelected");
+// 	}
+// }
 document.getElementById("layer11").onclick = function(){
 	if(layerGroup.hasLayer(aoi)){layerGroup.removeLayer(aoi);document.getElementById("layer11").classList.add("layernotSelected");} else {
 		layerGroup.addLayer(aoi);document.getElementById("layer11").classList.remove("layernotSelected");
