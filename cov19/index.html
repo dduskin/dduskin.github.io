@@ -338,8 +338,8 @@ staging.bindPopup(function (layer) {
 // });
 
   var aoi = L.esri.featureLayer({
-    url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/covid_19_aoi/FeatureServer/0',
-    where:"AOI = 'Affected'",
+    url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Region_6_Counties/FeatureServer/0',
+    where:"Case_per_100k > 0",
     // simplifyFactor: 0.5,
     // precision: 5,
     style: {color:'red', weight:0.75, dashArray:3,fillOpacity:0.25}
@@ -421,7 +421,7 @@ aoi.on('mouseout', function(e){
 aoi.on('mouseover', function(e){
   aoi.resetStyle(oldId);
   oldId = e.layer.feature.id;
-  document.getElementById('info-pane').innerHTML = e.layer.feature.properties.POLYGON_NM + ', ' + e.layer.feature.properties.STATE_NM+ '<br><span style="font-size:0.75em;">'+e.layer.feature.properties.AOI+'<br><span style="font-size:0.75em;">Total COV-19 Cases: '+e.layer.feature.properties.COV19_Cnt+'</span>';
+  document.getElementById('info-pane').innerHTML = e.layer.feature.properties.NAME + ', ' + e.layer.feature.properties.STATE_NAME+ '<br><span style="font-size:0.75em;">COV-19 Cases per 100k: '+e.layer.feature.properties.Case_per_100k+'</span>';
   e.layer.bringToFront();
   aoi.setFeatureStyle(e.layer.feature.id, {
     color: 'red',
