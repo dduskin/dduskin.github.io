@@ -181,8 +181,8 @@ layersDiv.innerHTML =
 // "<img class='layerImg' src='./img/imat_legend.png'>"+
 // "<div class='layerLabel'>TEAMS</div></div>"+
 "<div id='layer10' class='layertoggles'><div class='layerLabel'>Battelle</div>"+
-"<img class='layerImg' src='./img/fms_legend.png'>"+
-"<div class='layerLabel'> _</div></div>"+
+"<img class='layerImg' src='./img/ppe_legend.png'>"+
+"<div class='layerLabel'>CCDS</div></div>"+
 "<div id='layer11' class='layertoggles'><div class='layerLabel'>Affected</div>"+
 "<img class='layerImg' src='./img/affected_legend.png'>"+
 "<div class='layerLabel' style='font-size:0.6em;padding-top:0.85em;padding-bottom:0.2em;'>County/Parish</div></div>"+
