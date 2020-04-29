@@ -241,7 +241,7 @@ document.getElementById("layer6").classList.remove("layernotSelected");
 document.getElementById("layer7").classList.remove("layernotSelected");
 // document.getElementById("layer8").classList.remove("layernotSelected");
 document.getElementById("layer9").classList.remove("layernotSelected");
-document.getElementById("layer10").classList.remove("layernotSelected");
+// document.getElementById("layer10").classList.remove("layernotSelected");
 document.getElementById("layer11").classList.remove("layernotSelected");
 }
 document.getElementById("removeallLayer").onclick = function(){
