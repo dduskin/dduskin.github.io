@@ -364,7 +364,7 @@ var boundary = L.esri.featureLayer({url:'https://services.arcgis.com/XG15cJAlne2
 
     eocs.bindPopup(function (layer) {
       return L.Util.template(
-        document.getElementById('info-pane').innerHTML = e.layer.feature.properties.NAME + ', ' + e.layer.feature.properties.STATE_NAME+ '</span><br><span style="font-size:0.75em;">COV-19 Cases per 100k: <br>'+e.layer.feature.properties.Case_per_100k+'</span>';
+          "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
           "</td></tr><tr><td>Address</td><td>"
           +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
           "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
@@ -421,7 +421,7 @@ aoi.on('mouseout', function(e){
 aoi.on('mouseover', function(e){
   aoi.resetStyle(oldId);
   oldId = e.layer.feature.id;
-  document.getElementById('info-pane').innerHTML = e.layer.feature.properties.NAME + ', ' + e.layer.feature.properties.STATE_NAME+ '<br><span style="font-size:0.75em;">COV-19 Cases per 100k: <br>'+e.layer.feature.properties.Case_per_100k+'</span><br><span style="font-size:0.75em;">% Case Change: <br>'+e.layer.feature.properties.PctCaseChange+'</span>';
+  document.getElementById('info-pane').innerHTML = e.layer.feature.properties.POLYGON_NM + ', ' + e.layer.feature.properties.STATE_NM+ '<br><span style="font-size:0.75em;">'+e.layer.feature.properties.AOI+'<br><span style="font-size:0.75em;">Total COV-19 Cases: '+e.layer.feature.properties.COV19_Cnt+'</span>';
   e.layer.bringToFront();
   aoi.setFeatureStyle(e.layer.feature.id, {
     color: 'red',
