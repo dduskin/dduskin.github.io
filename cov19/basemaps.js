@@ -228,7 +228,7 @@ layerGroup.addLayer(staging);
 
 
 layerGroup.addLayer(eocs);
-layerGroup.addLayer(teams);
+layerGroup.addLayer(battelle);
 layerGroup.addLayer(aoi);
 document.getElementById("layer1").classList.remove("layernotSelected");
 document.getElementById("layer2").classList.remove("layernotSelected");
