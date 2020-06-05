@@ -1,0 +1,462 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>FEMA Region 6 | COV19</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta http-equiv="refresh" content="900" >
+  <!-- Load Leaflet from CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+  crossorigin=""></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- Load Esri Leaflet from CDN -->
+  <script src="https://unpkg.com/esri-leaflet@2.3.3/dist/esri-leaflet.js"
+  integrity="sha512-cMQ5e58BDuu1pr9BQ/eGRn6HaR6Olh0ofcHFWe5XesdCITVuSBiBZZbhCijBe5ya238f/zMMRYIMIIg1jxv4sQ=="
+  crossorigin=""></script>
+  <!-- Load Leaflet MarkerCluster and Esri Leaflet Cluster from CDN -->
+  <link rel="stylesheet" type="text/css"
+    href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"
+    integrity="sha512-BBToHPBStgMiw0lD4AtkRIZmdndhB6aQbXpX7omcrXeG2PauGBl2lzq2xUZTxaLxYz5IDHlmneCZ1IJ+P3kYtQ=="
+    crossorigin="">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"
+    integrity="sha512-RLEjtaFGdC4iQMJDbMzim/dOvAu+8Qp9sw7QE4wIMYcg2goVoivzwgSZq9CsIxp4xKAZPKh5J2f2lOko2Ze6FQ=="
+    crossorigin="">
+  <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"
+    integrity="sha512-MQlyPV+ol2lp4KodaU/Xmrn+txc1TP15pOBF/2Sfre7MRsA/pB4Vy58bEqe9u7a7DczMLtU5wT8n7OblJepKbg=="
+    crossorigin=""></script>
+  <script src="https://unpkg.com/esri-leaflet-cluster@2.0.1/dist/esri-leaflet-cluster.js"
+    integrity="sha512-2/Nwrks+A2omjKeWrF4TKFLIrUbAhSl8EDEm6xunuwXXYqMoJI71PZtlW0/vqt9d3DOyP1md/bzAnNH2KuAhaQ=="
+    crossorigin=""></script>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="L.Icon.Pulse.css">
+  <style>
+  .rows{margin-right:1em;font-size:0.65em;color:black;}
+  .leaflet-control-layers{font-family: 'Oswald', sans-serif;border-radius: 0px;border-width:thin;border-color:black;}
+  .table{  border-collapse: collapse;
+  width: 100%;}
+  .table td, .table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.table tr:nth-child(even){background-color: #f2f2f2;}
+
+.table tr:hover {background-color: #ddd;}
+.table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+#info-pane {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  z-index: 700;
+  padding: 1em;
+  font-size:1.5em;
+  background: red;
+  border-radius:0;
+  color:white;
+}
+#safeRoombtn	{
+position: absolute;
+z-index:600;position:fixed;top:0%;left:50%;
+}
+  </style>
+</head>
+<body>
+<div id="map"></div>
+<div class="dropdown" id='safeRoombtn'>
+  <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">Areas of Interest
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li class="dropdown-header">Areas of Interest</li>
+    <li><a id="bm1" href="javascript:void(0)" >Region 6 Extent</a></li>
+    <li><a id="bm2" href="javascript:void(0)"  >Austin</a></li>
+    <li><a id="bm3" href="javascript:void(0)"  >Dallas</a></li>
+    <li><a id="bm4" href="javascript:void(0)"  >Dallas/Fort Worth</a></li>
+    <li><a id="bm5" href="javascript:void(0)"  >Fort Worth</a></li>
+    <li><a id="bm6" href="javascript:void(0)" >Houston</a></li>
+    <li><a id="bm7" href="javascript:void(0)" >New Orleans</a></li>
+    <li><a id="bm8" href="javascript:void(0)"  >San Antonio</a></li>
+  </ul>
+</div>
+<div id="info-pane" class="leaflet-bar hide"></div>
+<!-- <div style="box-shadow: 1px 2.5px 5px -1px rgba(0,0,0,1);z-index:600;bottom:5%;right:1%;position:absolute;background-color:white;color:black;width:400px;height:125px;padding:3px;border-radius:5px;border-color:black;border-style:solid;border-width:thin;">
+<span style='font-size:0.75em;margin-bottom:0.75em;'>EXPLANATION</span><br>
+<div style="width:395px;border-style:solid;border-width:thin;border-color:black;">
+<span class="rows">Drive-Thru Test Site</span><span class="rows">Shipping Location</span><span class="rows">Affected County/Parish</span><span class="rows">Incident Facilities</span><br>
+
+
+
+</div> -->
+
+
+
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="basemaps.js"></script>
+<script src="L.Icon.Pulse.js"></script>
+<script>
+var currentEventIcons = {
+    Staging: L.icon({
+      iconSize: [24,24],
+      iconUrl:'./img/staging.png'
+    }),
+    shipping: L.icon({
+      iconSize: [17,41],
+      iconUrl:'./img/bus.png'
+    }),
+    PPE: L.icon({
+      iconSize: [17,41],
+      iconUrl:'./img/ppe.png'
+    }),
+    FMS: L.icon({
+      iconSize: [17,41],
+      iconUrl:'./img/ems.png'
+    }),
+    VHA: L.icon({
+      iconSize: [17,41],
+      iconUrl:'./img/vha.png'
+    }),
+    ACS: L.icon({
+      iconSize: [17,41],
+      iconUrl:'./img/acs.png'
+    }),
+    SMMS: L.icon({
+      iconSize: [17,41],
+      iconUrl:'./img/smms.png'
+    }),
+    CBTS: L.icon({
+      iconSize: [17,41],
+      iconUrl:'./img/hospital.png'
+    }),
+    Battelle: L.icon({
+      iconSize: [17,41],
+      iconUrl:'./img/ppe.png'
+    }),
+  };
+  var dailyEventsIcons = {
+      EOC_ACTIVATED: L.icon.pulse({
+        iconSize: [18,18],
+        color: 'red',
+        animate: true,
+        heartbeat: 2,
+      }),
+      TEAMS: L.icon({
+        iconSize: [22,22],
+        iconUrl:'./img/team.png'
+      }),
+      EOC: L.icon({
+        iconSize: [18,18],
+        iconUrl:'./img/eoc.png'
+      }),
+      TEAMS2: L.icon({
+        iconSize: [22,22],
+        iconUrl:'./img/teams2.png'
+      }),
+    };
+  // var icon1 = L.icon({
+  //   iconUrl: './img/hospital.png',
+  //   iconSize:[17,41],
+  // });
+
+var pulsingIcon = L.icon.pulse({iconSize:[18,18],color:'red',heartbeat:2})
+
+var acs = L.esri.featureLayer({
+  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
+  where:"Source = 'ACS' AND filter = 'N'",
+  pointToLayer: function (geojson, latlng) {
+  return L.marker(latlng, {
+  icon: currentEventIcons[geojson.properties.Source]
+});
+}
+}).addTo(layerGroup);
+acs.bindPopup(function (layer) {
+  return L.Util.template(
+      "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+      "</td></tr><tr><td>Address</td><td>"
+      +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+      "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+      "</td></tr></tr></tbody</table>");
+});
+var cbts = L.esri.Cluster.featureLayer({
+  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
+  where:"Source = 'CBTS' AND filter = 'N'",
+  spiderfyOnMaxZoom: false,
+  removeOutsideVisibleBounds: true,
+  disableClusteringAtZoom: 8,
+  iconCreateFunction: function (cluster) {
+    var count = cluster.getChildCount();
+    var digits = (count + '').length;
+    return L.divIcon({
+      html: count,
+      className: 'cluster digits-' + digits,
+      iconSize: null
+    });
+  },
+  pointToLayer: function (geojson, latlng) {
+  return L.marker(latlng, {
+  icon: currentEventIcons[geojson.properties.Source]
+});
+}
+}).addTo(layerGroup);
+cbts.bindPopup(function (layer) {
+  return L.Util.template(
+      "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+      "</td></tr><tr><td>Address</td><td>"
+      +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+      "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+      "</td></tr></tr></tbody</table>");
+});
+var fms = L.esri.featureLayer({
+  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
+  where:"Source = 'FMS' AND filter = 'N'",
+  pointToLayer: function (geojson, latlng) {
+  return L.marker(latlng, {
+  icon: currentEventIcons[geojson.properties.Source]
+});
+}
+}).addTo(layerGroup);
+fms.bindPopup(function (layer) {
+  return L.Util.template(
+      "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+      "</td></tr><tr><td>Address</td><td>"
+      +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+      "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+      "</td></tr></tr></tbody</table>");
+});
+var battelle = L.esri.featureLayer({
+  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
+  where:"Source = 'Battelle' AND filter = 'N'",
+  pointToLayer: function (geojson, latlng) {
+  return L.marker(latlng, {
+  icon: currentEventIcons[geojson.properties.Source]
+});
+}
+}).addTo(layerGroup);
+battelle.bindPopup(function (layer) {
+  return L.Util.template(
+      "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+      "</td></tr><tr><td>Address</td><td>"
+      +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+      "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+      "</td></tr></tr></tbody</table>");
+});
+// var ppe = L.esri.featureLayer({
+//   url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
+//   where:"Source = 'PPE' AND filter = 'N'",
+//   pointToLayer: function (geojson, latlng) {
+//   return L.marker(latlng, {
+//   icon: currentEventIcons[geojson.properties.Source]
+// });
+// }
+// });
+// ppe.bindPopup(function (layer) {
+//   return L.Util.template(
+//       "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+//       "</td></tr><tr><td>Address</td><td>"
+//       +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+//       "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+//       "</td></tr></tr></tbody</table>");
+// });
+// var smms = L.esri.featureLayer({
+//   url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
+//   where:"Source = 'SMMS' AND filter = 'N'",
+//   pointToLayer: function (geojson, latlng) {
+//   return L.marker(latlng, {
+//   icon: currentEventIcons[geojson.properties.Source]
+// });
+// }
+// });
+// smms.bindPopup(function (layer) {
+//   return L.Util.template(
+//       "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+//       "</td></tr><tr><td>Address</td><td>"
+//       +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+//       "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+//       "</td></tr></tr></tbody</table>");
+// });
+
+var shipping = L.esri.featureLayer({
+  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
+  where:"Source = 'shipping' AND filter = 'N'",
+  pointToLayer: function (geojson, latlng) {
+  return L.marker(latlng, {
+  icon: currentEventIcons[geojson.properties.Source]
+});
+}
+}).addTo(layerGroup);
+shipping.bindPopup(function (layer) {
+  return L.Util.template(
+      "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+      "</td></tr><tr><td>Address</td><td>"
+      +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+      "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+      "</td></tr></tr></tbody</table>");
+});
+var staging = L.esri.featureLayer({
+  url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
+  where:"Source = 'Staging' AND filter = 'N'",
+  pointToLayer: function (geojson, latlng) {
+  return L.marker(latlng, {
+  icon: currentEventIcons[geojson.properties.Source]
+});
+}
+});
+staging.bindPopup(function (layer) {
+  return L.Util.template(
+      "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+      "</td></tr><tr><td>Address</td><td>"
+      +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+      "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+      "</td></tr></tr></tbody</table>");
+});
+// var vha = L.esri.featureLayer({
+//   url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/cov19_fac/FeatureServer/0',
+//   where:"Source = 'VHA' AND filter = 'N'",
+//   pointToLayer: function (geojson, latlng) {
+//   return L.marker(latlng, {
+//   icon: currentEventIcons[geojson.properties.Source]
+// });
+// }
+// }).addTo(layerGroup);
+// vha.bindPopup(function (layer) {
+//   return L.Util.template(
+//       "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+//       "</td></tr><tr><td>Address</td><td>"
+//       +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+//       "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+//       "</td></tr></tr></tbody</table>");
+// });
+
+  var aoi = L.esri.featureLayer({
+    url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/Region_6_Counties/FeatureServer/0',
+    where:"Case_per_100k > 0",
+    // simplifyFactor: 0.5,
+    // precision: 5,
+    style: {color:'red', weight:0.75, dashArray:3,fillOpacity:0.25}
+  }).addTo(layerGroup);
+
+var boundary = L.esri.featureLayer({url:'https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/R6_Boundaries/FeatureServer/0',
+  style:{color:'black',weight:0.75},
+  simplifyFactor: 0.5,
+  precision: 5,
+}).addTo(map);
+
+
+  var eocs = L.esri.featureLayer({
+    url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/ArcGIS/rest/services/R6_DAILY_EVENT2/FeatureServer/0',
+    where:"TYPE = 'EOC_ACTIVATED' OR TYPE = 'EOC'",
+    pointToLayer: function (geojson, latlng) {
+      return L.marker(latlng, {
+        icon: dailyEventsIcons[geojson.properties.TYPE]
+      });
+    }
+  }).addTo(layerGroup);
+
+    eocs.bindPopup(function (layer) {
+      return L.Util.template(
+          "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+          "</td></tr><tr><td>Address</td><td>"
+          +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+          "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+          "</td></tr></tr></tbody</table>");
+    });
+    // var teams = L.esri.featureLayer({
+    //   url: 'https://services.arcgis.com/XG15cJAlne2vxtgt/ArcGIS/rest/services/R6_DAILY_EVENT2/FeatureServer/0',
+    //   where:"TYPE = 'TEAMS' AND filter = 'N' OR TYPE = 'TEAMS2' AND filter = 'N'",
+    //   pointToLayer: function (geojson, latlng) {
+    //     return L.marker(latlng, {
+    //       icon: dailyEventsIcons[geojson.properties.TYPE]
+    //     });
+    //   }
+    // }).addTo(layerGroup);
+
+      // teams.bindPopup(function (layer) {
+      //   return L.Util.template(
+      //       "<b><span style='font-size:0.8em;'>"+layer.feature.properties.Descriptio+"</span></b><table class='table' cellspacing='0px' cellpadding='0px' style='font-size:0.75em;'><tbody></tr><tr><td>Type</td><td>"+layer.feature.properties.TYPE+
+      //       "</td></tr><tr><td>Address</td><td>"
+      //       +layer.feature.properties.Address+"</td></tr><tr><td>City</td><td>"+layer.feature.properties.City+
+      //       "</td></tr><tr><td>State</td><td>"+layer.feature.properties.State+
+      //       "</td></tr></tr></tbody</table>");
+      // });
+L.Control.Watermark = L.Control.extend({
+    onAdd: function(map) {
+        var img = L.DomUtil.create('img');
+
+        img.src = 'https://upload.wikimedia.org/wikipedia/commons/6/67/FEMA_logo.svg';
+        img.style.width = '200px';
+
+        return img;
+    },
+
+    onRemove: function(map) {
+        // Nothing to do here
+    }
+});
+L.control.watermark = function(opts) {
+    return new L.Control.Watermark(opts);
+}
+L.control.watermark({ position: 'bottomleft' }).addTo(map);
+var oldId;
+
+aoi.on('mouseout', function(e){
+  document.getElementById('info-pane').innerHTML = 'Hover to Inspect';
+  aoi.setFeatureStyle(e.layer.feature.id, {
+    color: 'red',
+    weight: 1,
+    opacity: 1
+  });
+    document.getElementById("info-pane").classList.add("hide");
+});
+
+aoi.on('mouseover', function(e){
+  aoi.resetStyle(oldId);
+  oldId = e.layer.feature.id;
+  document.getElementById('info-pane').innerHTML = e.layer.feature.properties.NAME + ', ' + e.layer.feature.properties.STATE_NAME+ '<br><span style="font-size:0.75em;">COV-19 Cases per 100k: <br>'+e.layer.feature.properties.Case_per_100k+'</span><br><span style="font-size:0.75em;">% Case Change: <br>'+e.layer.feature.properties.PctCaseChange+'</span>';
+  e.layer.bringToFront();
+  aoi.setFeatureStyle(e.layer.feature.id, {
+    color: 'red',
+    weight: 3,
+    opacity: 1,
+    dashArray:1
+  });
+
+document.getElementById("info-pane").classList.remove("hide");
+});
+  document.getElementById("bm1").onclick = function(){
+map.setView([31.5,-99],6);
+  }
+  document.getElementById("bm2").onclick = function(){
+map.setView([30.26974231529823,-97.74257206181598],11)
+  }
+  document.getElementById("bm3").onclick = function(){
+map.setView([32.78236773363648,-96.79874050459675],11)
+  }
+  document.getElementById("bm4").onclick = function(){
+map.setView([32.76649095995108,-97.04456077273197],10)
+  }
+  document.getElementById("bm5").onclick = function(){
+map.setView([32.75176633003113,-97.31683924334692],11)
+  }
+  document.getElementById("bm6").onclick = function(){
+map.setView([29.75126321250455,-95.35576673331241],10)
+  }
+  document.getElementById("bm7").onclick = function(){
+map.setView([29.977493031057612,-90.16307830810548],11)
+  }
+  document.getElementById("bm8").onclick = function(){
+map.setView([29.421058433894057,-98.49579496005558],11)
+  }
+
+</script>
+</body>
+</html>
